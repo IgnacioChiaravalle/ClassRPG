@@ -13,7 +13,14 @@ class DatabaseSeeder extends Seeder {
 			'password_resets',
 		]);
 
+		$this->call(RPGClassSeeder::Class);
+		$this->call(WeaponSeeder::Class);
+		$this->call(ItemSeeder::Class);
+		$this->call(ArmorSeeder::Class);
+
 		$this->call(UserSeeder::Class);
+		$this->call(TeacherSeeder::Class);
+		$this->call(StudentSeeder::Class);
 	}
 
 	private function truncateTables(array $tables) {

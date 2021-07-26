@@ -10,7 +10,8 @@ class UserSeeder extends Seeder
 {
 	public function run() {
 		$this->insertIntoTable(['Admin Teacher', 'admin@admin.com', 'admin', 'teacher']);
-		$this->insertIntoTable(['Student 1', 'student@student.com', 'student', 'student']);
+		$this->insertIntoTable(['Student 1', 'student1@student.com', 'student', 'student']);
+		$this->insertIntoTable(['Student 2', 'student2@student.com', 'student', 'student']);
 	}
 
 	private function insertIntoTable(array $data) {

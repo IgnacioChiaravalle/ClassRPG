@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateRPGClassesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,14 +13,11 @@ class CreateUsersTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('users', function (Blueprint $table) {
+		Schema::create('rpg_classes', function (Blueprint $table) {
 			$table->id();
 			$table->string('name')->unique();
-			$table->string('email')->unique();
-			$table->timestamp('email_verified_at')->nullable();
-			$table->string('password');
-			$table->enum('type', ['student', 'teacher', 'admin']);
-			$table->rememberToken();
+			$table->unsignedInteger('base_health');
+			$table->unsignedInteger('base_damage');
 			$table->timestamps();
 		});
 	}
@@ -32,6 +29,6 @@ class CreateUsersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('users');
+		Schema::dropIfExists('rpg_classes');
 	}
 }
