@@ -22,6 +22,13 @@ class ItemSeeder extends Seeder
 			'3',
 			'10'
 		]);
+		$this->insertIntoTable([
+			'Collar Mágico',
+			'Rogue',
+			'9',
+			'4',
+			'15'
+		]);
 	}
 
 	private function insertIntoTable(array $data) {

@@ -14,16 +14,25 @@ class StudentSeeder extends Seeder
 			'Espada de Madera',
 			'Escudo de Madera',
 			'Armadura de Cuero',
-			'0',
+			'10',
 			'20'
 		]);
 		$this->insertIntoTable([
 			'Student 2',
 			'Rogue',
-			'Espada de Madera',
 			null,
 			null,
-			'0',
+			null,
+			'50',
+			'15'
+		]);
+		$this->insertIntoTable([
+			'Student 3',
+			'Rogue',
+			null,
+			null,
+			null,
+			'100',
 			'15'
 		]);
 	}

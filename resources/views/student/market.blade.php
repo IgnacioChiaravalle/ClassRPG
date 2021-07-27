@@ -25,15 +25,15 @@
 
 		@isset ($onSaleList)
 			@foreach ($onSaleList as $sale)
-				<tr>
+				<tr onclick="location.href='/mercado/buyItem/{{$sale->name}}/{{$sale->cost}}'">
 					<td>{{$sale->name}}</td>
 					<td>{{$sale->type}}</td>
-					@if ($sale->added_damage != null) <!--check-->
+					@if ($sale->added_damage != null)
 						<td>{{$sale->added_damage}}</td>
 					@else
 						<td>0</td>
 					@endif
-					@if ($sale->added_health != null) <!--check-->
+					@if ($sale->added_health != null)
 						<td>{{$sale->added_health}}</td>
 					@else
 						<td>0</td>
@@ -43,6 +43,8 @@
 			@endforeach
 		@endisset
 	</table>
+
+	<button onclick="location.href='/'">Volver</button>
 
 </body>
 </html>

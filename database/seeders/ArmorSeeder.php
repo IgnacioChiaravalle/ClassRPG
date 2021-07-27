@@ -20,6 +20,12 @@ class ArmorSeeder extends Seeder
 			'2',
 			'3'
 		]);
+		$this->insertIntoTable([
+			'Capa Armada',
+			'Rogue',
+			'5',
+			'6'
+		]);
 	}
 
 	private function insertIntoTable(array $data) {

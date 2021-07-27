@@ -49,15 +49,33 @@
 				<td>
 					<table>
 						<tr>
-							<td>Arma: {{$student->weapon}}</td>
+							<td>Arma:
+								@if ($student->weapon != null)
+									{{$student->weapon}}
+								@else
+									Ninguna
+								@endif
+							</td>
 							<td>Daño: {{$weapon_damage}}</td>
 						</tr>
 						<tr>
-							<td>Ítem: {{$student->item}}</td>
+							<td>Ítem:
+								@if ($student->item != null)
+									{{$student->item}}
+								@else
+									Ninguno
+								@endif
+							</td>
 							<td>Daño Añadido: {{$item_damage}}<br>Salud Añadida: {{$item_health}}</td>
 						</tr>
 						<tr>
-							<td>Armadura: {{$student->armor}}</td>
+							<td>Armadura:
+								@if ($student->armor != null)
+									{{$student->armor}}
+								@else
+									Ninguna
+								@endif
+							</td>
 							<td>Salud Añadida: {{$armor_health}}</td>
 						</tr>
 					</table>
