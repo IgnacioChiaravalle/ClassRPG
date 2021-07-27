@@ -24,7 +24,7 @@ class StudentSeeder extends Seeder
 			null,
 			null,
 			'50',
-			'15'
+			'0'
 		]);
 		$this->insertIntoTable([
 			'Student 3',
@@ -33,7 +33,7 @@ class StudentSeeder extends Seeder
 			null,
 			null,
 			'100',
-			'15'
+			'0'
 		]);
 	}
 

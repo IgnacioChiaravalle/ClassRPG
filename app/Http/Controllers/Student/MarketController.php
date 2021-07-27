@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
+use App\Models\RPGClass;
 use App\Models\Weapon;
 use App\Models\Item;
 use App\Models\Armor;
@@ -78,7 +79,7 @@ class MarketController extends Controller {
 	protected function buyItem($saleName, $saleCost) {
 		$student = $this->getStudent();
 		if ($student->coins < $saleCost)
-			return back()->with('message', "¡No tenés suficiente oro para comprar esto!.");
+			return back()->with('message', "¡No tenés suficiente oro para comprar esto!");
 
 		$sale = Weapon::where('name', $saleName)->first();
 		$type = 'weapon';
@@ -115,4 +116,17 @@ class MarketController extends Controller {
 				$toReturn = $inUse != null ? $inUse->added_health : 0;
 				return $toReturn;
 			}
+	
+	protected function healStudent($healCost) {
+		$student = $this->getStudent();
+		if ($student->coins < $healCost)
+			return back()->with('message', "¡No tenés suficiente oro para curarte!");
+
+		$rpg_class = RPGClass::where('name', $student->rpg_class)->first();
+		$student->update([
+			'coins' => $student->coins - $healCost,
+			'health' => $rpg_class->base_health + $this->getStudentItemHealth($student) + $this->getStudentArmorHealth($student)
+		]);
+		return redirect()->route('/');
+	}
 }

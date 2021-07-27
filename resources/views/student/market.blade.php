@@ -44,6 +44,7 @@
 		@endisset
 	</table>
 
+	<button onclick="location.href='/mercado/healStudent/5'">Curar Salud (Costo: 5 Monedas de Oro)</button>
 	<button onclick="location.href='/'">Volver</button>
 
 </body>
