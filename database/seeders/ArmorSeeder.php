@@ -12,7 +12,7 @@ class ArmorSeeder extends Seeder
 			'Armadura de Cuero',
 			'Warrior',
 			'5',
-			'5'
+			'7'
 		]);
 		$this->insertIntoTable([
 			'Capa Camuflada',

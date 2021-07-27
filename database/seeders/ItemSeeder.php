@@ -12,7 +12,7 @@ class ItemSeeder extends Seeder
 			'Escudo de Madera',
 			'Warrior',
 			'2',
-			'0',
+			'6',
 			'3'
 		]);
 		$this->insertIntoTable([
