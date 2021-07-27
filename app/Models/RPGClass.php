@@ -13,4 +13,6 @@ class RPGClass extends Model
 		'base_health',
 		'base_damage'
 	];
+
+	protected $table = 'rpg_classes';
 }

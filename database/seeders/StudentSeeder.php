@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
 		$this->insertIntoTable([
 			'Student 2',
 			'Rogue',
-			null,
+			'Espada de Madera',
 			null,
 			null,
 			'0',

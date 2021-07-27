@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Laravel</title>
+		<title>Teacher Welcome</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,27 +20,16 @@
 			}
 		</style>
 	</head>
-	
+
 	<body class="antialiased">
 		@if (Route::has('login'))
 			<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
 				@auth
 					<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-				@else
-					<a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 				@endauth
 			</div>
-		@endif	
-
-		<?php $user = auth()->user(); ?>
-
-		@if($user->type =='teacher')         
-			<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-			 <p>Soy un docente :)</p>
-			</div>
-		@elseif($user->type == 'student')
-			<p> {{$user->name}} - {{$user->rpg_class}}</p> <!-- Does not work because User does not have rpg_class -->
-
-		@endif
+		@endif	  
+		
+		<p>Soy un docente :)</p>
 	</body>
 </html>
