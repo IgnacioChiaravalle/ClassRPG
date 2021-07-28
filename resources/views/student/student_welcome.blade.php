@@ -35,7 +35,7 @@
 			</div>
 		@endif	
 		
-		<p> {{$student->name}} - {{$student->rpg_class}}</p>
+		<p>{{$student->name}} - {{$student->rpg_class}}</p>
 		
 		<table class="main-table">
 			<tr class="table-header-row">
@@ -49,7 +49,8 @@
 				<td>
 					<table>
 						<tr>
-							<td>Arma:
+							<td>
+								Arma:
 								@if ($student->weapon != null)
 									{{$student->weapon}}
 								@else
@@ -59,7 +60,8 @@
 							<td>Daño: {{$weapon_damage}}</td>
 						</tr>
 						<tr>
-							<td>Ítem:
+							<td>
+								Ítem:
 								@if ($student->item != null)
 									{{$student->item}}
 								@else
@@ -69,7 +71,8 @@
 							<td>Daño Añadido: {{$item_damage}}<br>Salud Añadida: {{$item_health}}</td>
 						</tr>
 						<tr>
-							<td>Armadura:
+							<td>
+								Armadura:
 								@if ($student->armor != null)
 									{{$student->armor}}
 								@else

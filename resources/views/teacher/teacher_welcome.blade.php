@@ -32,8 +32,32 @@
 					<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
 				@endauth
 			</div>
-		@endif	  
+		@endif
 		
-		<p>Soy un docente :)</p>
+		<p>{{$teacher->name}}</p>
+		
+		@if (isset ($my_students))
+			<p>Mis Alumnos:</p>
+			
+			<table class="main-table">
+				<tr class="table-header-row">
+					<td class="table-header-cell">Nombre</td>
+					<td class="table-header-cell">Correo Electrónico</td>
+					<td class="table-header-cell">Nombre de Usuario</td>
+					<td class="table-header-cell">Salud Restante</td>
+				</tr>
+
+				@foreach ($my_students as $studentUser)
+					<tr> <!-- onclick="location.href='/handleStudents/{{$studentUser->name}}'" -->
+						<td>{{$studentUser->real_name}}</td>
+						<td>{{$studentUser->email}}</td>
+						<td>{{$studentUser->name}}</td>
+						<td>{{$studentUser->health}}</td>
+					</tr>
+				@endforeach
+			</table>
+	@else
+		<p>¡Aún no tenés alumnos asignados!</p>
+	@endif
 	</body>
 </html>

@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder {
-
 	public function run() {
 		$this->truncateTables([
 			'users',
@@ -21,6 +20,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call(UserSeeder::Class);
 		$this->call(TeacherSeeder::Class);
 		$this->call(StudentSeeder::Class);
+		$this->call(TeacherStudentSeeder::Class);
 	}
 
 	private function truncateTables(array $tables) {

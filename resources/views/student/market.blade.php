@@ -13,17 +13,17 @@
 	@endif
 
 	<p>Tu Oro: {{$student->coins}}</p>
+	
+	@if (isset ($onSaleList))
+		<table class="main-table">
+			<tr class="table-header-row">
+				<td class="table-header-cell">Objeto</td>
+				<td class="table-header-cell">Tipo</td>
+				<td class="table-header-cell">Daño que Añade</td>
+				<td class="table-header-cell">Salud que Añade</td>
+				<td class="table-header-cell">Costo</td>
+			</tr>
 
-	<table class="main-table">
-		<tr class="table-header-row">
-			<td class="table-header-cell">Objeto</td>
-			<td class="table-header-cell">Tipo</td>
-			<td class="table-header-cell">Daño que Añade</td>
-			<td class="table-header-cell">Salud que Añade</td>
-			<td class="table-header-cell">Costo</td>
-		</tr>
-
-		@isset ($onSaleList)
 			@foreach ($onSaleList as $sale)
 				<tr onclick="location.href='/mercado/buyItem/{{$sale->name}}/{{$sale->cost}}'">
 					<td>{{$sale->name}}</td>
@@ -41,8 +41,12 @@
 					<td>{{$sale->cost}}</td>
 				</tr>
 			@endforeach
-		@endisset
-	</table>
+		</table>
+
+	@else
+		<p>¡Aún no hay un mercado disponible para vos! ¡Volvé pronto!</p>
+	@endif
+
 
 	<button onclick="location.href='/mercado/healStudent/5'">Curar Salud (Costo: 5 Monedas de Oro)</button>
 	<button onclick="location.href='/'">Volver</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ArrayHandlerController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
@@ -23,23 +24,23 @@ class MarketController extends Controller {
 
 	protected function getMarket() {
 		$student = $this->getStudent();
+		$aHC = new ArrayHandlerController;
 
 		$weapons = Weapon::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->weapon)->where('marketable', true)->get();
-		$this->addType($weapons, 'Arma');
+		$aHC->addDataToAllElements($weapons, 'type', 'Arma');
 		$items = Item::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->item)->where('marketable', true)->get();
-		$this->addType($items, 'Ítem');
+		$aHC->addDataToAllElements($items, 'type', 'Ítem');
 		$armors = Armor::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->armor)->where('marketable', true)->get();
-		$this->addType($armors, 'Armadura');
+		$aHC->addDataToAllElements($armors, 'type', 'Armadura');
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);
-		$onSaleList = $this->quicksort($onSaleList);
-		return View::make('student.market')->with('student', $student)->with('onSaleList', $onSaleList);
-	}
-
-		private function addType($list, $type) {
-			foreach($list as $toAdd)
-				$toAdd->type = $type;
+		if ($aHC->findSize($onSaleList) > 0) {
+			$onSaleList = $aHC->quicksort($onSaleList, 'sale');
+			return View::make('student.market')->with('student', $student)->with('onSaleList', $onSaleList);
 		}
+		else
+			return View::make('student.market')->with('student', $student);
+	}
 
 		private function putTogether($array1, $array2, $array3) {
 			$toReturn = array();
@@ -50,30 +51,6 @@ class MarketController extends Controller {
 			foreach($array3 as $a3)
 				$toReturn[] = $a3;
 			return $toReturn;
-		}
-
-		private function quicksort($list) {
-			$loe = $gt = array();
-			if ($this->findSize($list) < 2)
-				return $list;
-			
-			$pivot_key = key($list);
-			$pivot = array_shift($list);
-			foreach ($list as $element) {
-				if($element->cost <= $pivot->cost)
-					$loe[] = $element;
-				elseif ($element->cost > $pivot->cost)
-					$gt[] = $element;	
-			}
-			
-			return array_merge($this->quicksort($loe),array($pivot_key=>$pivot),$this->quicksort($gt));
-		}
-
-		private function findSize($list) {
-			$size = 0;
-			foreach ($list as $l)
-				$size++;
-			return $size;
 		}
 
 	protected function buyItem($saleName, $saleCost) {
@@ -123,9 +100,12 @@ class MarketController extends Controller {
 			return back()->with('message', "¡No tenés suficiente oro para curarte!");
 
 		$rpg_class = RPGClass::where('name', $student->rpg_class)->first();
+		$toHeal = $rpg_class->base_health + $this->getStudentItemHealth($student) + $this->getStudentArmorHealth($student);
+		if ($student->health == $toHeal)
+			return back()->with('message', "¡Ya tenés tu salud máxima!");
 		$student->update([
 			'coins' => $student->coins - $healCost,
-			'health' => $rpg_class->base_health + $this->getStudentItemHealth($student) + $this->getStudentArmorHealth($student)
+			'health' => $toHeal
 		]);
 		return redirect()->route('/');
 	}

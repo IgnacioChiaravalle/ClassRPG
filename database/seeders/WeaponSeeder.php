@@ -5,8 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class WeaponSeeder extends Seeder
-{
+class WeaponSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
 			'Espada de Madera',

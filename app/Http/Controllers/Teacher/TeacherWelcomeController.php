@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ArrayHandlerController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Teacher_Student;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeacherWelcomeController extends Controller {
@@ -13,6 +17,22 @@ class TeacherWelcomeController extends Controller {
 	}
 
 	public function getTeacherWelcome($teacher) {
-		return View::make('teacher.teacher_welcome');		
+		$teacher_students = Teacher_Student::where('teacher_name', $teacher->name)->get();
+		$my_students = array();
+		foreach($teacher_students as $ts)
+			array_push($my_students, User::where('name', $ts->student_name)->first());
+		
+		$aHC = new ArrayHandlerController;
+		if ($aHC->findSize($my_students) > 0) {
+			$my_students = $aHC->quicksort($my_students, 'user');
+			$this->addHealth($my_students, $aHC);
+			return View::make('teacher.teacher_welcome')->with('teacher', $teacher)->with('my_students', $my_students);
+		}
+		else
+			return View::make('teacher.teacher_welcome')->with('teacher', $teacher);
 	}
+		private function addHealth($users, $aHC) {
+			foreach ($users as $user)
+				$user->health = Student::where('name', $user->name)->first()->health;
+		}
 }
