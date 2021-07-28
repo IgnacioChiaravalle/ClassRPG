@@ -20,6 +20,7 @@ class CreateArmorsTable extends Migration
 			$table->foreign('rpg_class')->references('name')->on('rpg_classes')->onDelete('cascade')->onUpdate('cascade');
 			$table->unsignedInteger('added_health');
 			$table->unsignedInteger('cost');
+			$table->boolean('marketable');
 			$table->timestamps();
 		});
 	}

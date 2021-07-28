@@ -24,11 +24,11 @@ class MarketController extends Controller {
 	protected function getMarket() {
 		$student = $this->getStudent();
 
-		$weapons = Weapon::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->weapon)->get();
+		$weapons = Weapon::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->weapon)->where('marketable', true)->get();
 		$this->addType($weapons, 'Arma');
-		$items = Item::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->item)->get();
+		$items = Item::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->item)->where('marketable', true)->get();
 		$this->addType($items, 'Ítem');
-		$armors = Armor::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->armor)->get();
+		$armors = Armor::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->armor)->where('marketable', true)->get();
 		$this->addType($armors, 'Armadura');
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);

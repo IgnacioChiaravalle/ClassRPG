@@ -12,19 +12,22 @@ class ArmorSeeder extends Seeder
 			'Armadura de Cuero',
 			'Warrior',
 			'5',
-			'7'
+			'7',
+			'true'
 		]);
 		$this->insertIntoTable([
 			'Capa Camuflada',
 			'Rogue',
 			'2',
-			'3'
+			'3',
+			'true'
 		]);
 		$this->insertIntoTable([
 			'Capa Armada',
 			'Rogue',
 			'5',
-			'6'
+			'6',
+			'true'
 		]);
 	}
 
@@ -33,7 +36,8 @@ class ArmorSeeder extends Seeder
 			'name' => $data[0],
 			'rpg_class' => $data[1],
 			'added_health' => $data[2],
-			'cost' => $data[3]
+			'cost' => $data[3],
+			'marketable' => $data[4]
 		]);
 	}
 }

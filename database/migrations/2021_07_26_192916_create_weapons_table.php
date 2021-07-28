@@ -20,6 +20,7 @@ class CreateWeaponsTable extends Migration
 			$table->foreign('rpg_class')->references('name')->on('rpg_classes')->onDelete('cascade')->onUpdate('cascade');
 			$table->unsignedInteger('added_damage');
 			$table->unsignedInteger('cost');
+			$table->boolean('marketable');
 			$table->timestamps();
 		});
 	}

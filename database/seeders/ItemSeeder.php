@@ -13,21 +13,24 @@ class ItemSeeder extends Seeder
 			'Warrior',
 			'2',
 			'6',
-			'3'
+			'3',
+			'true'
 		]);
 		$this->insertIntoTable([
 			'Trampa para Osos',
 			'Rogue',
 			'0',
 			'3',
-			'10'
+			'10',
+			'true'
 		]);
 		$this->insertIntoTable([
 			'Collar Mágico',
 			'Rogue',
 			'9',
 			'4',
-			'15'
+			'15',
+			'true'
 		]);
 	}
 
@@ -37,7 +40,8 @@ class ItemSeeder extends Seeder
 			'rpg_class' => $data[1],
 			'added_health' => $data[2],
 			'added_damage' => $data[3],
-			'cost' => $data[4]
+			'cost' => $data[4],
+			'marketable' => $data[5]
 		]);
 	}
 }

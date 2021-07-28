@@ -12,13 +12,22 @@ class WeaponSeeder extends Seeder
 			'Espada de Madera',
 			'Warrior',
 			'1',
-			'5'
+			'5',
+			'true'
 		]);
 		$this->insertIntoTable([
 			'Dardos Simples',
 			'Rogue',
 			'1',
-			'2'
+			'2',
+			'true'
+		]);
+		$this->insertIntoTable([
+			'Galaxy Sword',
+			'Rogue',
+			'1000000',
+			'0',
+			'false'
 		]);
 	}
 
@@ -27,7 +36,8 @@ class WeaponSeeder extends Seeder
 			'name' => $data[0],
 			'rpg_class' => $data[1],
 			'added_damage' => $data[2],
-			'cost' => $data[3]
+			'cost' => $data[3],
+			'marketable' => $data[4]
 		]);
 	}
 }

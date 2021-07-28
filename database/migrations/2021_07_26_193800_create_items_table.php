@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
 			$table->unsignedInteger('added_health');
 			$table->unsignedInteger('added_damage');
 			$table->unsignedInteger('cost');
+			$table->boolean('marketable');
 			$table->timestamps();
 		});
 	}
