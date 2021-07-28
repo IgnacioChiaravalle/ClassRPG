@@ -23,6 +23,13 @@ class WeaponSeeder extends Seeder
 			'true'
 		]);
 		$this->insertIntoTable([
+			'Daga',
+			'Rogue',
+			'3',
+			'4',
+			'true'
+		]);
+		$this->insertIntoTable([
 			'Galaxy Sword',
 			'Rogue',
 			'1000000',
