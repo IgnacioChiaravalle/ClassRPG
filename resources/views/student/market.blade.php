@@ -25,7 +25,7 @@
 			</tr>
 
 			@foreach ($onSaleList as $sale)
-				<tr onclick="location.href='/mercado/buyItem/{{$sale->name}}/{{$sale->cost}}'">
+				<tr onclick="location.href='/mercado/buy-item/{{$sale->name}}/{{$sale->cost}}'">
 					<td>{{$sale->name}}</td>
 					<td>{{$sale->type}}</td>
 					@if ($sale->added_damage != null)
@@ -44,11 +44,11 @@
 		</table>
 
 	@else
-		<p>¡Aún no hay un mercado disponible para vos! ¡Volvé pronto!</p>
+		<p>¡Aún no artículos para vos disponibles en el mercado! ¡Volvé pronto!</p>
 	@endif
 
 
-	<button onclick="location.href='/mercado/healStudent/5'">Curar Salud (Costo: 5 Monedas de Oro)</button>
+	<button onclick="location.href='/mercado/heal-student/5'">Curar Salud (Costo: 5 Monedas de Oro)</button>
 	<button onclick="location.href='/'">Volver</button>
 
 </body>

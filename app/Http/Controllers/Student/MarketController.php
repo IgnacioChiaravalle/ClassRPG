@@ -11,7 +11,6 @@ use App\Models\RPGClass;
 use App\Models\Weapon;
 use App\Models\Item;
 use App\Models\Armor;
-use Illuminate\Http\Request;
 
 class MarketController extends Controller {
 	public function __construct() {

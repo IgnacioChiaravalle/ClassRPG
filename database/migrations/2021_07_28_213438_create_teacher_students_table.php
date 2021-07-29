@@ -19,6 +19,7 @@ class CreateTeacherStudentsTable extends Migration
 			$table->foreign('teacher_name')->references('name')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('student_name');
 			$table->foreign('student_name')->references('name')->on('students')->onDelete('cascade')->onUpdate('cascade');
+			$table->text('notes_on_student')->nullable();
 			$table->timestamps();
 		});
 	}

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Teacher Welcome</title>
+		<title>{{$teacher->name}}</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -48,7 +48,7 @@
 				</tr>
 
 				@foreach ($my_students as $studentUser)
-					<tr> <!-- onclick="location.href='/handleStudents/{{$studentUser->name}}'" -->
+					<tr> <!-- onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" -->
 						<td>{{$studentUser->real_name}}</td>
 						<td>{{$studentUser->email}}</td>
 						<td>{{$studentUser->name}}</td>
@@ -56,8 +56,8 @@
 					</tr>
 				@endforeach
 			</table>
-	@else
-		<p>¡Aún no tenés alumnos asignados!</p>
-	@endif
+		@else
+			<p>¡Aún no tenés alumnos asignados!</p>
+		@endif
 	</body>
 </html>

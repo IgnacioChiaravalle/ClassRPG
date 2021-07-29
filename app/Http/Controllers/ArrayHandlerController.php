@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ArrayHandlerController extends Controller {
 
 	public function quicksort($list, $criteria) {
@@ -43,7 +41,7 @@ class ArrayHandlerController extends Controller {
 		return $size;
 	}
 
-	public function addData($list, $dataAttribute, $data) {
+	public function addDataToAllElements($list, $dataAttribute, $data) {
 		foreach($list as $toAdd)
 			$toAdd->$dataAttribute = $data;
 	}

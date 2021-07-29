@@ -9,11 +9,10 @@ use App\Models\RPGClass;
 use App\Models\Weapon;
 use App\Models\Item;
 use App\Models\Armor;
-use Illuminate\Http\Request;
 
 class StudentWelcomeController extends Controller {
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware('studentAuth');
 	}
 
 	public function getStudentWelcome($student) {

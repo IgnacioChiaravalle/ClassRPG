@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher_Student;
 use App\Models\Student;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class TeacherWelcomeController extends Controller {
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware('teacherAuth');
 	}
 
 	public function getTeacherWelcome($teacher) {

@@ -8,6 +8,8 @@ Route::get('/', [App\Http\Controllers\User\UserWelcomeController::class, 'getUse
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/mercado', [App\Http\Controllers\Student\MarketController::class, 'getMarket'])->middleware('studentAuth');
-Route::get('/mercado/buyItem/{saleName}/{saleCost}', [App\Http\Controllers\Student\MarketController::class, 'buyItem'])->middleware('studentAuth');
-Route::get('/mercado/healStudent/{healCost}', [App\Http\Controllers\Student\MarketController::class, 'healStudent'])->middleware('studentAuth');
+Route::get('/mercado/buy-item/{saleName}/{saleCost}', [App\Http\Controllers\Student\MarketController::class, 'buyItem'])->middleware('studentAuth');
+Route::get('/mercado/heal-student/{healCost}', [App\Http\Controllers\Student\MarketController::class, 'healStudent'])->middleware('studentAuth');
+
+Route::get('/manage-students/handle-student-data/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDataController::class, 'captureStudentData'])->middleware('teacherAuth');
 
