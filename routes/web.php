@@ -12,4 +12,5 @@ Route::get('/mercado/buy-item/{saleName}/{saleCost}', [App\Http\Controllers\Stud
 Route::get('/mercado/heal-student/{healCost}', [App\Http\Controllers\Student\MarketController::class, 'healStudent'])->middleware('studentAuth');
 
 Route::get('/manage-students/handle-student-data/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDataController::class, 'captureStudentData'])->middleware('teacherAuth');
-
+Route::post('/manage-students/handle-student-data/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDataController::class, 'editStudentData'])->middleware('teacherAuth');
+Route::post('/manage-students/handle-student-data/edit-email/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDataController::class, 'editStudentUserEmail'])->middleware('teacherAuth');

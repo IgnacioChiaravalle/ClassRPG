@@ -24,14 +24,18 @@ class TeacherWelcomeController extends Controller {
 		$aHC = new ArrayHandlerController;
 		if ($aHC->findSize($my_students) > 0) {
 			$my_students = $aHC->quicksort($my_students, 'user');
-			$this->addHealth($my_students, $aHC);
+			$this->addHealthAndCoins($my_students, $aHC);
 			return View::make('teacher.teacher_welcome')->with('teacher', $teacher)->with('my_students', $my_students);
 		}
 		else
 			return View::make('teacher.teacher_welcome')->with('teacher', $teacher);
 	}
-		private function addHealth($users, $aHC) {
-			foreach ($users as $user)
-				$user->health = Student::where('name', $user->name)->first()->health;
+		private function addHealthAndCoins($users, $aHC) {
+			foreach ($users as $user) {
+				$student = Student::where('name', $user->name)->first();
+				$user->health = $student->health;
+				$user->coins = $student->coins;
+			}
+
 		}
 }

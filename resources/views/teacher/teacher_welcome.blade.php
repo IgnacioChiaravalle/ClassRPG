@@ -45,14 +45,16 @@
 					<td class="table-header-cell">Correo Electrónico</td>
 					<td class="table-header-cell">Nombre de Usuario</td>
 					<td class="table-header-cell">Salud Restante</td>
+					<td class="table-header-cell">Oro Restante</td>
 				</tr>
 
 				@foreach ($my_students as $studentUser)
-					<tr> <!-- onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" -->
+					<tr onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
 						<td>{{$studentUser->real_name}}</td>
 						<td>{{$studentUser->email}}</td>
 						<td>{{$studentUser->name}}</td>
 						<td>{{$studentUser->health}}</td>
+						<td>{{$studentUser->coins}}</td>
 					</tr>
 				@endforeach
 			</table>
