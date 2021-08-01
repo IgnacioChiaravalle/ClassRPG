@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\GeneralFunctions;
+
+use App\Http\Controllers\Controller;
 
 class ArrayHandlerController extends Controller {
 	public function quicksort($list, $criteria) {

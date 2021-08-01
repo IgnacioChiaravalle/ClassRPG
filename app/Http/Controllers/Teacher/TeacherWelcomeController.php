@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ArrayHandlerController;
-use App\Http\Controllers\HealthValuesController;
+use App\Http\Controllers\GeneralFunctions\ArrayHandlerController;
+use App\Http\Controllers\GeneralFunctions\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher_Student;

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\GeneralFunctions;
+
+use App\Http\Controllers\Controller;
 use App\Models\RPGClass;
 use App\Models\Item;
 use App\Models\Armor;
