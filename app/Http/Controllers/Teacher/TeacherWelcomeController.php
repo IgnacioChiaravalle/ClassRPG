@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ArrayHandlerController;
+use App\Http\Controllers\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher_Student;
@@ -33,7 +34,8 @@ class TeacherWelcomeController extends Controller {
 		private function addHealthAndCoins($users, $aHC) {
 			foreach ($users as $user) {
 				$student = Student::where('name', $user->name)->first();
-				$user->health = $student->health;
+				$user->current_health = $student->health;
+				$user->max_health = (new HealthValuesController)->getMaxStudentHealth($student);
 				$user->coins = $student->coins;
 			}
 

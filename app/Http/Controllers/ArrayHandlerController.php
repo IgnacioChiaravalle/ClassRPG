@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 class ArrayHandlerController extends Controller {
-
 	public function quicksort($list, $criteria) {
 		$loe = $gt = array();
 		if ($this->findSize($list) < 2)

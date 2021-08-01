@@ -40,7 +40,7 @@
 
 			<div class="health-and-coins">
 				<div>
-					<label for="health">Tiene {{$studentCharacter->health}} puntos de salud. ¿Qué le agregamos a este valor?</label>
+					<label for="health">Tiene {{$studentCharacter->health}} de {{$maxStudentHealth}} puntos de salud. ¿Qué le agregamos a este valor?</label>
 					<div>
 						<input id="health" type="number" class="{{old('health') ? 'active-field' : 'default-field'}}" name="health" value="{{old('health') ? old('health') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
 						@error('health')

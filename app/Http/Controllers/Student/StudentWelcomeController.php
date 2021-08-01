@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RPGClass;
@@ -25,6 +26,7 @@ class StudentWelcomeController extends Controller {
 		$item_health = $item != null ? $item->added_health : 0;
 		$armor = Armor::where('name', $student->armor)->first();
 		$armor_health = $armor != null ? $armor->added_health : 0;
+		$max_health = (new HealthValuesController)->getMaxStudentHealth($student);
 
 		$damage = $rpg_class->base_damage + $weapon_damage + $item_damage;
 		return View::make('student.student_welcome')->with('student', $student)
@@ -32,6 +34,7 @@ class StudentWelcomeController extends Controller {
 													->with('weapon_damage', $weapon_damage)
 													->with('item_damage', $item_damage)
 													->with('item_health', $item_health)
-													->with('armor_health', $armor_health);
+													->with('armor_health', $armor_health)
+													->with('max_health', $max_health);
 	}
 }

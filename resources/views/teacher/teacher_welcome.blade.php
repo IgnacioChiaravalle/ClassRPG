@@ -44,8 +44,8 @@
 					<td class="table-header-cell">Nombre</td>
 					<td class="table-header-cell">Correo Electrónico</td>
 					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud Restante</td>
-					<td class="table-header-cell">Oro Restante</td>
+					<td class="table-header-cell">Salud</td>
+					<td class="table-header-cell">Oro</td>
 				</tr>
 
 				@foreach ($my_students as $studentUser)
@@ -53,7 +53,7 @@
 						<td>{{$studentUser->real_name}}</td>
 						<td>{{$studentUser->email}}</td>
 						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->health}}</td>
+						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
 						<td>{{$studentUser->coins}}</td>
 					</tr>
 				@endforeach

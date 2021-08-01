@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ArrayHandlerController;
+use App\Http\Controllers\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
@@ -61,50 +62,39 @@ class MarketController extends Controller {
 		$type = 'weapon';
 		$newHealth = $student->health;
 		if ($sale == null) {
+			$hVC = new HealthValuesController;
 			$sale = Item::where('name', $saleName)->first();
 			if ($sale != null) {
 				$type = 'item';
-				$newHealth += ($sale->added_health - $this->getStudentItemHealth($student));
+				$newHealth += ($sale->added_health - $hVC->getStudentItemHealth($student));
 			}
 			else {
 				$sale = Armor::where('name', $saleName)->first();
 				$type = 'armor';
-				$newHealth += ($sale->added_health - $this->getStudentArmorHealth($student));
+				$newHealth += ($sale->added_health - $hVC->getStudentArmorHealth($student));
 			}
 		}
 
 		$student->update([
-			'coins' => $student->coins - $sale->cost,
+			'coins' => $student->coins - $saleCost,
 			$type => $sale->name,
 			'health' => $newHealth
 		]);
 
 		return redirect()->route('/');
 	}
-		
-		private function getStudentItemHealth($student) {
-			return $this->getHealthValue(Item::where('name', $student->item)->first());
-		}
-		private function getStudentArmorHealth($student) {
-			return $this->getHealthValue(Armor::where('name', $student->armor)->first());
-		}
-			private function getHealthValue($inUse) {
-				$toReturn = $inUse != null ? $inUse->added_health : 0;
-				return $toReturn;
-			}
 	
 	protected function healStudent($healCost) {
 		$student = $this->getStudent();
 		if ($student->coins < $healCost)
 			return back()->with('message', "¡No tenés suficiente oro para curarte!");
 
-		$rpg_class = RPGClass::where('name', $student->rpg_class)->first();
-		$toHeal = $rpg_class->base_health + $this->getStudentItemHealth($student) + $this->getStudentArmorHealth($student);
-		if ($student->health == $toHeal)
+		$maxStudentHealth = (new HealthValuesController)->getMaxStudentHealth($student);
+		if ($student->health == $maxStudentHealth)
 			return back()->with('message', "¡Ya tenés tu salud máxima!");
 		$student->update([
 			'coins' => $student->coins - $healCost,
-			'health' => $toHeal
+			'health' => $maxStudentHealth
 		]);
 		return redirect()->route('/');
 	}

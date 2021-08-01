@@ -84,7 +84,7 @@
 					</table>
 				</td>
 				<td>{{$damage}}</td>
-				<td>{{$student->health}}</td>
+				<td>{{$student->health}} / {{$max_health}}</td>
 				<td>{{$student->coins}}</td>
 			</tr>
 
