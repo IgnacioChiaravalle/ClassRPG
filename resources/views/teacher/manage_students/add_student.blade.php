@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$teacher->name}}</title>
+		<title>Crear Alumno</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,43 +25,72 @@
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
+		
+		<p>Crear un Nuevo Alumno</p>
+		<form method="POST" action="{{url('/manage-students/add-student')}}" enctype="multipart/form-data">
+		@csrf
 
-		@if (Route::has('login'))
-			<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-				@auth
-					<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-				@endauth
+			<div>
+				<label for="real_name">Nombre Real:</label>
+				<div>
+					<input id="real_name" type="text" class="{{old('real_name') ? 'active-field' : 'default-field'}}" name="real_name" value="{{old('real_name')}}" placeholder="Nombre Real" required autocomplete="real_name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('nombre')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
 			</div>
-		@endif
-		
-		<p>{{$teacher->name}}</p>
-		
-		@if (isset ($my_students))
-			<p>Mis Alumnos:</p>
-			
-			<table class="main-table">
-				<tr class="table-header-row">
-					<td class="table-header-cell">Nombre</td>
-					<td class="table-header-cell">Correo Electrónico</td>
-					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud</td>
-					<td class="table-header-cell">Oro</td>
-				</tr>
 
-				@foreach ($my_students as $studentUser)
-					<tr onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
-						<td>{{$studentUser->real_name}}</td>
-						<td>{{$studentUser->email}}</td>
-						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
-						<td>{{$studentUser->coins}}</td>
-					</tr>
-				@endforeach
-			</table>
-		@else
-			<p>¡Aún no tenés alumnos asignados!</p>
-		@endif
+			<div>
+				<label for="name">Nombre de Usuario:</label>
+				<div>
+					<input id="name" type="text" class="{{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre de Usuario" required autocomplete="name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('nombre')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
 
-		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+			<div>
+				<label for="email">Correo Electrónico:</label>
+				<div>
+					<input id="email" type="email" class="{{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email')}}" placeholder="ejemplo@mail.com" required autocomplete="email"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('email')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="rpg_class">Clase del Personaje:</label>
+				<select class="form-control" id="rpg_class" name="rpg_class">
+					@foreach ($classes as $class)
+						<option value="{{$class->name}}">{{$class->name}} (Daño: {{$class->base_damage}}; Salud: {{$class->base_health}})</option>
+					@endforeach			  
+				</select>
+			</div>
+
+			<div>
+				<label for="notes_on_student">¿Alguna nota o comentario que agregar?</label>
+				<div>
+					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}" maxlength="65,535"></textarea>
+					@error('notes_on_student')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<input type="submit" value="Aceptar Cambios">
+		</form>
+
+		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
+		
 	</body>
 </html>

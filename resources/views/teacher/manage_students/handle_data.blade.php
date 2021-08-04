@@ -25,14 +25,6 @@
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
-
-		@if (Route::has('login'))
-			<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-				@auth
-					<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-				@endauth
-			</div>
-		@endif
 		
 		<p>{{$studentUser->name}} ({{$studentUser->real_name}})</p>
 		<form method="POST" action="{{url('manage-students/handle-student-data/' . $studentUser->name)}}" enctype="multipart/form-data">
@@ -42,7 +34,7 @@
 				<div>
 					<label for="health">Tiene {{$studentCharacter->health}} de {{$maxStudentHealth}} puntos de salud. ¿Qué le agregamos a este valor?</label>
 					<div>
-						<input id="health" type="number" class="{{old('health') ? 'active-field' : 'default-field'}}" name="health" value="{{old('health') ? old('health') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+						<input id="health" type="number" class="active-field" name="health" value="{{old('health') ? old('health') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
 						@error('health')
 							<label class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -54,7 +46,7 @@
 				<div>
 					<label for="coins">Tiene {{$studentCharacter->coins}} monedas de oro. ¿Qué le agregamos a este valor?</label>
 					<div>
-						<input id="coins" type="number" class="{{old('coins') ? 'active-field' : 'default-field'}}" name="coins" value="{{old('coins') ? old('coins') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+						<input id="coins" type="number" class="active-field" name="coins" value="{{old('coins') ? old('coins') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
 						@error('coins')
 							<label class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -97,7 +89,7 @@
 			<input type="submit" value="Aceptar Cambio de Correo Electrónico">
 		</form>
 
-		<button onclick="location.href='/'">Volver</button>
+		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
 		
 	</body>
 </html>

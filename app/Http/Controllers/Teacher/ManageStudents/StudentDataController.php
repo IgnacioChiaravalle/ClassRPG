@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GeneralFunctions\HealthValuesController;
+use App\Http\Controllers\Teacher\UserManagementController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -44,7 +45,7 @@ class StudentDataController extends Controller {
 	}
 
 	protected function editStudentData(Request $request, $studentName) {
-		$this->validateRequest($request);
+		$this->validateStudentDataRequest($request);
 		$studentCharacter = $this->getStudentCharacter($studentName);
 		$finalCoins = $studentCharacter->coins + $request->coins;
 		$finalHealth = $studentCharacter->health + $request->health;
@@ -58,11 +59,11 @@ class StudentDataController extends Controller {
 		return redirect()->route('/');
 	}
 
-	private function validateRequest (Request $request) {
+	private function validateStudentDataRequest (Request $request) {
 		$request->validate([
 			'health' => ['numeric', 'integer'],
 			'coins' => ['numeric', 'integer'],
-			'notes_on_student' => ['nullable']
+			'notes_on_student' => ['nullable', 'max:65,535']
 		]);
 	}
 
@@ -77,10 +78,7 @@ class StudentDataController extends Controller {
 
 	protected function editStudentUserEmail(Request $request, $studentName) {
 		$studentUser = $this->getStudentUser($studentName);
-		if ($request->email != $studentUser->email) {
-			$request->validate(['email' => ['email', 'unique:users']]);
-			$studentUser->update(['email' => $request->email]);
-		}
+		(new UserManagementController)->editUserEmail($request, $studentUser);
 		return redirect()->route('/');
 	}
 }
