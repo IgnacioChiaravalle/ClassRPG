@@ -25,7 +25,8 @@ class NewUserRegistered extends Mailable {
 	 * Build the message.
 	 */
 	public function build() {
-		return $this->from('nachochiara@gmail.com')
-					->view('mails.new_user');
+		return $this->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+					->subject('¡Bienvenido a ClassRPG, ' . $this->user->name . '!')
+					->view('emails.new_user');
 	}
 }

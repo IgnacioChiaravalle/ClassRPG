@@ -23,7 +23,8 @@ class EmailUpdated extends Mailable {
 	 * Build the message.
 	 */
 	public function build() {
-		return $this->from('nachochiara@gmail.com')
-					->view('mails.email_updated');
+		return $this->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+					->subject('ClassRPG - Cambio de dirección de correo electrónico')
+					->view('emails.email_updated');
 	}
 }

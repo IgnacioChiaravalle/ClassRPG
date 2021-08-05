@@ -46,7 +46,7 @@ class AddStudentController extends Controller {
 			'weapon' => null,
 			'item' => null,
 			'armor' => null,
-			'coins' => 0
+			'coins' => 10
 		]);
 	}
 	private function createTeacherStudentRelation(Request $request) {

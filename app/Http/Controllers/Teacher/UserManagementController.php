@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\NewUserRegistered;
+use App\Mail\EmailUpdated;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller {
@@ -30,17 +31,15 @@ class UserManagementController extends Controller {
 			'password' => Hash::make($password),
 			'type' => $type
 		]);
-		//Mail::to($request->email)->send(new NewUserRegistered($user,$password));
+		Mail::to($request->email)->send(new NewUserRegistered($user,$password));
 	}
 
 	private function randomPassword() {
-		$password = array();
+		$password = "";
 		$alphabetLength = strlen(self::ALPHABET) - 1;
-		for ($i = 0; $i < self::PW_LENGTH; $i++) {
-			$n = rand(0, $alphabetLength);
-			$password[] = self::ALPHABET[$n];
-		}
-		return implode($password);
+		for ($i = 0; $i < self::PW_LENGTH; $i++)
+			$password .= self::ALPHABET[rand(0, $alphabetLength)];
+		return $password;
 	}
 
 	public function editUserEmail(Request $request, $user) {
@@ -48,7 +47,7 @@ class UserManagementController extends Controller {
 			'email' => ['string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)]
 		]);
 		$user->update(['email' => $request->email]);
-		//Mail::to($request->email)->send(new EmailUpdated($user));
+		Mail::to($request->email)->send(new EmailUpdated($user));
 	}
 
 	public function deleteUser(User $user) {
