@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Teacher;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\NewUserRegistered;
 use App\Mail\EmailUpdated;
+use App\Mail\AccountDeleted;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller {
@@ -16,7 +17,7 @@ class UserManagementController extends Controller {
 
 	public function validateUserDataRequest(Request $request) {
 		$request->validate([
-			'name' => ['required', 'string'],
+			'name' => ['required', 'string', 'unique:users'],
 			'real_name' => ['required', 'string'],
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
 		]);
@@ -51,6 +52,7 @@ class UserManagementController extends Controller {
 	}
 
 	public function deleteUser(User $user) {
+		Mail::to($user->email)->send(new AccountDeleted($user));
 		$user->delete();
 	}
 }

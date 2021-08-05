@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$teacher->name}}</title>
+		<title>Crear Alumno</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,44 +25,34 @@
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
-
-		@if (Route::has('login'))
-			<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-				@auth
-					<a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-				@endauth
-			</div>
-		@endif
 		
-		<p>{{$teacher->name}}</p>
+		<p>Eliminar a un Alumno</p>
 		
-		@if (isset ($my_students))
-			<p>Mis Alumnos:</p>
-			
-			<table class="main-table">
-				<tr class="table-header-row">
-					<td class="table-header-cell">Nombre</td>
-					<td class="table-header-cell">Correo Electrónico</td>
-					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud</td>
-					<td class="table-header-cell">Oro</td>
-				</tr>
+		@if (isset ($student_users))
+			<form method="POST" action="{{url('/manage-students/delete-student')}}" enctype="multipart/form-data">
+			@csrf
 
-				@foreach ($my_students as $studentUser)
-					<tr onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
-						<td>{{$studentUser->real_name}}</td>
-						<td>{{$studentUser->email}}</td>
-						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
-						<td>{{$studentUser->coins}}</td>
-					</tr>
-				@endforeach
-			</table>
+				<div class="form-group">
+					<label for="name">Seleccione al Alumno que desea eliminar:</label>
+					<select class="form-control" id="name" name="name">
+						@foreach ($student_users as $student)
+							<option value="{{$student->name}}">{{$student->real_name}} ({{$student->name}})</option>
+						@endforeach
+					</select>
+					@error('name')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+
+				<input type="submit" value="Aceptar">
+			</form>
 		@else
-			<p>¡Aún no tenés alumnos asignados!</p>
+			<p>No hay alumnos que puedas eliminar.</p>
 		@endif
 
-		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
-		<button onclick="location.href='/manage-students/delete-student'">Eliminar a uno de mis Alumnos</button>
+		<button onclick="location.href='/'">Volver</button>
+		
 	</body>
 </html>

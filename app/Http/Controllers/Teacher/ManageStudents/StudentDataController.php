@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GeneralFunctions\HealthValuesController;
-use App\Http\Controllers\Teacher\UserManagementController;
+use App\Http\Controllers\User\UserManagementController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -21,11 +21,11 @@ class StudentDataController extends Controller {
 	protected function captureStudentData($studentName) {
 		$studentCharacter = $this->getStudentCharacter($studentName);
 		$maxStudentHealth = $this->getMaxStudentHealth($studentCharacter);
-		return View::make('teacher.manage_students.handle_data')->with('teacher', $this->getTeacher())
-																->with('studentUser', $this->getStudentUser($studentName))
-																->with('studentCharacter', $studentCharacter)
-																->with('maxStudentHealth', $maxStudentHealth)
-																->with('studentNotes', $this->getTeacherStudentRelation($studentName)->notes_on_student);
+		return View::make('teacher.manage_students.handle_student_data')->with('teacher', $this->getTeacher())
+																		->with('studentUser', $this->getStudentUser($studentName))
+																		->with('studentCharacter', $studentCharacter)
+																		->with('maxStudentHealth', $maxStudentHealth)
+																		->with('studentNotes', $this->getTeacherStudentRelation($studentName)->notes_on_student);
 	}
 
 	private function getTeacher() {

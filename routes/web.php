@@ -16,3 +16,6 @@ Route::post('/manage-students/handle-student-data/{studentName}', [App\Http\Cont
 Route::post('/manage-students/handle-student-data/edit-email/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDataController::class, 'editStudentUserEmail'])->middleware('teacherAuth');
 Route::get('/manage-students/add-student', [App\Http\Controllers\Teacher\ManageStudents\AddStudentController::class, 'createView'])->middleware('teacherAuth');
 Route::post('/manage-students/add-student', [App\Http\Controllers\Teacher\ManageStudents\AddStudentController::class, 'addStudent'])->middleware('teacherAuth');
+Route::get('/manage-students/delete-student', [App\Http\Controllers\Teacher\ManageStudents\DeleteStudentController::class, 'createView'])->middleware('teacherAuth');
+Route::post('/manage-students/delete-student', [App\Http\Controllers\Teacher\ManageStudents\DeleteStudentController::class, 'deleteStudent'])->middleware('teacherAuth');
+

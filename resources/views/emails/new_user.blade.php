@@ -4,13 +4,18 @@ Hola <i>{{$user->name}}</i>,
 <p><u>Tus datos de acceso son:</u></p>
 
 <div>
-<p><b>Correo electrónico:</b>&nbsp;{{$user->email}}</p>
-<p><b>Contraseña:</b>&nbsp;{{$password}}</p>
+	<p>
+		<b>Correo electrónico:</b>&nbsp;{{$user->email}}<br>
+		<b>Contraseña:</b>&nbsp;{{$password}}
+	</p>
+	<p>Para garantizar la seguridad de tus datos, recomendamos que cambies tu contraseña lo más pronto posible.</p>
 </div>
 
-<div>
-<p>¡Como regalo de bienvenida agregamos 10 monedas de oro a tu cuenta!</p>
-</div>
+@if ($user->type == "student")
+	<div>
+		<p>¡Como regalo de bienvenida agregamos 10 monedas de oro a tu cuenta!</p>
+	</div>
+@endif
 
-<a href="https://duckduckgo.com/">Hacé click aquí para acceder al sitio</a> <!-- TODO: Add link when available. -->
-<br/>
+<a href="https://duckduckgo.com/">Hacé click acá para acceder al sitio</a> <!-- TODO: Add link when available. -->
+<br>

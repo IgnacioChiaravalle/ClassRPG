@@ -34,7 +34,7 @@
 				<label for="real_name">Nombre Real:</label>
 				<div>
 					<input id="real_name" type="text" class="{{old('real_name') ? 'active-field' : 'default-field'}}" name="real_name" value="{{old('real_name')}}" placeholder="Nombre Real" required autocomplete="real_name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
-					@error('nombre')
+					@error('real_name')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</label>
@@ -46,7 +46,7 @@
 				<label for="name">Nombre de Usuario:</label>
 				<div>
 					<input id="name" type="text" class="{{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre de Usuario" required autocomplete="name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
-					@error('nombre')
+					@error('name')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</label>

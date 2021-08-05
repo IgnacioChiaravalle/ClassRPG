@@ -23,7 +23,7 @@ class ArrayHandlerController extends Controller {
 
 		private function compare($element, $pivot, $criteria) {
 			if ($criteria == 'user')
-				return strcasecmp($element->name, $pivot->name);
+				return strcasecmp($element->real_name, $pivot->real_name);
 			if ($criteria == 'sale') {
 				if ($element->cost < $pivot->cost)
 					return -1;

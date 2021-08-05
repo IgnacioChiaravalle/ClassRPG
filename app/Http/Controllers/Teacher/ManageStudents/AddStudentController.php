@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Teacher\UserManagementController;
+use App\Http\Controllers\User\UserManagementController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RPGClass;

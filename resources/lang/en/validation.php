@@ -80,7 +80,7 @@ return [
 	'max' => [
 		'numeric' => 'The :attribute must not be greater than :max.',
 		'file' => 'The :attribute must not be greater than :max kilobytes.',
-		'string' => 'The :attribute must not be greater than :max characters.',
+		'string' => 'No pueden ingresarse más de :max caracteres en este campo.',
 		'array' => 'The :attribute must not have more than :max items.',
 	],
 	'mimes' => 'The :attribute must be a file of type: :values.',
@@ -118,7 +118,7 @@ return [
 	'starts_with' => 'The :attribute must start with one of the following: :values.',
 	'string' => 'Debe ingresarse una cadena de texto.',
 	'timezone' => 'The :attribute must be a valid timezone.',
-	'unique' => 'El :attribute ingresado ya se haya registrado en la base de datos.',
+	'unique' => 'El valor ingresado en este campo ya se haya registrado en la base de datos, y debe ser único.',
 	'uploaded' => 'The :attribute failed to upload.',
 	'url' => 'The :attribute must be a valid URL.',
 	'uuid' => 'The :attribute must be a valid UUID.',
