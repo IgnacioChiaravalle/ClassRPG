@@ -39,6 +39,8 @@
 							</div>
 						</div>
 					</form>
+
+					<button onclick="location.href='/'">Cancelar</button>
 				</div>
 			</div>
 		</div>

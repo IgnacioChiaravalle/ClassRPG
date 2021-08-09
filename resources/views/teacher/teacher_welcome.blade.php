@@ -28,15 +28,16 @@
 
 		@if (Route::has('login'))
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<button class="dropdown-item" href="{{ route('logout') }}"
-					onclick="event.preventDefault();
-									document.getElementById('logout-form').submit();">
+				<button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 					Cerrar Sesión
 				</button>
-
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 					@csrf
 				</form>
+
+				<button class="dropdown-item" onclick="location.href='/my-account'">
+					Mi Cuenta
+				</button>
 			</div>
 		@endif
 		

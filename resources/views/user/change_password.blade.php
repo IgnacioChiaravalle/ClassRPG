@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$student->name}}</title>
+		<title>{{$user->name}} - Cambiar Contraseña</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,84 +19,45 @@
 				font-family: 'Nunito', sans-serif;
 			}
 		</style>
-	
 	</head>
-	
+
 	<body class="antialiased">
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
+		
+		<p>Administrar Mis Datos</p>
+		<form method="POST" action="{{url('my-account/change-password')}}" enctype="multipart/form-data">
+		@csrf
 
-		@if (Route::has('login'))
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-					Cerrar Sesión
-				</button>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
-
-				<button class="dropdown-item" onclick="location.href='/my-account'">
-					Mi Cuenta
-				</button>
+			<div>
+				<label for="password">Nueva Contraseña</label>
+				<div>
+					<input id="password" type="password" class="{{old('password') ? 'active-field' : 'default-field'}}" name="password" required> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('password')
+						<label class="invalid-feedback" role="alert">
+							<strong>La nueva contraseña debe incluir por lo menos:<br>* Una letra mayúscula.<br>* Una letra minúscula.<br>* Un número.<br>* Ocho caracteres.<br>Además, debe ser validada correspondientemente (ambos campos deben tener el mismo contenido), y no debe haber sido comprometida en ninguna filtración conocida.</strong>
+						</label>
+					@enderror
+				</div>
 			</div>
-		@endif	
+
+			<div>
+				<label for="password_confirmation">Confirmar Nueva Contraseña</label>
+				<div>
+					<input id="password_confirmation" type="password" class="{{old('password_confirmation') ? 'active-field' : 'default-field'}}" name="password_confirmation" required> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('password_confirm')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<input type="submit" value="Aceptar Cambios">
+		</form>
+
+		<button onclick="location.href='/my-account'">Descartar Cambios y Volver</button>
 		
-		<p>{{$student->name}} - {{$student->rpg_class}}</p>
-		
-		<table class="main-table">
-			<tr class="table-header-row">
-				<td class="table-header-cell">Inventario</td>
-				<td class="table-header-cell">Daño</td>
-				<td class="table-header-cell">Salud</td>
-				<td class="table-header-cell">Oro</td>
-			</tr>
-
-			<tr>
-				<td>
-					<table>
-						<tr>
-							<td>
-								Arma:
-								@if ($student->weapon != null)
-									{{$student->weapon}}
-								@else
-									Ninguna
-								@endif
-							</td>
-							<td>Daño: {{$weapon_damage}}</td>
-						</tr>
-						<tr>
-							<td>
-								Ítem:
-								@if ($student->item != null)
-									{{$student->item}}
-								@else
-									Ninguno
-								@endif
-							</td>
-							<td>Daño Añadido: {{$item_damage}}<br>Salud Añadida: {{$item_health}}</td>
-						</tr>
-						<tr>
-							<td>
-								Armadura:
-								@if ($student->armor != null)
-									{{$student->armor}}
-								@else
-									Ninguna
-								@endif
-							</td>
-							<td>Salud Añadida: {{$armor_health}}</td>
-						</tr>
-					</table>
-				</td>
-				<td>{{$damage}}</td>
-				<td>{{$student->health}} / {{$max_health}}</td>
-				<td>{{$student->coins}}</td>
-			</tr>
-
-		</table>
-
-		<button onclick="location.href='/market'">Ir al Mercado</button>
 	</body>
 </html>

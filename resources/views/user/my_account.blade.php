@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$student->name}}</title>
+		<title>{{$user->name}} - Mi Cuenta</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,84 +19,58 @@
 				font-family: 'Nunito', sans-serif;
 			}
 		</style>
-	
 	</head>
-	
+
 	<body class="antialiased">
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
+		
+		<p>Administrar Mis Datos</p>
+		<form method="POST" action="{{url('my-account')}}" enctype="multipart/form-data">
+		@csrf
 
-		@if (Route::has('login'))
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-					Cerrar Sesión
-				</button>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
-
-				<button class="dropdown-item" onclick="location.href='/my-account'">
-					Mi Cuenta
-				</button>
+			<div>
+				<label for="name">Nombre de Usuario</label>
+				<div>
+					<input id="name" type="name" class="{{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name') ? old('name') : $user->name}}" autocomplete="name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('name')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
 			</div>
-		@endif	
+
+			<div>
+				<label for="real_name">Nombre Real</label>
+				<div>
+					<input id="real_name" type="real_name" class="{{old('real_name') ? 'active-field' : 'default-field'}}" name="real_name" value="{{old('real_name') ? old('real_name') : $user->real_name}}" autocomplete="real_name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('real_name')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<div>
+				<label for="email">Correo Electrónico</label>
+				<div>
+					<input id="email" type="email" class="{{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email') ? old('email') : $user->email}}" autocomplete="email"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
+					@error('email')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<input type="submit" value="Aceptar Cambios">
+		</form>
+
+		<button onclick="location.href='/my-account/change-password'">Cambiar Contraseña</button>
+		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
 		
-		<p>{{$student->name}} - {{$student->rpg_class}}</p>
-		
-		<table class="main-table">
-			<tr class="table-header-row">
-				<td class="table-header-cell">Inventario</td>
-				<td class="table-header-cell">Daño</td>
-				<td class="table-header-cell">Salud</td>
-				<td class="table-header-cell">Oro</td>
-			</tr>
-
-			<tr>
-				<td>
-					<table>
-						<tr>
-							<td>
-								Arma:
-								@if ($student->weapon != null)
-									{{$student->weapon}}
-								@else
-									Ninguna
-								@endif
-							</td>
-							<td>Daño: {{$weapon_damage}}</td>
-						</tr>
-						<tr>
-							<td>
-								Ítem:
-								@if ($student->item != null)
-									{{$student->item}}
-								@else
-									Ninguno
-								@endif
-							</td>
-							<td>Daño Añadido: {{$item_damage}}<br>Salud Añadida: {{$item_health}}</td>
-						</tr>
-						<tr>
-							<td>
-								Armadura:
-								@if ($student->armor != null)
-									{{$student->armor}}
-								@else
-									Ninguna
-								@endif
-							</td>
-							<td>Salud Añadida: {{$armor_health}}</td>
-						</tr>
-					</table>
-				</td>
-				<td>{{$damage}}</td>
-				<td>{{$student->health}} / {{$max_health}}</td>
-				<td>{{$student->coins}}</td>
-			</tr>
-
-		</table>
-
-		<button onclick="location.href='/market'">Ir al Mercado</button>
 	</body>
 </html>

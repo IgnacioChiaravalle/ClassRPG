@@ -30,7 +30,7 @@ return [
 		'array' => 'The :attribute must have between :min and :max items.',
 	],
 	'boolean' => 'The :attribute field must be true or false.',
-	'confirmed' => 'La confirmación de :attribute no coincide.',
+	'confirmed' => 'La confirmación no coincide (los campos no son iguales).',
 	'current_password' => 'La contraseña es incorrecta.',
 	'date' => 'The :attribute is not a valid date.',
 	'date_equals' => 'The :attribute must be a date equal to :date.',
@@ -88,7 +88,7 @@ return [
 	'min' => [
 		'numeric' => 'The :attribute must be at least :min.',
 		'file' => 'The :attribute must be at least :min kilobytes.',
-		'string' => 'The :attribute must be at least :min characters.',
+		'string' => 'El campo debe tener al menos :min caracteres.',
 		'array' => 'The :attribute must have at least :min items.',
 	],
 	'multiple_of' => 'The :attribute must be a multiple of :value.',
