@@ -16,6 +16,10 @@ class UserManagementController extends Controller {
 	private const PW_LENGTH = 8;
 	private const ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
+	public function getUserByName($name) {
+		return User::where('name', $name)->first();
+	}
+	
 	public function validateNewUserDataRequest(Request $request) {
 		$request->validate([
 			'name' => ['required', 'string', 'unique:users'],
@@ -78,8 +82,7 @@ class UserManagementController extends Controller {
 					->uncompromised(),
 			]
 		]);
-		if ($user->password != $request->password)
-			$user->update(['password' => Hash::make($request->password)]);
+		$user->update(['password' => Hash::make($request->password)]);
 	}
 
 	public function deleteUser(User $user) {

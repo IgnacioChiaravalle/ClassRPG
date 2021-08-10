@@ -36,7 +36,12 @@
 					<input id="password" type="password" class="{{old('password') ? 'active-field' : 'default-field'}}" name="password" required> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
 					@error('password')
 						<label class="invalid-feedback" role="alert">
-							<strong>La nueva contraseña debe incluir por lo menos:<br>* Una letra mayúscula.<br>* Una letra minúscula.<br>* Un número.<br>* Ocho caracteres.<br>Además, debe ser validada correspondientemente (ambos campos deben tener el mismo contenido), y no debe haber sido comprometida en ninguna filtración conocida.</strong>
+							<strong>La nueva contraseña debe incluir por lo menos:<br>
+									* Una letra mayúscula.<br>
+									* Una letra minúscula.<br>
+									* Un número.<br>
+									* Ocho caracteres.<br>
+									Además, debe ser validada correspondientemente (ambos campos deben tener el mismo contenido), y no debe haber sido comprometida en ninguna filtración conocida.</strong>
 						</label>
 					@enderror
 				</div>

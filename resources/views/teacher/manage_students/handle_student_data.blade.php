@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$studentUser->name}} - Administración</title>
+		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -71,13 +72,12 @@
 			<input type="submit" value="Aceptar Cambios">
 		</form>
 
-		<form method="POST" action="{{url('manage-students/handle-student-data/edit-email/' . $studentUser->name)}}" enctype="multipart/form-data">
+		<form method="POST" action="{{url('manage-students/edit-student-email/' . $studentUser->name)}}" enctype="multipart/form-data">
 		@csrf
 			<div>
 				<label for="email">¿Querés editar el Correo Electrónico de {{$studentUser->name}}?</label>
 				<div>
 					<input id="email" type="email" class="{{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email') ? old('email') : $studentUser->email}}" autocomplete="email"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-					<!-- If edited, use JavaScript to prompt user for confirmation -->
 					@error('email')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
@@ -88,6 +88,8 @@
 
 			<input type="submit" value="Aceptar Cambio de Correo Electrónico">
 		</form>
+
+		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
 
 		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
 		

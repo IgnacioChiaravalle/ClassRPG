@@ -70,6 +70,5 @@
 		@endif
 
 		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
-		<button onclick="location.href='/manage-students/delete-student'">Eliminar a uno de mis Alumnos</button>
 	</body>
 </html>

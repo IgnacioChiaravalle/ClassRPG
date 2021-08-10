@@ -17,6 +17,7 @@ class CreateTeachersTable extends Migration
 			$table->id();
 			$table->string('name')->unique();
 			$table->foreign('name')->references('name')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->boolean('can_manage_teachers');
 			$table->timestamps();
 		});
 	}

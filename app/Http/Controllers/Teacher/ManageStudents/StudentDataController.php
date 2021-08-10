@@ -7,7 +7,6 @@ use App\Http\Controllers\GeneralFunctions\HealthValuesController;
 use App\Http\Controllers\User\UserManagementController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Teacher_Student;
@@ -38,7 +37,7 @@ class StudentDataController extends Controller {
 		return (new HealthValuesController)->getMaxStudentHealth($studentCharacter);
 	}
 	private function getStudentUser($studentName) {
-		return User::where('name', $studentName)->first();
+		return (new UserManagementController)->getUserByName($studentName);
 	}
 	private function getTeacherStudentRelation($studentName) {
 		return Teacher_Student::where('student_name', $studentName)->first();
@@ -74,11 +73,5 @@ class StudentDataController extends Controller {
 		elseif ($finalHealth < 0)
 			$finalHealth = 0;
 		return $finalHealth;
-	}
-
-	protected function editStudentUserEmail(Request $request, $studentName) {
-		$studentUser = $this->getStudentUser($studentName);
-		(new UserManagementController)->editUserEmail($request, $studentUser);
-		return redirect()->route('/');
 	}
 }

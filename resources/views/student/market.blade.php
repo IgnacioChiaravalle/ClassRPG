@@ -4,6 +4,7 @@
 
 	<meta charset="utf-8">
 	<title>Mercado</title>
+	<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 	
 </head>
 <body>
@@ -25,7 +26,7 @@
 			</tr>
 
 			@foreach ($onSaleList as $sale)
-				<tr onclick="location.href='/market/buy-item/{{$sale->name}}/{{$sale->cost}}'">
+				<tr onclick="confirmPurchase('{{$sale->name}}', '{{$sale->cost}}')">
 					<td>{{$sale->name}}</td>
 					<td>{{$sale->type}}</td>
 					@if ($sale->added_damage != null)
