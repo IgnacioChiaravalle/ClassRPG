@@ -24,7 +24,7 @@ class AddStudentController extends Controller {
 		$uMC = new UserManagementController;
 		$this->validateRequest($request, $uMC);
 		$this->createNewStudent($request, $uMC);
-		return redirect()->route('/')->with('message', "Alumno añadido con éxito.");
+		return redirect()->route('/')->with('success', "Alumno añadido con éxito.");
 	}
 
 	private function validateRequest(Request $request, $uMC) {

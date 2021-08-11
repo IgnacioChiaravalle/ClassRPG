@@ -22,7 +22,7 @@ class UserAccountController extends Controller {
 		$user = $this->getUser();
 		$uMC->editUserNames($request, $user);
 		$uMC->editUserEmail($request, $user);
-		return redirect()->route('/')->with('message', "Información actualizada con éxito.");
+		return redirect()->route('/')->with('success', "Información actualizada con éxito.");
 	}
 
 	protected function createChangePasswordView(Request $request) {
@@ -31,7 +31,7 @@ class UserAccountController extends Controller {
 
 	protected function changeUserPassword(Request $request) {
 		(new UserManagementController)->editUserPassword($request, $this->getUser());
-		return redirect()->route('/')->with('message', "Contraseña actualizada con éxito.");
+		return redirect()->route('/')->with('success', "Contraseña actualizada con éxito.");
 	}
 
 	private function getUser() {

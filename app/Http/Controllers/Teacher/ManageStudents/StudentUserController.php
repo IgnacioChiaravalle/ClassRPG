@@ -16,6 +16,6 @@ class StudentUserController extends Controller {
 	protected function deleteStudent($studentName) {
 		$uMC = new UserManagementController;
 		$uMC->deleteUser($uMC->getUserByName($studentName));
-		return redirect()->route('/')->with('message', "Alumno eliminado con éxito.");
+		return redirect()->route('/')->with('success', "Alumno eliminado con éxito.");
 	}
 }

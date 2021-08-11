@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$student->name}}</title>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,6 +24,9 @@
 	</head>
 	
 	<body class="antialiased">
+		@if (Session::has('success'))
+			<div class="alert-toast" onclick="closeToast(this)">{{ session('success') }}</div>
+		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
