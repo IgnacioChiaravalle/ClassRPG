@@ -20,13 +20,11 @@ class UserWelcomeController extends Controller {
 		try {
 			if ($userType == 'teacher') {
 				$teacher = Teacher::where('name', $user->name)->firstOrFail();
-				$tWC = new TeacherWelcomeController;
-				return $tWC->getTeacherWelcome($teacher);
+				return (new TeacherWelcomeController)->getTeacherWelcome($teacher);
 			}
 			if ($userType == 'student') {
 				$student = Student::where('name', $user->name)->firstOrFail();
-				$sWC = new StudentWelcomeController;
-				return $sWC->getStudentWelcome($student);
+				return (new StudentWelcomeController)->getStudentWelcome($student);
 			}
 		}
 		catch (ModelNotFoundException $ex) {

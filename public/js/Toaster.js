@@ -1,3 +1,3 @@
-function closeToast(div) {
-	div.style.display = "none"; 
+function closeToast(toastID) {
+	document.getElementById(toastID).style.display = "none"; 
 }

@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$user->name}} - Mi Cuenta</title>
+		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -70,7 +71,8 @@
 		</form>
 
 		<button onclick="location.href='/my-account/change-password'">Cambiar Contraseña</button>
+		<button onclick="confirmSelfDelete()">Eliminar mi Cuenta</button>
+
 		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
-		
 	</body>
 </html>

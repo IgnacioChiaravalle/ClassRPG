@@ -10,13 +10,14 @@ use App\Models\RPGClass;
 use App\Models\Weapon;
 use App\Models\Item;
 use App\Models\Armor;
+use App\Models\Student;
 
 class StudentWelcomeController extends Controller {
 	public function __construct() {
 		$this->middleware('studentAuth');
 	}
 
-	public function getStudentWelcome($student) {
+	public function getStudentWelcome(Student $student) {
 		$rpg_class = RPGClass::where('name', $student->rpg_class)->first();
 		
 		$weapon = Weapon::where('name', $student->weapon)->first();

@@ -24,7 +24,10 @@
 
 	<body class="antialiased">
 		@if (Session::has('success'))
-			<div class="alert-toast" onclick="closeToast(this)">{{ session('success') }}</div>
+			<div class="alert-toast" id="teacher-welcome-alert-toast">
+				<div>{{ session('success') }}</div>
+				<div class="toast-closer" onclick="closeToast('teacher-welcome-alert-toast')">X</div>
+			</div>
 		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
@@ -74,5 +77,9 @@
 		@endif
 
 		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+
+		@if ($teacher->can_manage_teachers)
+			<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
+		@endif
 	</body>
 </html>

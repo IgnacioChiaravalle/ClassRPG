@@ -8,6 +8,7 @@ use App\Http\Controllers\GeneralFunctions\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher_Student;
+use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\User;
 
@@ -16,7 +17,7 @@ class TeacherWelcomeController extends Controller {
 		$this->middleware('teacherAuth');
 	}
 
-	public function getTeacherWelcome($teacher) {
+	public function getTeacherWelcome(Teacher $teacher) {
 		$teacher_students = Teacher_Student::where('teacher_name', $teacher->name)->get();
 		$my_students = array();
 		foreach($teacher_students as $ts)

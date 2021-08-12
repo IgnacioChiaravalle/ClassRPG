@@ -2,6 +2,15 @@
 
 @section('content')
 
+<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+
+
+@if (Session::has('success'))
+	<div class="alert-toast" id="login-alert-toast">
+		<div>{{ session('success') }}</div>
+		<div class="toast-closer" onclick="closeToast('login-alert-toast')">X</div>
+	</div>
+@endif
 @if (Session::has('message'))
 	<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 @endif
