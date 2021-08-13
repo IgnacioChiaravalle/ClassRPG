@@ -8,6 +8,7 @@ use App\Http\Controllers\Student\StudentWelcomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
 use App\Models\Teacher;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserWelcomeController extends Controller {
 	public function __construct() {
