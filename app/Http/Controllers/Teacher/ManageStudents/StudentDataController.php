@@ -17,21 +17,21 @@ class StudentDataController extends Controller {
 		$this->middleware('teacherAuth');
 	}
 
-	public function getOrFail_TeacherStudentRelation($studentName) {
+	public function getOrFail_TeacherStudentRelation($currentTeacherName, $studentName) {
 		return Teacher_Student::where([
-			['student_name', '=', $studentName],
-			['teacher_name', '=', Auth::user()->name]
+			['teacher_name', '=', $currentTeacherName],
+			['student_name', '=', $studentName]
 		])->firstOrFail();
 	}
-	private function getOtherTeachers($currentTeacherName, $studentName) {
+	public function getOtherTeachers($currentTeacherName, $studentName) {
 		return Teacher_Student::where([
-			['student_name', '=', $studentName],
-			['teacher_name', '!=', $currentTeacherName]
+			['teacher_name', '!=', $currentTeacherName],
+			['student_name', '=', $studentName]
 		])->get();
 	}
 
 	protected function captureStudentData($studentName) {
-		$teacherStudentRelation = $this->getOrFail_TeacherStudentRelation($studentName);
+		$teacherStudentRelation = $this->getOrFail_TeacherStudentRelation($this->getUserName(), $studentName);
 		$studentCharacter = $this->getStudentCharacter($studentName);
 		$maxStudentHealth = $this->getMaxStudentHealth($studentCharacter);
 		return View::make('teacher.manage_students.handle_student_data')->with('teacher', $this->getTeacher())
@@ -41,8 +41,11 @@ class StudentDataController extends Controller {
 																		->with('studentNotes', $teacherStudentRelation->notes_on_student);
 	}
 
+	private function getUserName() {
+		return Auth::user()->name;
+	}
 	private function getTeacher() {
-		return Teacher::where('name', Auth::user()->name)->first();
+		return Teacher::where('name', $this->getUserName())->first();
 	}
 	private function getStudentCharacter($studentName) {
 		return Student::where('name', $studentName)->first();
@@ -63,7 +66,7 @@ class StudentDataController extends Controller {
 			'coins' => $finalCoins >= 0 ? $finalCoins : 0,
 			'health' => $this->adjustHealth($studentCharacter, $finalHealth)
 		]);
-		$this->getOrFail_TeacherStudentRelation($studentName)->update([
+		$this->getOrFail_TeacherStudentRelation($this->getUserName(), $studentName)->update([
 			'notes_on_student' => $request->notes_on_student
 		]);
 		return redirect()->route('/');

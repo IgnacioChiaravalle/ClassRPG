@@ -25,5 +25,7 @@ Route::post('/manage-students/edit-student-email/{studentName}', [App\Http\Contr
 Route::get('/manage-students/delete-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentUserController::class, 'deleteStudent'])->middleware('teacherAuth');
 Route::get('/manage-students/add-student', [App\Http\Controllers\Teacher\ManageStudents\AddStudentController::class, 'createView'])->middleware('teacherAuth');
 Route::post('/manage-students/add-student', [App\Http\Controllers\Teacher\ManageStudents\AddStudentController::class, 'addStudent'])->middleware('teacherAuth');
+Route::get('/manage-students/share-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\ShareStudentController::class, 'createView'])->middleware('teacherAuth');
+Route::post('/manage-students/share-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\ShareStudentController::class, 'shareStudent'])->middleware('teacherAuth');
 
 Route::get('/manage-teachers', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'createView'])->middleware('teacherAuth');

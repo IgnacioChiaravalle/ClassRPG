@@ -15,9 +15,9 @@ class TeacherDeletionController extends Controller {
 		$myStudents = Teacher_Student::where('teacher_name', $teacher->name)->get();
 		$toDeleteStudents = array();
 		foreach ($myStudents as $student_and_me) {
-			$otherTeachers = $sDC->getOtherTeachers($teacher->name, $student_and_me->student_name);
+			$otherTeachers = (new StudentDataController)->getOtherTeachers($teacher->name, $student_and_me->student_name);
 			$aHC = new ArrayHandlerController;
-			if ($aHC->findSize($otherTeachers) == 0) {
+			if ($otherTeachers->isEmpty()) {
 				$uMC = new UserManagementController;
 				$uMC->deleteUser($uMC->getUserByName($student_and_me->student_name));
 			}

@@ -4,8 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$studentUser->name}} - Administración</title>
-		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
+		<title>Compartir Alumno</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,72 +26,33 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		
-		<p>{{$studentUser->name}} ({{$studentUser->real_name}})</p>
-		<form method="POST" action="{{url('manage-students/handle-student-data/' . $studentUser->name)}}" enctype="multipart/form-data">
-		@csrf
+		<p>Compartir a {{$studentName}}</p>
+		
+		@if (isset ($unrelatedTeachers))
+			<form method="POST" action="{{url('manage-students/share-student/' . $studentName)}}" enctype="multipart/form-data">
+			@csrf
 
-			<div class="health-and-coins">
-				<div>
-					<label for="health">Tiene {{$studentCharacter->health}} de {{$maxStudentHealth}} puntos de salud. ¿Qué le agregamos a este valor?</label>
-					<div>
-						<input id="health" type="number" class="active-field" name="health" value="{{old('health') ? old('health') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-						@error('health')
-							<label class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</label>
-						@enderror
-					</div>
-				</div>
-
-				<div>
-					<label for="coins">Tiene {{$studentCharacter->coins}} monedas de oro. ¿Qué le agregamos a este valor?</label>
-					<div>
-						<input id="coins" type="number" class="active-field" name="coins" value="{{old('coins') ? old('coins') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-						@error('coins')
-							<label class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</label>
-						@enderror
-					</div>
-				</div>
-			</div>
-			
-			<div>
-				<label for="notes_on_student">Mis notas sobre {{$studentUser->name}}:</label>
-				<div>
-					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}" maxlength="65,535">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
-					@error('notes_on_student')
+				<div class="form-group">
+					<label for="teacher_name">Seleccione al Docente con el que desea compartir a {{$studentName}}:</label>
+					<select class="form-control" id="teacher_name" name="teacher_name">
+						@foreach ($unrelatedTeachers as $teacher)
+							<option value="{{$teacher->name}}">{{$teacher->real_name}} ({{$teacher->name}})</option>
+						@endforeach
+					</select>
+					@error('name')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</label>
 					@enderror
 				</div>
-			</div>
 
-			<input type="submit" value="Aceptar Cambios">
-		</form>
+				<input type="submit" value="Aceptar">
+			</form>
+		@else
+			<p>No hay docentes a los que compartirles este alumno.</p>
+		@endif
 
-		<form method="POST" action="{{url('manage-students/edit-student-email/' . $studentUser->name)}}" enctype="multipart/form-data">
-		@csrf
-			<div>
-				<label for="email">¿Querés editar el Correo Electrónico de {{$studentUser->name}}?</label>
-				<div>
-					<input id="email" type="email" class="{{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email') ? old('email') : $studentUser->email}}" autocomplete="email"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-					@error('email')
-						<label class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</label>
-					@enderror
-				</div>
-			</div>
-
-			<input type="submit" value="Aceptar Cambio de Correo Electrónico">
-		</form>
-
-		<button onclick="location.href='../share-student/{{$studentUser->name}}'">Compartir a Otro Docente</button>
-		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
-
-		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
+		<button onclick="location.href='../handle-student-data/{{$studentName}}'">Volver</button>
 		
 	</body>
 </html>

@@ -34,7 +34,7 @@ class MarketController extends Controller {
 		$aHC->addDataToAllElements($armors, 'type', 'Armadura');
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);
-		if ($aHC->findSize($onSaleList) > 0) {
+		if (!empty($onSaleList)) {
 			$onSaleList = $aHC->quicksort($onSaleList, 'sale');
 			return View::make('student.market')->with('student', $student)->with('onSaleList', $onSaleList);
 		}
