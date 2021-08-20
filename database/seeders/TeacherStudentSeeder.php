@@ -11,6 +11,10 @@ class TeacherStudentSeeder extends Seeder {
 		$this->insertIntoTable(['Admin Teacher', 'Student 2', 'Le gusta Linkin Park.']);
 		$this->insertIntoTable(['Admin Teacher', 'Student 3', null]);
 		$this->insertIntoTable(['Teacher 2', 'Student 3', null]);
+		$this->insertIntoTable(['Teacher 3', 'Student 3', null]);
+		$this->insertIntoTable(['Teacher 4', 'Student 3', null]);
+		$this->insertIntoTable(['Teacher 5', 'Student 3', null]);
+
 	}
 
 	private function insertIntoTable(array $data) {

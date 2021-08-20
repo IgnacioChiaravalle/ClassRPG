@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\User\UserWelcomeController::class, 'getUserWelcome'])->middleware('auth')->name('/');
-Route::get('/login-me-in', function () {
-    return view('auth.login');
-})->name('/login-me-in');
+Route::get('/log-me-in', function () {
+	return view('auth.login');
+})->name('/log-me-in');
 
 Route::get('/my-account', [App\Http\Controllers\User\UserAccountController::class, 'createUserDataView'])->middleware('auth');
 Route::post('/my-account', [App\Http\Controllers\User\UserAccountController::class, 'editUserData'])->middleware('auth');
@@ -28,4 +28,10 @@ Route::post('/manage-students/add-student', [App\Http\Controllers\Teacher\Manage
 Route::get('/manage-students/share-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\ShareStudentController::class, 'createView'])->middleware('teacherAuth');
 Route::post('/manage-students/share-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\ShareStudentController::class, 'shareStudent'])->middleware('teacherAuth');
 
-Route::get('/manage-teachers', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'createView'])->middleware('teacherAuth');
+Route::get('/manage-teachers', function () {
+	return view('teacher.manage_teachers.show_teachers');
+})->middleware('adminTeacherAuth');
+Route::get('/manage-teachers/get-teachers', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'getTeachers'])->middleware('adminTeacherAuth');
+Route::get('/manage-teachers/update-can-manage-teachers/{teacherName}/{canManageTeachers}', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'updateCanManageTeachers'])->middleware('adminTeacherAuth');
+Route::get('/manage-teachers/delete-teacher/{teacherName}', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'deleteTeacher'])->middleware('adminTeacherAuth');
+

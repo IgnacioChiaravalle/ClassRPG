@@ -42,7 +42,7 @@ class UserAccountController extends Controller {
 		if ($userType == 'teacher' && !$this->handleTeacherDeletion($user))
 			return back()->with('message', "¡No podés eliminar tu cuenta! Sos el único docente que puede administrar a otros docentes. Antes de darte de baja, por favor cedé ese permiso a otro docente del sistema.");
 		(new UserManagementController)->deleteUser($user);
-		return redirect()->route('/login-me-in')->with('success', "Cuenta de usuario eliminada con éxito.");
+		return redirect()->route('/log-me-in')->with('success', "Cuenta de usuario eliminada con éxito.");
 	}
 
 	private function handleTeacherDeletion ($user) {
@@ -52,10 +52,8 @@ class UserAccountController extends Controller {
 				['name', '!=', $teacher->name],
 				['can_manage_teachers', '=', 'true']
 			])->get();
-			echo("hola");
-			if ($otherManagers->isEmpty()){
-			echo("hola");
-			return false;}
+			if ($otherManagers->isEmpty())
+				return false;
 		}
 		(new TeacherDeletionController)->cascadeDeleteStudents($teacher);
 		return true;
