@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\Teacher_Student;
 use Illuminate\Http\Request;
 
-class AddStudentController extends Controller {
+class StudentAdditionController extends Controller {
 	public function __construct() {
 		$this->middleware('teacherAuth');
 	}

@@ -17,7 +17,10 @@
 		<div id="parent-component">
 			<teacher-table ref="teacherTable"></teacher-table>
 		</div>
-
 		<script src = "{{asset('/js/app.js')}}" defer></script>
+
+		<button onclick="location.href='/manage-teachers/add-teacher'">Crear un Nuevo Docente</button>
+
+		<button onclick="location.href='/'">Volver</button>
 	</body>
 </html>

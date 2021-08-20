@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<table>
+		<table id="teacher_table" ref="teacher_table">
 			<thead>
 				<tr>
 					<td class="table-header-cell">Nombre</td>
@@ -17,16 +17,19 @@
 					<td>{{ teacher.name }}</td>
 
 					<td v-if="teacher.can_manage_teachers">
-						<input type="checkbox" value="can_manage_teachers" checked v-on:change="setCanDeleteTeachers(teacher.name, false)">
+						<input type="checkbox" value="can_manage_teachers" checked v-on:change="setCanManageTeachers(teacher.name, false)">
 					</td>
 					<td v-else>
-						<input type="checkbox" value="can_manage_teachers" v-on:change="setCanDeleteTeachers(teacher.name, true)">
+						<input type="checkbox" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
 					</td>
 
 					<td><button @click="confirmTeacherDelete(teacher.name)">&#128465;</button></td>
 				</tr>
 			</tbody>
 		</table>
+
+		<p id="loading" ref="loading">(Refrescando tabla...)</p>
+
 	</div>
 </template>
 
@@ -40,8 +43,8 @@
 		},
 		
 		mounted() {
-			console.log('Component mounted.');
-			this.getTeachers();
+			this.getTeachers()
+			this.changeLoadingVisibility('hidden')
 		},
 
 		methods: {
@@ -54,22 +57,41 @@
 					.catch(e => console.log("Error finding teachers:\n" + e))
 			},
 
-			setCanDeleteTeachers(teacherName, can_manage_teachers) {
-				axios
+			async setCanManageTeachers(teacherName, can_manage_teachers) {
+				await axios
 					.get('/manage-teachers/update-can-manage-teachers/' + teacherName + "/" + can_manage_teachers)
+					.then(
+						this.changeLoadingVisibility('visible'),
+						this.changeTeacherTableVisibility('hidden')
+					)
 					.catch(e => console.log("Error updating can_manage_teacher:\n" + e))
-				this.teachers = this.getTeachers();
-				this.tableBody++;
+				this.teachers = this.getTeachers()
+				this.tableBody++
+				this.changeLoadingVisibility('hidden')
+				this.changeTeacherTableVisibility('visible')
 			},
 
-			confirmTeacherDelete(teacherName) {
+			async confirmTeacherDelete(teacherName) {
 				if(confirm("¿Estás seguro de que querés eliminar a " + teacherName + "? Esto es irreversible.")) {
-					axios
+					await axios
 						.get('/manage-teachers/delete-teacher/' + teacherName)
+						.then(
+							this.changeLoadingVisibility('visible'),
+							this.changeTeacherTableVisibility('hidden')
+						)
 						.catch(e => console.log("Error deleting teacher:\n" + e))
-					this.teachers = this.getTeachers();
-					this.tableBody++;
+					this.teachers = this.getTeachers()
+					this.tableBody++
+					this.changeLoadingVisibility('hidden')
+					this.changeTeacherTableVisibility('visible')
 				}
+			},
+
+			changeLoadingVisibility(visibility) {
+				this.$refs.loading.style.visibility = visibility
+			},
+			changeTeacherTableVisibility(visibility) {
+				this.$refs.teacher_table.style.visibility = visibility
 			}
 		}
 	}
