@@ -33,7 +33,7 @@
 			@csrf
 
 				<div class="form-group">
-					<label for="teacher_name">Seleccione al Docente con el que desea compartir a {{$studentName}}:</label>
+					<label for="teacher_name">Seleccioná al Docente con el que desees compartir a {{$studentName}}:</label>
 					<select class="form-control" id="teacher_name" name="teacher_name">
 						@foreach ($unrelatedTeachers as $teacher)
 							<option value="{{$teacher->name}}">{{$teacher->real_name}} ({{$teacher->name}})</option>
@@ -50,6 +50,15 @@
 			</form>
 		@else
 			<p>No hay docentes a los que compartirles este alumno.</p>
+		@endif
+
+		@if (isset ($relatedTeachers))
+			<div class="already-student-of-list">{{$studentName}} ya es alumno de:</div>
+			@foreach ($relatedTeachers as $teacher)
+				<div>* {{$teacher->real_name}} ({{$teacher->name}})</div>
+			@endforeach
+		@else
+			<p>Hasta el momento, sos el único docente de {{$studentName}}.</p>
 		@endif
 
 		<button onclick="location.href='../handle-student-data/{{$studentName}}'">Volver</button>

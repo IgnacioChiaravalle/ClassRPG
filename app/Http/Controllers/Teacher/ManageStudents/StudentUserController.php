@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class StudentUserController extends Controller {
 	protected function editStudentUserEmail(Request $request, $studentName) {
+		(new StudentDataController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
 		$uMC = new UserManagementController;
 		$uMC->editUserEmail($request, $uMC->getUserByName($studentName));
-		return redirect()->route('/');
+		return redirect()->route('/')->with('success', "Correo electrónico actualizado con éxito.");
 	}
 
 	protected function deleteStudent($studentName) {

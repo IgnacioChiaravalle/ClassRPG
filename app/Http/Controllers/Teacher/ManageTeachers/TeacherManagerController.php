@@ -18,8 +18,9 @@ class TeacherManagerController extends Controller {
 	protected function getTeachers() {
 		$teachers = Teacher::where('name', '!=' , Auth::user()->name)->get();
 		$teacherUsers = array();
+		$uMC = new UserManagementController;
 		foreach($teachers as $teacher) {
-			array_push($teacherUsers, User::where('name', $teacher->name)->first());
+			array_push($teacherUsers, $uMC->getUserByName($teacher->name));
 			end($teacherUsers)->can_manage_teachers = $teacher->can_manage_teachers;
 		}
 		if (!empty($teacherUsers))
@@ -35,7 +36,8 @@ class TeacherManagerController extends Controller {
 	}
 
 	protected function deleteTeacher($teacherName) {
-		(new TeacherDeletionController)->cascadeDeleteStudents(Teacher::where('name', $teacherName)->first());
-		(new UserManagementController)->deleteUser(User::where('name', $teacherName)->first());
+		(new TeacherDeletionController)->cascadeDeleteStudents($teacherName);
+		$uMC = new UserManagementController;
+		$uMC->deleteUser($uMC->getUserByName($teacherName));
 	}
 }

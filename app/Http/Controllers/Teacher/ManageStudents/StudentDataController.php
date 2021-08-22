@@ -58,6 +58,7 @@ class StudentDataController extends Controller {
 	}
 
 	protected function editStudentData(Request $request, $studentName) {
+		$teacherStudentRelation = $this->getOrFail_TeacherStudentRelation($this->getUserName(), $studentName);
 		$this->validateStudentDataRequest($request);
 		$studentCharacter = $this->getStudentCharacter($studentName);
 		$finalCoins = $studentCharacter->coins + $request->coins;
@@ -66,10 +67,10 @@ class StudentDataController extends Controller {
 			'coins' => $finalCoins >= 0 ? $finalCoins : 0,
 			'health' => $this->adjustHealth($studentCharacter, $finalHealth)
 		]);
-		$this->getOrFail_TeacherStudentRelation($this->getUserName(), $studentName)->update([
+		$teacherStudentRelation->update([
 			'notes_on_student' => $request->notes_on_student
 		]);
-		return redirect()->route('/');
+		return redirect()->route('/')->with('success', "Información actualizada con éxito.");
 	}
 
 	private function validateStudentDataRequest (Request $request) {

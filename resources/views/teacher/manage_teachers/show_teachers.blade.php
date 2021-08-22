@@ -1,4 +1,3 @@
-<!-- Show all existing teachers, button to add new teachers, and capacity to click on a teacher to edit it. -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
