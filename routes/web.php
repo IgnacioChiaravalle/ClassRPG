@@ -30,10 +30,13 @@ Route::post('/manage-students/share-student/{studentName}', [App\Http\Controller
 
 Route::get('/manage-teachers', function () {
 	return view('teacher.manage_teachers.show_teachers');
-})->middleware('adminTeacherAuth');
+})->middleware('adminTeacherAuth')->name('/manage-teachers');
 Route::get('/manage-teachers/get-teachers', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'getTeachers'])->middleware('adminTeacherAuth');
 Route::get('/manage-teachers/update-can-manage-teachers/{teacherName}/{canManageTeachers}', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'updateCanManageTeachers'])->middleware('adminTeacherAuth');
 Route::get('/manage-teachers/delete-teacher/{teacherName}', [App\Http\Controllers\Teacher\ManageTeachers\TeacherManagerController::class, 'deleteTeacher'])->middleware('adminTeacherAuth');
-Route::get('/manage-teachers/add-teacher', [App\Http\Controllers\Teacher\ManageTeachers\TeacherAdditionController::class, 'addTeacher'])->middleware('adminTeacherAuth');
+Route::get('/manage-teachers/add-teacher', function () {
+	return view('teacher.manage_teachers.add_teacher');
+})->middleware('adminTeacherAuth');
+Route::post('/manage-teachers/add-teacher', [App\Http\Controllers\Teacher\ManageTeachers\TeacherAdditionController::class, 'addTeacher'])->middleware('adminTeacherAuth');
 
 

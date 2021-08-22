@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Crear Alumno</title>
+		<title>Crear Docente</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,8 +26,8 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		
-		<p>Crear un Nuevo Alumno</p>
-		<form method="POST" action="{{url('/manage-students/add-student')}}" enctype="multipart/form-data">
+		<p>Crear un Nuevo Docente</p>
+		<form method="POST" action="{{url('/manage-teachers/add-teacher')}}" enctype="multipart/form-data">
 		@csrf
 
 			<div>
@@ -66,31 +66,14 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="rpg_class">Clase del Personaje:</label>
-				<select class="form-control" id="rpg_class" name="rpg_class">
-					@foreach ($classes as $class)
-						<option value="{{$class->name}}">{{$class->name}} (Daño: {{$class->base_damage}}; Salud: {{$class->base_health}})</option>
-					@endforeach			  
-				</select>
-			</div>
-
 			<div>
-				<label for="notes_on_student">¿Alguna nota o comentario que agregar?</label>
-				<div>
-					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}" maxlength="65,535"></textarea>
-					@error('notes_on_student')
-						<label class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</label>
-					@enderror
-				</div>
+				<label for="can_manage_teachers">¿Puede Administrar Docentes?</label>
+				<input id="can_manage_teachers" type="checkbox" name="can_manage_teachers">
 			</div>
 
 			<input type="submit" value="Aceptar">
 		</form>
 
-		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
-		
+		<button onclick="location.href='/manage-teachers'">Descartar Cambios y Volver</button>
 	</body>
 </html>
