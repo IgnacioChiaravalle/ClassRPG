@@ -37,7 +37,7 @@ class UserManagementController extends Controller {
 			'password' => Hash::make($password),
 			'type' => $type
 		]);
-		Mail::to($request->email)->send(new NewUserRegistered($user,$password));
+		//Mail::to($request->email)->send(new NewUserRegistered($user,$password));
 	}
 
 	private function randomPassword() {
@@ -66,7 +66,7 @@ class UserManagementController extends Controller {
 		]);
 		if ($user->email != $request->email) {
 			$user->update(['email' => $request->email]);
-			Mail::to($request->email)->send(new EmailUpdated($user));
+			//Mail::to($request->email)->send(new EmailUpdated($user));
 		}
 	}
 
@@ -86,7 +86,7 @@ class UserManagementController extends Controller {
 	}
 
 	public function deleteUser(User $user) {
-		Mail::to($user->email)->send(new AccountDeleted($user));
+		//Mail::to($user->email)->send(new AccountDeleted($user));
 		$user->delete();
 	}
 }
