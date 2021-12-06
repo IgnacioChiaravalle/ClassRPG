@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher\ManageTeachers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ArrayHandlerController;
+use App\Http\Controllers\GeneralFunctions\ListSortController;
 use App\Http\Controllers\User\UserManagementController;
 use App\Http\Controllers\Teacher\ManageTeachers\TeacherDeletionController;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ class TeacherManagerController extends Controller {
 			end($teacherUsers)->can_manage_teachers = $teacher->can_manage_teachers;
 		}
 		if (!empty($teacherUsers))
-			return (new ArrayHandlerController)->quicksort($teacherUsers, 'user');
+			return (new ListSortController)->quicksort($teacherUsers, 'user');
 		else
 			return null;
 	}

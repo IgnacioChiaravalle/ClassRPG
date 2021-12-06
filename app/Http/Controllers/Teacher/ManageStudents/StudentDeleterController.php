@@ -8,14 +8,7 @@ use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class StudentUserController extends Controller {
-	protected function editStudentUserEmail(Request $request, $studentName) {
-		(new StudentDataController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
-		$uMC = new UserManagementController;
-		$uMC->editUserEmail($request, $uMC->getUserByName($studentName));
-		return redirect()->route('/')->with('success', "Correo electrónico actualizado con éxito.");
-	}
-
+class StudentDeleterController extends Controller {
 	protected function deleteStudent($studentName) {
 		$sDC = new StudentDataController;
 		$currentTeacherName = Auth::user()->name;

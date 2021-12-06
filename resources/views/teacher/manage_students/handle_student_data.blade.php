@@ -72,23 +72,6 @@
 			<input type="submit" value="Aceptar Cambios">
 		</form>
 
-		<form method="POST" action="{{url('manage-students/edit-student-email/' . $studentUser->name)}}" enctype="multipart/form-data">
-		@csrf
-			<div>
-				<label for="email">¿Querés editar el Correo Electrónico de {{$studentUser->name}}?</label>
-				<div>
-					<input id="email" type="email" class="{{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email') ? old('email') : $studentUser->email}}" autocomplete="email"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-					@error('email')
-						<label class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</label>
-					@enderror
-				</div>
-			</div>
-
-			<input type="submit" value="Aceptar Cambio de Correo Electrónico">
-		</form>
-
 		<button onclick="location.href='../share-student/{{$studentUser->name}}'">Compartir a Otro Docente</button>
 		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
 

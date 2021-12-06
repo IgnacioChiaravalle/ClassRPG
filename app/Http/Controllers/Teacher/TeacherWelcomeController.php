@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ArrayHandlerController;
+use App\Http\Controllers\GeneralFunctions\ListSortController;
 use App\Http\Controllers\GeneralFunctions\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,7 @@ class TeacherWelcomeController extends Controller {
 		}
 		
 		if (!empty($my_students)) {
-			$my_students = (new ArrayHandlerController)->quicksort($my_students, 'user');
+			$my_students = (new ListSortController)->quicksort($my_students, 'user');
 			return View::make('teacher.teacher_welcome')->with('teacher', $teacher)->with('my_students', $my_students);
 		}
 		else

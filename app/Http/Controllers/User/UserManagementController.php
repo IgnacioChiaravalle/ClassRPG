@@ -39,14 +39,13 @@ class UserManagementController extends Controller {
 		]);
 		//Mail::to($request->email)->send(new NewUserRegistered($user,$password));
 	}
-
-	private function randomPassword() {
-		$password = "";
-		$alphabetLength = strlen(self::ALPHABET) - 1;
-		for ($i = 0; $i < self::PW_LENGTH; $i++)
-			$password .= self::ALPHABET[rand(0, $alphabetLength)];
-		return $password;
-	}
+		private function randomPassword() {
+			$password = "";
+			$alphabetLength = strlen(self::ALPHABET) - 1;
+			for ($i = 0; $i < self::PW_LENGTH; $i++)
+				$password .= self::ALPHABET[rand(0, $alphabetLength)];
+			return $password;
+		}
 
 	public function editUserNames(Request $request, $user) {
 		$request->validate([

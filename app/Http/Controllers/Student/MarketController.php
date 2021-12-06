@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ArrayHandlerController;
+use App\Http\Controllers\GeneralFunctions\ListSortController;
 use App\Http\Controllers\GeneralFunctions\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -24,18 +24,17 @@ class MarketController extends Controller {
 
 	protected function getMarket() {
 		$student = $this->getStudent();
-		$aHC = new ArrayHandlerController;
 
 		$weapons = Weapon::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->weapon)->where('marketable', true)->get();
-		$aHC->addDataToAllElements($weapons, 'type', 'Arma');
+		$this->addDataToAllElements($weapons, 'type', 'Arma');
 		$items = Item::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->item)->where('marketable', true)->get();
-		$aHC->addDataToAllElements($items, 'type', 'Ítem');
+		$this->addDataToAllElements($items, 'type', 'Ítem');
 		$armors = Armor::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->armor)->where('marketable', true)->get();
-		$aHC->addDataToAllElements($armors, 'type', 'Armadura');
+		$this->addDataToAllElements($armors, 'type', 'Armadura');
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);
 		if (!empty($onSaleList)) {
-			$onSaleList = $aHC->quicksort($onSaleList, 'sale');
+			$onSaleList = (new ListSortController)->quicksort($onSaleList, 'sale');
 			return View::make('student.market')->with('student', $student)->with('onSaleList', $onSaleList);
 		}
 		else
@@ -51,6 +50,11 @@ class MarketController extends Controller {
 			foreach($array3 as $a3)
 				$toReturn[] = $a3;
 			return $toReturn;
+		}
+
+		private function addDataToAllElements($list, $dataAttribute, $data) {
+			foreach($list as $toAdd)
+				$toAdd->$dataAttribute = $data;
 		}
 
 	protected function buyItem($saleName, $saleCost) {

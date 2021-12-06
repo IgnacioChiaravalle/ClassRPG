@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\UserManagementController;
-use App\Http\Controllers\GeneralFunctions\ArrayHandlerController;
+use App\Http\Controllers\GeneralFunctions\ListSortController;
 use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +55,7 @@ class ShareStudentController extends Controller {
 	private function returnQuicksortOrNull($array) {
 		if (empty($array))
 			return null;
-		$array = (new ArrayHandlerController)->quicksort($array, 'user');
+		$array = (new ListSortController)->quicksort($array, 'user');
 		return $array;
 	}
 

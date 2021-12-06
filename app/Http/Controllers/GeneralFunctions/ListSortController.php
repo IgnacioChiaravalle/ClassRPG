@@ -4,7 +4,7 @@ namespace App\Http\Controllers\GeneralFunctions;
 
 use App\Http\Controllers\Controller;
 
-class ArrayHandlerController extends Controller {
+class ListSortController extends Controller {
 	public function quicksort($list, $criteria) {
 		$loe = $gt = array();
 		if ($this->findSize($list) < 2)
@@ -40,10 +40,5 @@ class ArrayHandlerController extends Controller {
 		foreach ($list as $l)
 			$size++;
 		return $size;
-	}
-
-	public function addDataToAllElements($list, $dataAttribute, $data) {
-		foreach($list as $toAdd)
-			$toAdd->$dataAttribute = $data;
 	}
 }
