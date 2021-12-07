@@ -14,7 +14,7 @@
 
 	<body>
 		@if (Session::has('success'))
-			<div class="alert-toast" id="teacher-welcome-alert-toast">
+			<div class="alert-toast" id="show-teachers-alert-toast">
 				<div>{{ session('success') }}</div>
 				<div class="toast-closer" onclick="closeToast('teacher-welcome-alert-toast')">X</div>
 			</div>
