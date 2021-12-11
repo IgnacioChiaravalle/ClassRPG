@@ -16,7 +16,7 @@
 		@if (Session::has('success'))
 			<div class="alert-toast" id="show-teachers-alert-toast">
 				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('teacher-welcome-alert-toast')">X</div>
+				<div class="toast-closer" onclick="closeToast('show-teachers-alert-toast')">X</div>
 			</div>
 		@endif
 		@if (Session::has('message'))

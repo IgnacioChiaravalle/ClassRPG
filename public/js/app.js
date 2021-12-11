@@ -1845,6 +1845,193 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      rpgClass: new URL(location.href).toString().split('/').pop(),
+      onSaleList: null,
+      tableBody: 0
+    };
+  },
+  mounted: function mounted() {
+    this.getStock();
+    this.changeLoadingVisibility('hidden');
+  },
+  methods: {
+    getStock: function getStock() {
+      var _this = this;
+
+      axios.get('/manage-market/get-stock/' + this.rpgClass).then(function (response) {
+        _this.onSaleList = response.data;
+        if (_this.onSaleList == null) _this.onSaleList = 0;
+      })["catch"](function (e) {
+        return console.log("Error finding stock:\n" + e);
+      });
+    },
+    setMarketable: function setMarketable(saleName, marketable) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/manage-market/update-marketable/' + saleName + "/" + marketable).then(_this2.changeLoadingVisibility('visible'), _this2.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error updating marketable field:\n" + e);
+                });
+
+              case 2:
+                _this2.getStock();
+
+                _this2.tableBody++;
+
+                _this2.changeLoadingVisibility('hidden');
+
+                _this2.changeClassMarketTableVisibility('visible');
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    confirmSaleDelete: function confirmSaleDelete(saleName, saleUsers) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(saleUsers != 0)) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                alert("¡No podés eliminar este artículo porque al menos un alumno lo está usando!");
+                _context2.next = 11;
+                break;
+
+              case 4:
+                if (!confirm("¿Estás seguro de que querés este artículo: " + saleName + "? Esto es irreversible.")) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                _context2.next = 7;
+                return axios.get('/manage-market/delete-sale/' + saleName).then(_this3.changeLoadingVisibility('visible'), _this3.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error deleting sale:\n" + e);
+                });
+
+              case 7:
+                _this3.getStock();
+
+                _this3.tableBody++;
+
+                _this3.changeLoadingVisibility('hidden');
+
+                _this3.changeClassMarketTableVisibility('visible');
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    changeLoadingVisibility: function changeLoadingVisibility(visibility) {
+      this.$refs.loading.style.visibility = visibility;
+    },
+    changeClassMarketTableVisibility: function changeClassMarketTableVisibility(visibility) {
+      this.$refs.class_market_table.style.visibility = visibility;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherTable.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherTable.vue?vue&type=script&lang=js& ***!
@@ -1899,6 +2086,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1916,6 +2106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.get('/manage-teachers/get-teachers').then(function (response) {
         _this.teachers = response.data;
+        if (_this.teachers == null) _this.teachers = 0;
       })["catch"](function (e) {
         return console.log("Error finding teachers:\n" + e);
       });
@@ -1934,7 +2125,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
-                _this2.teachers = _this2.getTeachers();
+                _this2.getTeachers();
+
                 _this2.tableBody++;
 
                 _this2.changeLoadingVisibility('hidden');
@@ -1968,7 +2160,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                _this3.teachers = _this3.getTeachers();
+                _this3.getTeachers();
+
                 _this3.tableBody++;
 
                 _this3.changeLoadingVisibility('hidden');
@@ -2004,6 +2197,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
 Vue.component('teacher-table', __webpack_require__(/*! ./components/TeacherTable.vue */ "./resources/js/components/TeacherTable.vue").default);
+Vue.component('class-market-table', __webpack_require__(/*! ./components/ClassMarketTable.vue */ "./resources/js/components/ClassMarketTable.vue").default);
 var parentComponent = new Vue({
   el: '#parent-component'
 });
@@ -38201,6 +38395,45 @@ try {
 
 /***/ }),
 
+/***/ "./resources/js/components/ClassMarketTable.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ClassMarketTable.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassMarketTable.vue?vue&type=template&id=1eb6b5c5& */ "./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5&");
+/* harmony import */ var _ClassMarketTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClassMarketTable.vue?vue&type=script&lang=js& */ "./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ClassMarketTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ClassMarketTable.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherTable.vue":
 /*!**************************************************!*\
   !*** ./resources/js/components/TeacherTable.vue ***!
@@ -38240,6 +38473,22 @@ component.options.__file = "resources/js/components/TeacherTable.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClassMarketTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherTable.vue?vue&type=script&lang=js&":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/TeacherTable.vue?vue&type=script&lang=js& ***!
@@ -38253,6 +38502,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeacherTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TeacherTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherTable.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeacherTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClassMarketTable.vue?vue&type=template&id=1eb6b5c5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5&");
+
 
 /***/ }),
 
@@ -38273,6 +38539,174 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.onSaleList != 0
+    ? _c("div", [
+        _c("p", [_vm._v("Stock para el " + _vm._s(_vm.rpgClass) + ":")]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { ref: "class_market_table", attrs: { id: "class_market_table" } },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              { key: _vm.tableBody },
+              _vm._l(_vm.onSaleList, function(sale) {
+                return _c(
+                  "tr",
+                  {
+                    key: sale.name,
+                    staticClass: "tr-body",
+                    attrs: { id: sale.name }
+                  },
+                  [
+                    _c("td", [_vm._v(_vm._s(sale.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(sale.type))]),
+                    _vm._v(" "),
+                    sale.added_damage != null
+                      ? _c("td", [
+                          _vm._v(
+                            "\n\t\t\t\t\t" +
+                              _vm._s(sale.added_damage) +
+                              "\n\t\t\t\t"
+                          )
+                        ])
+                      : _c("td", [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]),
+                    _vm._v(" "),
+                    sale.added_health != null
+                      ? _c("td", [
+                          _vm._v(
+                            "\n\t\t\t\t\t" +
+                              _vm._s(sale.added_health) +
+                              "\n\t\t\t\t"
+                          )
+                        ])
+                      : _c("td", [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(sale.cost))]),
+                    _vm._v(" "),
+                    sale.marketable
+                      ? _c("td", [
+                          _c("input", {
+                            attrs: {
+                              type: "checkbox",
+                              value: "marketable",
+                              checked: ""
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.setMarketable(sale.name, false)
+                              }
+                            }
+                          })
+                        ])
+                      : _c("td", [
+                          _c("input", {
+                            attrs: { type: "checkbox", value: "marketable" },
+                            on: {
+                              change: function($event) {
+                                return _vm.setMarketable(sale.name, true)
+                              }
+                            }
+                          })
+                        ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(sale.users))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.confirmSaleDelete(
+                                sale.name,
+                                sale.users
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("🗑")]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
+          _vm._v("(Refrescando tabla...)")
+        ]),
+        _vm._v(" "),
+        _c("p")
+      ])
+    : _c("div", [
+        _c("p", [_vm._v("¡Aún no hay stock en el mercado para esta clase!")])
+      ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "table-header-row" }, [
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Objeto")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Tipo")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("Daño que Añade")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("Salud que Añade")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Costo")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("¿Está a la Venta?")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("Alumnos que lo Usan")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("¿Desea Eliminar el Artículo?")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherTable.vue?vue&type=template&id=e3a0aa12&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherTable.vue?vue&type=template&id=e3a0aa12& ***!
@@ -38289,78 +38723,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("table", { ref: "teacher_table", attrs: { id: "teacher_table" } }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        { key: _vm.tableBody },
-        _vm._l(_vm.teachers, function(teacher) {
-          return _c(
-            "tr",
-            {
-              key: teacher.name,
-              staticClass: "tr-body",
-              attrs: { id: teacher.name }
-            },
-            [
-              _c("td", [_vm._v(_vm._s(teacher.real_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(teacher.email))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(teacher.name))]),
-              _vm._v(" "),
-              teacher.can_manage_teachers
-                ? _c("td", [
-                    _c("input", {
-                      attrs: {
-                        type: "checkbox",
-                        value: "can_manage_teachers",
-                        checked: ""
+  return _vm.teachers != 0
+    ? _c("div", [
+        _c("table", { ref: "teacher_table", attrs: { id: "teacher_table" } }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            { key: _vm.tableBody },
+            _vm._l(_vm.teachers, function(teacher) {
+              return _c(
+                "tr",
+                {
+                  key: teacher.name,
+                  staticClass: "tr-body",
+                  attrs: { id: teacher.name }
+                },
+                [
+                  _c("td", [_vm._v(_vm._s(teacher.real_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(teacher.email))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(teacher.name))]),
+                  _vm._v(" "),
+                  teacher.can_manage_teachers
+                    ? _c("td", [
+                        _c("input", {
+                          attrs: {
+                            type: "checkbox",
+                            value: "can_manage_teachers",
+                            checked: ""
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.setCanManageTeachers(
+                                teacher.name,
+                                false
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    : _c("td", [
+                        _c("input", {
+                          attrs: {
+                            type: "checkbox",
+                            value: "can_manage_teachers"
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.setCanManageTeachers(
+                                teacher.name,
+                                true
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.confirmTeacherDelete(teacher.name)
+                          }
+                        }
                       },
-                      on: {
-                        change: function($event) {
-                          return _vm.setCanManageTeachers(teacher.name, false)
-                        }
-                      }
-                    })
+                      [_vm._v("🗑")]
+                    )
                   ])
-                : _c("td", [
-                    _c("input", {
-                      attrs: { type: "checkbox", value: "can_manage_teachers" },
-                      on: {
-                        change: function($event) {
-                          return _vm.setCanManageTeachers(teacher.name, true)
-                        }
-                      }
-                    })
-                  ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.confirmTeacherDelete(teacher.name)
-                      }
-                    }
-                  },
-                  [_vm._v("🗑")]
-                )
-              ])
-            ]
+                ]
+              )
+            }),
+            0
           )
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("p", { ref: "loading", attrs: { id: "loading" } }, [
-      _vm._v("(Refrescando tabla...)")
-    ])
-  ])
+        ]),
+        _vm._v(" "),
+        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
+          _vm._v("(Refrescando tabla...)")
+        ])
+      ])
+    : _c("div", [_c("p", [_vm._v("No hay otros docentes en el sistema.")])])
 }
 var staticRenderFns = [
   function() {
@@ -38368,7 +38813,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
+      _c("tr", { staticClass: "table-header-row" }, [
         _c("td", { staticClass: "table-header-cell" }, [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("td", { staticClass: "table-header-cell" }, [

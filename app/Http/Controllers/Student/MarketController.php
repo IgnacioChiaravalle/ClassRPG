@@ -26,11 +26,11 @@ class MarketController extends Controller {
 		$student = $this->getStudent();
 
 		$weapons = Weapon::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->weapon)->where('marketable', true)->get();
-		$this->addDataToAllElements($weapons, 'type', 'Arma');
+		$this->addTypeToAllElements($weapons, 'Arma');
 		$items = Item::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->item)->where('marketable', true)->get();
-		$this->addDataToAllElements($items, 'type', 'Ítem');
+		$this->addTypeToAllElements($items, 'Ítem');
 		$armors = Armor::where('rpg_class', $student->rpg_class)->where('name', '!=', $student->armor)->where('marketable', true)->get();
-		$this->addDataToAllElements($armors, 'type', 'Armadura');
+		$this->addTypeToAllElements($armors, 'Armadura');
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);
 		if (!empty($onSaleList)) {
@@ -41,7 +41,11 @@ class MarketController extends Controller {
 			return View::make('student.market')->with('student', $student);
 	}
 
-		private function putTogether($array1, $array2, $array3) {
+		private function addTypeToAllElements($list, $type) {
+			foreach ($list as $toAdd)
+				$toAdd->type = $type;
+		}
+		public function putTogether($array1, $array2, $array3) {
 			$toReturn = array();
 			foreach($array1 as $a1)
 				$toReturn[] = $a1;
@@ -50,11 +54,6 @@ class MarketController extends Controller {
 			foreach($array3 as $a3)
 				$toReturn[] = $a3;
 			return $toReturn;
-		}
-
-		private function addDataToAllElements($list, $dataAttribute, $data) {
-			foreach($list as $toAdd)
-				$toAdd->$dataAttribute = $data;
 		}
 
 	protected function buyItem($saleName, $saleCost) {

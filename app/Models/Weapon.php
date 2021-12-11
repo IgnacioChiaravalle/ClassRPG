@@ -12,6 +12,7 @@ class Weapon extends Model
 		'name',
 		'rpg_class',
 		'added_damage',
-		'cost'
+		'cost',
+		'marketable'
 	];
 }

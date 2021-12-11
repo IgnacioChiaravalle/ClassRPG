@@ -13,6 +13,7 @@ class Item extends Model
 		'rpg_class',
 		'added_health',
 		'added_damage',
-		'cost'
+		'cost',
+		'marketable'
 	];
 }

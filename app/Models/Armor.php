@@ -12,6 +12,7 @@ class Armor extends Model
 		'name',
 		'rpg_class',
 		'added_health',
-		'cost'
+		'cost',
+		'marketable'
 	];
 }

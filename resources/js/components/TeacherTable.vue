@@ -1,8 +1,8 @@
 <template>
-	<div>
+	<div v-if="teachers != 0">
 		<table id="teacher_table" ref="teacher_table">
 			<thead>
-				<tr>
+				<tr class="table-header-row">
 					<td class="table-header-cell">Nombre</td>
 					<td class="table-header-cell">Correo Electrónico</td>
 					<td class="table-header-cell">Nombre de Usuario</td>
@@ -31,6 +31,9 @@
 		<p id="loading" ref="loading">(Refrescando tabla...)</p>
 
 	</div>
+	<div v-else>
+		<p>No hay otros docentes en el sistema.</p>
+	</div>
 </template>
 
 <script>
@@ -53,6 +56,8 @@
 					.get('/manage-teachers/get-teachers')
 					.then(response => {
 						this.teachers = response.data
+						if (this.teachers == null)
+							this.teachers = 0
 					})
 					.catch(e => console.log("Error finding teachers:\n" + e))
 			},
@@ -65,7 +70,7 @@
 						this.changeTeacherTableVisibility('hidden')
 					)
 					.catch(e => console.log("Error updating can_manage_teacher:\n" + e))
-				this.teachers = this.getTeachers()
+				this.getTeachers()
 				this.tableBody++
 				this.changeLoadingVisibility('hidden')
 				this.changeTeacherTableVisibility('visible')
@@ -80,7 +85,7 @@
 							this.changeTeacherTableVisibility('hidden')
 						)
 						.catch(e => console.log("Error deleting teacher:\n" + e))
-					this.teachers = this.getTeachers()
+					this.getTeachers()
 					this.tableBody++
 					this.changeLoadingVisibility('hidden')
 					this.changeTeacherTableVisibility('visible')
