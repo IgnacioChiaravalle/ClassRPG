@@ -52,7 +52,7 @@
 		
 		<p></p>
 
-		<form v-if="selectedSale != null" :key="selectedSale.name" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name"> <!-- check how to add variable here -->
+		<form v-if="selectedSale != null" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name"> <!-- check how to add variable here -->
 			<input type="hidden" name="_token" v-bind:value="csrf">
 
 			<p>{{ selectedSale.name }}</p>
@@ -135,7 +135,7 @@
 							this.changeClassMarketTableVisibility('hidden')
 						)
 						.catch(e => console.log("Error deleting sale:\n" + e))
-					if (this.selectedSale.name == saleName)
+					if (this.selectedSale = null && this.selectedSale.name == saleName)
 						this.selectedSale = null
 					await this.getStock()
 					this.tableBody++
@@ -145,10 +145,10 @@
 			},
 
 			changeLoadingVisibility(visibility) {
-				this.$refs.loading.style.visibility = visibility
+				if (this.onSaleList != 0) this.$refs.loading.style.visibility = visibility
 			},
 			changeClassMarketTableVisibility(visibility) {
-				this.$refs.class_market_table.style.visibility = visibility
+				if (this.onSaleList != 0) this.$refs.class_market_table.style.visibility = visibility
 			},
 
 			setSelected(sale) {

@@ -93,10 +93,10 @@
 			},
 
 			changeLoadingVisibility(visibility) {
-				this.$refs.loading.style.visibility = visibility
+				if (this.teachers != 0) this.$refs.loading.style.visibility = visibility
 			},
 			changeTeacherTableVisibility(visibility) {
-				this.$refs.teacher_table.style.visibility = visibility
+				if (this.teachers != 0) this.$refs.teacher_table.style.visibility = visibility
 			}
 		}
 	}

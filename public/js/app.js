@@ -2046,7 +2046,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 7:
-                if (_this3.selectedSale.name == saleName) _this3.selectedSale = null;
+                if (_this3.selectedSale = null && 0) _this3.selectedSale = null;
                 _context3.next = 10;
                 return _this3.getStock();
 
@@ -2066,10 +2066,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     changeLoadingVisibility: function changeLoadingVisibility(visibility) {
-      this.$refs.loading.style.visibility = visibility;
+      if (this.onSaleList != 0) this.$refs.loading.style.visibility = visibility;
     },
     changeClassMarketTableVisibility: function changeClassMarketTableVisibility(visibility) {
-      this.$refs.class_market_table.style.visibility = visibility;
+      if (this.onSaleList != 0) this.$refs.class_market_table.style.visibility = visibility;
     },
     setSelected: function setSelected(sale) {
       this.selectedSale = sale;
@@ -2265,10 +2265,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     changeLoadingVisibility: function changeLoadingVisibility(visibility) {
-      this.$refs.loading.style.visibility = visibility;
+      if (this.teachers != 0) this.$refs.loading.style.visibility = visibility;
     },
     changeTeacherTableVisibility: function changeTeacherTableVisibility(visibility) {
-      this.$refs.teacher_table.style.visibility = visibility;
+      if (this.teachers != 0) this.$refs.teacher_table.style.visibility = visibility;
     }
   }
 });
@@ -38833,7 +38833,6 @@ var render = function() {
           ? _c(
               "form",
               {
-                key: _vm.selectedSale.name,
                 ref: "form",
                 attrs: {
                   method: "POST",
