@@ -45,23 +45,4 @@ class MarketStockController extends Controller {
 				$sale->users = Student::where($type, $sale->name)->count();
 			}
 		}
-
-	protected function updateMarketable($saleName, $marketable) {
-		$sale = Weapon::where('name', $saleName)->first();
-		if (!$sale)
-			$sale = Armor::where('name', $saleName)->first();
-		if (!$sale)
-			$sale = Item::where('name', $saleName)->first();
-		
-		$sale->update(['marketable' => $marketable]);
-	}
-
-	protected function deleteSale($saleName) {
-		$sale = Weapon::where('name', $saleName)->first();
-		if (!$sale)
-			$sale = Armor::where('name', $saleName)->first();
-		if (!$sale)
-			$sale = Item::where('name', $saleName)->first();
-		$sale->delete();
-	}
 }

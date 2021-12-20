@@ -16,32 +16,32 @@
 			</thead>
 			<tbody :key="tableBody">
 				<tr v-for="sale in onSaleList" :key="sale.name" :id="sale.name" class="tr-body">
-					<td>{{ sale.name }}</td>
-					<td>{{ sale.type }}</td>
+					<td @click="setSelected(sale)">{{ sale.name }}</td>
+					<td @click="setSelected(sale)">{{ sale.type }}</td>
 
-					<td v-if="sale.added_damage != null">
+					<td v-if="sale.added_damage != null" @click="setSelected(sale)">
 						{{ sale.added_damage }}
 					</td>
-					<td v-else>
+					<td v-else @click="setSelected(sale)">
 						0
 					</td>
-					<td v-if="sale.added_health != null">
+					<td v-if="sale.added_health != null" @click="setSelected(sale)">
 						{{ sale.added_health }}
 					</td>
-					<td v-else>
+					<td v-else @click="setSelected(sale)">
 						0
 					</td>
 
-					<td>{{ sale.cost }}</td>
+					<td @click="setSelected(sale)">{{ sale.cost }}</td>
 
 					<td v-if="sale.marketable">
-						<input type="checkbox" value="marketable" checked v-on:change="setMarketable(sale.name, false)">
+						<input type="checkbox" value="marketable" checked @change="setMarketable(sale.name, false)">
 					</td>
 					<td v-else>
-						<input type="checkbox" value="marketable" v-on:change="setMarketable(sale.name, true)">
+						<input type="checkbox" value="marketable" @change="setMarketable(sale.name, true)">
 					</td>
 
-					<td>{{ sale.users }}</td>
+					<td @click="setSelected(sale)">{{ sale.users }}</td>
 
 					<td><button @click="confirmSaleDelete(sale.name, sale.users)">&#128465;</button></td>
 				</tr>
@@ -51,6 +51,29 @@
 		<p id="loading" ref="loading">(Refrescando tabla...)</p>
 		
 		<p></p>
+
+		<form v-if="selectedSale != null" :key="selectedSale.name" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name"> <!-- check how to add variable here -->
+			<input type="hidden" name="_token" v-bind:value="csrf">
+
+			<p>{{ selectedSale.name }}</p>
+
+			<div v-if="selectedSale.added_damage != null">
+				<label for="added_damage">Daño que Añade:</label>
+				<input id="added_damage" v-model="selectedSale.added_damage" name="added_damage" type="number">
+			</div>
+
+			<div v-if="selectedSale.added_health != null">
+				<label for="added_health">Salud que Añade:</label>
+				<input id="added_health" v-model="selectedSale.added_health" name="added_health" type="number">
+			</div>
+
+			<div>
+				<label for="cost">Precio:</label>
+				<input id="cost" v-model="selectedSale.cost" required name="cost" type="number">
+			</div>
+
+			<button @click="submitForm()">Aceptar</button>
+		</form>
 	</div>
 	<div v-else>
 		<p>¡Aún no hay stock en el mercado para esta clase!</p>
@@ -59,10 +82,13 @@
 
 <script>
 	export default {
+		props: ['csrf'],
+
 		data() {
 			return {
 				rpgClass: new URL(location.href).toString().split('/').pop(),
 				onSaleList: null,
+				selectedSale: null,
 				tableBody: 0
 			}
 		},
@@ -73,8 +99,8 @@
 		},
 
 		methods: {
-			getStock() {
-				axios
+			async getStock() {
+				await axios
 					.get('/manage-market/get-stock/' + this.rpgClass)
 					.then(response => {
 						this.onSaleList = response.data
@@ -92,7 +118,7 @@
 						this.changeClassMarketTableVisibility('hidden')
 					)
 					.catch(e => console.log("Error updating marketable field:\n" + e))
-				this.getStock()
+				await this.getStock()
 				this.tableBody++
 				this.changeLoadingVisibility('hidden')
 				this.changeClassMarketTableVisibility('visible')
@@ -109,7 +135,9 @@
 							this.changeClassMarketTableVisibility('hidden')
 						)
 						.catch(e => console.log("Error deleting sale:\n" + e))
-					this.getStock()
+					if (this.selectedSale.name == saleName)
+						this.selectedSale = null
+					await this.getStock()
 					this.tableBody++
 					this.changeLoadingVisibility('hidden')
 					this.changeClassMarketTableVisibility('visible')
@@ -121,6 +149,16 @@
 			},
 			changeClassMarketTableVisibility(visibility) {
 				this.$refs.class_market_table.style.visibility = visibility
+			},
+
+			setSelected(sale) {
+				this.selectedSale = sale;
+			},
+			async submitForm() {
+				await this.$refs.form.submit()
+				this.selectedSale = null
+				this.changeLoadingVisibility('visible'),
+				this.changeClassMarketTableVisibility('hidden')
 			}
 		}
 	}

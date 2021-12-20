@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Stock del Mercado</title>
-		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<title>Crear Artículo</title>
+		<script src = "{{url('/js/FormFieldEnabler.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,28 +23,85 @@
 	</head>
 
 	<body class="antialiased">
-		@if (Session::has('success'))
-			<div class="alert-toast" id="class-specific-market-alert-toast">
-				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('class-specific-market-alert-toast')">X</div>
-			</div>
-		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
-
-		<div id="parent-component">
-			<class-market-table csrf="{{csrf_token()}}" ref="classMarketTable"></class-market-table>
-		</div>
-		<script src = "{{asset('/js/app.js')}}" defer></script>
 
 		<?php
 			$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$splitURL = explode("/", $url);
 			$rpgClass = end($splitURL);
 		?>
-		<button onclick="location.href='/manage-market/add-sale/{{$rpgClass}}'">Crear un Artículo para esta Clase</button>
 
-		<button onclick="location.href='/manage-market'">Volver</button>
+		<p>Crear un Nuevo Artículo</p>
+		<form method="POST" action="{{url('/manage-market/add-sale/' . $rpgClass)}}" enctype="multipart/form-data">
+		@csrf
+
+			<div>
+				<label for="name">Nombre:</label>
+				<div>
+					<input id="name" type="text" class="{{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre del Artículo" required autocomplete="name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('name')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<div>
+				<label for="type">Tipo:</label>
+				<select id="type" name="type" value="{{old('type') ? old('type') : 'Item'}}" onchange="updateEnabledFields(this);">
+					<option value="Item">Ítem</option>
+					<option value="Weapon">Arma</option>
+					<option value="Armor">Armadura</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="added_damage">Daño que Añade:</label>
+				<div>
+					<input id="added_damage" type="number" class="{{old('added_damage') ? 'active-field' : 'default-field'}}" name="added_damage" value="{{old('added_damage') ? old('added_damage') : 0}}" autocomplete="added_damage"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('added_damage')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<div>
+				<label for="added_health">Salud que Añade:</label>
+				<div>
+					<input id="added_health" type="number" class="{{old('added_health') ? 'active-field' : 'default-field'}}" name="added_health" value="{{old('added_health') ? old('added_health') : 0}}" autocomplete="added_health"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('added_health')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+
+			<div>
+				<label for="cost">Precio:</label>
+				<div>
+					<input id="cost" type="number" class="{{old('cost') ? 'active-field' : 'default-field'}}" name="cost" value="{{old('cost') ? old('cost') : 0}}" autocomplete="cost"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('cost')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
+			
+			<div>
+				<label for="marketable">¿Estará a la Venta?</label>
+				<input id="marketable" type="checkbox" name="marketable" value="marketable">
+			</div>
+
+			<input type="submit" value="Aceptar">
+		</form>
+
+		<button onclick="location.href='/manage-market/{{$rpgClass}}'">Descartar Cambios y Volver</button>
 	</body>
 </html>

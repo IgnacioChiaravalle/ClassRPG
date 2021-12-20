@@ -41,8 +41,12 @@ Route::post('/manage-teachers/add-teacher', [App\Http\Controllers\Teacher\Manage
 Route::get('/manage-market', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'createView'])->middleware('teacherAuth')->name('/manage-market');
 Route::get('/manage-market/{className}', function () {
 	return view('teacher.manage_market.class_specific_market');
-})->middleware('teacherAuth');
+})->middleware('teacherAuth')->name('/manage-market/{className}');
 Route::get('/manage-market/get-stock/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'getClassStock'])->middleware('teacherAuth');
-Route::get('/manage-market/update-marketable/{saleName}/{marketable}', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'updateMarketable'])->middleware('teacherAuth');
-Route::get('/manage-market/delete-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'deleteSale'])->middleware('teacherAuth');
-
+Route::get('/manage-market/update-marketable/{saleName}/{marketable}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'updateMarketable'])->middleware('teacherAuth');
+Route::get('/manage-market/delete-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleDeletionController::class, 'deleteSale'])->middleware('teacherAuth');
+Route::get('/manage-market/add-sale/{className}', function () {
+	return view('teacher.manage_market.add_sale');
+})->middleware('teacherAuth');
+Route::post('/manage-market/add-sale/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleAdditionController::class, 'addSale'])->middleware('teacherAuth');
+Route::post('/manage-market/edit-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'editSale'])->middleware('teacherAuth');

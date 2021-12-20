@@ -51,8 +51,8 @@
 		},
 
 		methods: {
-			getTeachers() {
-				axios
+			async getTeachers() {
+				await axios
 					.get('/manage-teachers/get-teachers')
 					.then(response => {
 						this.teachers = response.data
@@ -70,7 +70,7 @@
 						this.changeTeacherTableVisibility('hidden')
 					)
 					.catch(e => console.log("Error updating can_manage_teacher:\n" + e))
-				this.getTeachers()
+				await this.getTeachers()
 				this.tableBody++
 				this.changeLoadingVisibility('hidden')
 				this.changeTeacherTableVisibility('visible')
@@ -85,7 +85,7 @@
 							this.changeTeacherTableVisibility('hidden')
 						)
 						.catch(e => console.log("Error deleting teacher:\n" + e))
-					this.getTeachers()
+					await this.getTeachers()
 					this.tableBody++
 					this.changeLoadingVisibility('hidden')
 					this.changeTeacherTableVisibility('visible')

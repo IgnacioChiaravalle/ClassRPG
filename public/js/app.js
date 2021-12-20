@@ -1923,11 +1923,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['csrf'],
   data: function data() {
     return {
       rpgClass: new URL(location.href).toString().split('/').pop(),
       onSaleList: null,
+      selectedSale: null,
       tableBody: 0
     };
   },
@@ -1939,36 +1964,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getStock: function getStock() {
       var _this = this;
 
-      axios.get('/manage-market/get-stock/' + this.rpgClass).then(function (response) {
-        _this.onSaleList = response.data;
-        if (_this.onSaleList == null) _this.onSaleList = 0;
-      })["catch"](function (e) {
-        return console.log("Error finding stock:\n" + e);
-      });
-    },
-    setMarketable: function setMarketable(saleName, marketable) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/manage-market/update-marketable/' + saleName + "/" + marketable).then(_this2.changeLoadingVisibility('visible'), _this2.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
-                  return console.log("Error updating marketable field:\n" + e);
+                return axios.get('/manage-market/get-stock/' + _this.rpgClass).then(function (response) {
+                  _this.onSaleList = response.data;
+                  if (_this.onSaleList == null) _this.onSaleList = 0;
+                })["catch"](function (e) {
+                  return console.log("Error finding stock:\n" + e);
                 });
 
               case 2:
-                _this2.getStock();
-
-                _this2.tableBody++;
-
-                _this2.changeLoadingVisibility('hidden');
-
-                _this2.changeClassMarketTableVisibility('visible');
-
-              case 6:
               case "end":
                 return _context.stop();
             }
@@ -1976,44 +1985,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    confirmSaleDelete: function confirmSaleDelete(saleName, saleUsers) {
-      var _this3 = this;
+    setMarketable: function setMarketable(saleName, marketable) {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(saleUsers != 0)) {
-                  _context2.next = 4;
-                  break;
-                }
-
-                alert("¡No podés eliminar este artículo porque al menos un alumno lo está usando!");
-                _context2.next = 11;
-                break;
-
-              case 4:
-                if (!confirm("¿Estás seguro de que querés este artículo: " + saleName + "? Esto es irreversible.")) {
-                  _context2.next = 11;
-                  break;
-                }
-
-                _context2.next = 7;
-                return axios.get('/manage-market/delete-sale/' + saleName).then(_this3.changeLoadingVisibility('visible'), _this3.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
-                  return console.log("Error deleting sale:\n" + e);
+                _context2.next = 2;
+                return axios.get('/manage-market/update-marketable/' + saleName + "/" + marketable).then(_this2.changeLoadingVisibility('visible'), _this2.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error updating marketable field:\n" + e);
                 });
 
+              case 2:
+                _context2.next = 4;
+                return _this2.getStock();
+
+              case 4:
+                _this2.tableBody++;
+
+                _this2.changeLoadingVisibility('hidden');
+
+                _this2.changeClassMarketTableVisibility('visible');
+
               case 7:
-                _this3.getStock();
-
-                _this3.tableBody++;
-
-                _this3.changeLoadingVisibility('hidden');
-
-                _this3.changeClassMarketTableVisibility('visible');
-
-              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -2021,11 +2017,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    confirmSaleDelete: function confirmSaleDelete(saleName, saleUsers) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!(saleUsers != 0)) {
+                  _context3.next = 4;
+                  break;
+                }
+
+                alert("¡No podés eliminar este artículo porque al menos un alumno lo está usando!");
+                _context3.next = 13;
+                break;
+
+              case 4:
+                if (!confirm("¿Estás seguro de que querés este artículo: " + saleName + "? Esto es irreversible.")) {
+                  _context3.next = 13;
+                  break;
+                }
+
+                _context3.next = 7;
+                return axios.get('/manage-market/delete-sale/' + saleName).then(_this3.changeLoadingVisibility('visible'), _this3.changeClassMarketTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error deleting sale:\n" + e);
+                });
+
+              case 7:
+                if (_this3.selectedSale.name == saleName) _this3.selectedSale = null;
+                _context3.next = 10;
+                return _this3.getStock();
+
+              case 10:
+                _this3.tableBody++;
+
+                _this3.changeLoadingVisibility('hidden');
+
+                _this3.changeClassMarketTableVisibility('visible');
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
     changeLoadingVisibility: function changeLoadingVisibility(visibility) {
       this.$refs.loading.style.visibility = visibility;
     },
     changeClassMarketTableVisibility: function changeClassMarketTableVisibility(visibility) {
       this.$refs.class_market_table.style.visibility = visibility;
+    },
+    setSelected: function setSelected(sale) {
+      this.selectedSale = sale;
+    },
+    submitForm: function submitForm() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _this4.$refs.form.submit();
+
+              case 2:
+                _this4.selectedSale = null;
+                _this4.changeLoadingVisibility('visible'), _this4.changeClassMarketTableVisibility('hidden');
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   }
 });
@@ -2104,36 +2174,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getTeachers: function getTeachers() {
       var _this = this;
 
-      axios.get('/manage-teachers/get-teachers').then(function (response) {
-        _this.teachers = response.data;
-        if (_this.teachers == null) _this.teachers = 0;
-      })["catch"](function (e) {
-        return console.log("Error finding teachers:\n" + e);
-      });
-    },
-    setCanManageTeachers: function setCanManageTeachers(teacherName, can_manage_teachers) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/manage-teachers/update-can-manage-teachers/' + teacherName + "/" + can_manage_teachers).then(_this2.changeLoadingVisibility('visible'), _this2.changeTeacherTableVisibility('hidden'))["catch"](function (e) {
-                  return console.log("Error updating can_manage_teacher:\n" + e);
+                return axios.get('/manage-teachers/get-teachers').then(function (response) {
+                  _this.teachers = response.data;
+                  if (_this.teachers == null) _this.teachers = 0;
+                })["catch"](function (e) {
+                  return console.log("Error finding teachers:\n" + e);
                 });
 
               case 2:
-                _this2.getTeachers();
-
-                _this2.tableBody++;
-
-                _this2.changeLoadingVisibility('hidden');
-
-                _this2.changeTeacherTableVisibility('visible');
-
-              case 6:
               case "end":
                 return _context.stop();
             }
@@ -2141,32 +2195,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    confirmTeacherDelete: function confirmTeacherDelete(teacherName) {
-      var _this3 = this;
+    setCanManageTeachers: function setCanManageTeachers(teacherName, can_manage_teachers) {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!confirm("¿Estás seguro de que querés eliminar a " + teacherName + "? Esto es irreversible.")) {
-                  _context2.next = 7;
-                  break;
-                }
-
-                _context2.next = 3;
-                return axios.get('/manage-teachers/delete-teacher/' + teacherName).then(_this3.changeLoadingVisibility('visible'), _this3.changeTeacherTableVisibility('hidden'))["catch"](function (e) {
-                  return console.log("Error deleting teacher:\n" + e);
+                _context2.next = 2;
+                return axios.get('/manage-teachers/update-can-manage-teachers/' + teacherName + "/" + can_manage_teachers).then(_this2.changeLoadingVisibility('visible'), _this2.changeTeacherTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error updating can_manage_teacher:\n" + e);
                 });
 
-              case 3:
-                _this3.getTeachers();
+              case 2:
+                _context2.next = 4;
+                return _this2.getTeachers();
 
-                _this3.tableBody++;
+              case 4:
+                _this2.tableBody++;
 
-                _this3.changeLoadingVisibility('hidden');
+                _this2.changeLoadingVisibility('hidden');
 
-                _this3.changeTeacherTableVisibility('visible');
+                _this2.changeTeacherTableVisibility('visible');
 
               case 7:
               case "end":
@@ -2174,6 +2225,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee2);
+      }))();
+    },
+    confirmTeacherDelete: function confirmTeacherDelete(teacherName) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!confirm("¿Estás seguro de que querés eliminar a " + teacherName + "? Esto es irreversible.")) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                _context3.next = 3;
+                return axios.get('/manage-teachers/delete-teacher/' + teacherName).then(_this3.changeLoadingVisibility('visible'), _this3.changeTeacherTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error deleting teacher:\n" + e);
+                });
+
+              case 3:
+                _context3.next = 5;
+                return _this3.getTeachers();
+
+              case 5:
+                _this3.tableBody++;
+
+                _this3.changeLoadingVisibility('hidden');
+
+                _this3.changeTeacherTableVisibility('visible');
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     },
     changeLoadingVisibility: function changeLoadingVisibility(visibility) {
@@ -38577,31 +38665,101 @@ var render = function() {
                     attrs: { id: sale.name }
                   },
                   [
-                    _c("td", [_vm._v(_vm._s(sale.name))]),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(sale)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(sale.name))]
+                    ),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(sale.type))]),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(sale)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(sale.type))]
+                    ),
                     _vm._v(" "),
                     sale.added_damage != null
-                      ? _c("td", [
-                          _vm._v(
-                            "\n\t\t\t\t\t" +
-                              _vm._s(sale.added_damage) +
-                              "\n\t\t\t\t"
-                          )
-                        ])
-                      : _c("td", [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]),
+                      ? _c(
+                          "td",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.setSelected(sale)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(sale.added_damage) +
+                                "\n\t\t\t\t"
+                            )
+                          ]
+                        )
+                      : _c(
+                          "td",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.setSelected(sale)
+                              }
+                            }
+                          },
+                          [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]
+                        ),
                     _vm._v(" "),
                     sale.added_health != null
-                      ? _c("td", [
-                          _vm._v(
-                            "\n\t\t\t\t\t" +
-                              _vm._s(sale.added_health) +
-                              "\n\t\t\t\t"
-                          )
-                        ])
-                      : _c("td", [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]),
+                      ? _c(
+                          "td",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.setSelected(sale)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t" +
+                                _vm._s(sale.added_health) +
+                                "\n\t\t\t\t"
+                            )
+                          ]
+                        )
+                      : _c(
+                          "td",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.setSelected(sale)
+                              }
+                            }
+                          },
+                          [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]
+                        ),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(sale.cost))]),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(sale)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(sale.cost))]
+                    ),
                     _vm._v(" "),
                     sale.marketable
                       ? _c("td", [
@@ -38629,7 +38787,17 @@ var render = function() {
                           })
                         ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(sale.users))]),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(sale)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(sale.users))]
+                    ),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -38659,7 +38827,145 @@ var render = function() {
           _vm._v("(Refrescando tabla...)")
         ]),
         _vm._v(" "),
-        _c("p")
+        _c("p"),
+        _vm._v(" "),
+        _vm.selectedSale != null
+          ? _c(
+              "form",
+              {
+                key: _vm.selectedSale.name,
+                ref: "form",
+                attrs: {
+                  method: "POST",
+                  action: "/manage-market/edit-sale/" + _vm.selectedSale.name
+                }
+              },
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: _vm.csrf }
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.selectedSale.name))]),
+                _vm._v(" "),
+                _vm.selectedSale.added_damage != null
+                  ? _c("div", [
+                      _c("label", { attrs: { for: "added_damage" } }, [
+                        _vm._v("Daño que Añade:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedSale.added_damage,
+                            expression: "selectedSale.added_damage"
+                          }
+                        ],
+                        attrs: {
+                          id: "added_damage",
+                          name: "added_damage",
+                          type: "number"
+                        },
+                        domProps: { value: _vm.selectedSale.added_damage },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.selectedSale,
+                              "added_damage",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.selectedSale.added_health != null
+                  ? _c("div", [
+                      _c("label", { attrs: { for: "added_health" } }, [
+                        _vm._v("Salud que Añade:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedSale.added_health,
+                            expression: "selectedSale.added_health"
+                          }
+                        ],
+                        attrs: {
+                          id: "added_health",
+                          name: "added_health",
+                          type: "number"
+                        },
+                        domProps: { value: _vm.selectedSale.added_health },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.selectedSale,
+                              "added_health",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", [
+                  _c("label", { attrs: { for: "cost" } }, [_vm._v("Precio:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedSale.cost,
+                        expression: "selectedSale.cost"
+                      }
+                    ],
+                    attrs: {
+                      id: "cost",
+                      required: "",
+                      name: "cost",
+                      type: "number"
+                    },
+                    domProps: { value: _vm.selectedSale.cost },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selectedSale, "cost", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.submitForm()
+                      }
+                    }
+                  },
+                  [_vm._v("Aceptar")]
+                )
+              ]
+            )
+          : _vm._e()
       ])
     : _c("div", [
         _c("p", [_vm._v("¡Aún no hay stock en el mercado para esta clase!")])
