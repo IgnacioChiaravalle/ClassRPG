@@ -2035,7 +2035,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
 
               case 4:
-                if (!confirm("¿Estás seguro de que querés este artículo: " + saleName + "? Esto es irreversible.")) {
+                if (!confirm("¿Estás seguro de que querés eliminar este artículo: " + saleName + "? Esto es irreversible.")) {
                   _context3.next = 13;
                   break;
                 }
@@ -2046,7 +2046,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 7:
-                if (_this3.selectedSale = null && 0) _this3.selectedSale = null;
+                if (_this3.selectedSale != null && _this3.selectedSale.name == saleName) _this3.selectedSale = null;
                 _context3.next = 10;
                 return _this3.getStock();
 
@@ -2095,6 +2095,198 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee4);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['csrf'],
+  data: function data() {
+    return {
+      rpgClasses: null,
+      selectedClass: null,
+      tableBody: 0
+    };
+  },
+  mounted: function mounted() {
+    this.getRPGClasses();
+    this.changeLoadingVisibility('hidden');
+  },
+  methods: {
+    getRPGClasses: function getRPGClasses() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/manage-classes/get-classes').then(function (response) {
+                  _this.rpgClasses = response.data;
+                  if (_this.rpgClasses == null) _this.rpgClasses = 0;
+                })["catch"](function (e) {
+                  return console.log("Error finding classes:\n" + e);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    confirmClassDelete: function confirmClassDelete(className, classUsers) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(classUsers != 0)) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                alert("¡No podés eliminar esta clase porque al menos un alumno pertenece a ella!");
+                _context2.next = 13;
+                break;
+
+              case 4:
+                if (!confirm("¿Estás seguro de que querés eliminar esta clase: " + className + "? Esto es irreversible.")) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                _context2.next = 7;
+                return axios.get('/manage-classes/delete-class/' + className).then(_this2.changeLoadingVisibility('visible'), _this2.changeRPGClassesTableVisibility('hidden'))["catch"](function (e) {
+                  return console.log("Error deleting class:\n" + e);
+                });
+
+              case 7:
+                if (_this2.selectedClass != null && _this2.selectedClass.name == className) _this2.selectedClass = null;
+                _context2.next = 10;
+                return _this2.getRPGClasses();
+
+              case 10:
+                _this2.tableBody++;
+
+                _this2.changeLoadingVisibility('hidden');
+
+                _this2.changeRPGClassesTableVisibility('visible');
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    changeLoadingVisibility: function changeLoadingVisibility(visibility) {
+      if (this.rpgClasses != 0) this.$refs.loading.style.visibility = visibility;
+    },
+    changeRPGClassesTableVisibility: function changeRPGClassesTableVisibility(visibility) {
+      if (this.rpgClasses != 0) this.$refs.rpg_classes_table.style.visibility = visibility;
+    },
+    setSelected: function setSelected(rpgClass) {
+      this.selectedClass = rpgClass;
+    },
+    submitForm: function submitForm() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.$refs.form.submit();
+
+              case 2:
+                _this3.selectedClass = null;
+                _this3.changeLoadingVisibility('visible'), _this3.changeRPGClassesTableVisibility('hidden');
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }
@@ -2286,6 +2478,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
 Vue.component('teacher-table', __webpack_require__(/*! ./components/TeacherTable.vue */ "./resources/js/components/TeacherTable.vue").default);
 Vue.component('class-market-table', __webpack_require__(/*! ./components/ClassMarketTable.vue */ "./resources/js/components/ClassMarketTable.vue").default);
+Vue.component('rpg-classes-table', __webpack_require__(/*! ./components/RPGClassesTable.vue */ "./resources/js/components/RPGClassesTable.vue").default);
 var parentComponent = new Vue({
   el: '#parent-component'
 });
@@ -38522,6 +38715,45 @@ component.options.__file = "resources/js/components/ClassMarketTable.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/RPGClassesTable.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/RPGClassesTable.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RPGClassesTable.vue?vue&type=template&id=a2c92894& */ "./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894&");
+/* harmony import */ var _RPGClassesTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RPGClassesTable.vue?vue&type=script&lang=js& */ "./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _RPGClassesTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__.render,
+  _RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RPGClassesTable.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherTable.vue":
 /*!**************************************************!*\
   !*** ./resources/js/components/TeacherTable.vue ***!
@@ -38577,6 +38809,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RPGClassesTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RPGClassesTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RPGClassesTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherTable.vue?vue&type=script&lang=js&":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/TeacherTable.vue?vue&type=script&lang=js& ***!
@@ -38606,6 +38854,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassMarketTable_vue_vue_type_template_id_1eb6b5c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClassMarketTable.vue?vue&type=template&id=1eb6b5c5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ClassMarketTable.vue?vue&type=template&id=1eb6b5c5&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RPGClassesTable_vue_vue_type_template_id_a2c92894___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RPGClassesTable.vue?vue&type=template&id=a2c92894& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894&");
 
 
 /***/ }),
@@ -39000,7 +39265,260 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("td", { staticClass: "table-header-cell" }, [
-          _vm._v("¿Desea Eliminar el Artículo?")
+          _vm._v("¿Querés Eliminar el Artículo?")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RPGClassesTable.vue?vue&type=template&id=a2c92894& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.rpgClasses != 0
+    ? _c("div", [
+        _c(
+          "table",
+          { ref: "rpg_classes_table", attrs: { id: "rpg_classes_table" } },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              { key: _vm.tableBody },
+              _vm._l(_vm.rpgClasses, function(rpgClass) {
+                return _c(
+                  "tr",
+                  {
+                    key: rpgClass.name,
+                    staticClass: "tr-body",
+                    attrs: { id: rpgClass.name }
+                  },
+                  [
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(rpgClass)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(rpgClass.name))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(rpgClass)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(rpgClass.base_damage))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(rpgClass)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(rpgClass.base_health))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.setSelected(rpgClass)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(rpgClass.users))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.confirmClassDelete(
+                                rpgClass.name,
+                                rpgClass.users
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("🗑")]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
+          _vm._v("(Refrescando tabla...)")
+        ]),
+        _vm._v(" "),
+        _c("p"),
+        _vm._v(" "),
+        _vm.selectedClass != null
+          ? _c(
+              "form",
+              {
+                ref: "form",
+                attrs: {
+                  method: "POST",
+                  action: "/manage-classes/edit-class/" + _vm.selectedClass.name
+                }
+              },
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: _vm.csrf }
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.selectedClass.name))]),
+                _vm._v(" "),
+                _vm.selectedClass.base_damage != null
+                  ? _c("div", [
+                      _c("label", { attrs: { for: "base_damage" } }, [
+                        _vm._v("Daño Base:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedClass.base_damage,
+                            expression: "selectedClass.base_damage"
+                          }
+                        ],
+                        attrs: {
+                          id: "base_damage",
+                          name: "base_damage",
+                          type: "number"
+                        },
+                        domProps: { value: _vm.selectedClass.base_damage },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.selectedClass,
+                              "base_damage",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.selectedClass.base_health != null
+                  ? _c("div", [
+                      _c("label", { attrs: { for: "base_health" } }, [
+                        _vm._v("Salud Base:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedClass.base_health,
+                            expression: "selectedClass.base_health"
+                          }
+                        ],
+                        attrs: {
+                          id: "base_health",
+                          name: "base_health",
+                          type: "number"
+                        },
+                        domProps: { value: _vm.selectedClass.base_health },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.selectedClass,
+                              "base_health",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.submitForm()
+                      }
+                    }
+                  },
+                  [_vm._v("Aceptar")]
+                )
+              ]
+            )
+          : _vm._e()
+      ])
+    : _c("div", [_c("p", [_vm._v("¡Aún no hay clases en el sistema!")])])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "table-header-row" }, [
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Clase")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Daño Base")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [_vm._v("Salud Base")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("Alumnos con esta Clase")
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "table-header-cell" }, [
+          _vm._v("¿Querés Eliminar esta Clase?")
         ])
       ])
     ])
@@ -39134,7 +39652,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("td", { staticClass: "table-header-cell" }, [
-          _vm._v("¿Desea Eliminar su Usuario?")
+          _vm._v("¿Querés Eliminar su Usuario?")
         ])
       ])
     ])

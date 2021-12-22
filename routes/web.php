@@ -38,10 +38,10 @@ Route::get('/manage-teachers/add-teacher', function () {
 })->middleware('adminTeacherAuth');
 Route::post('/manage-teachers/add-teacher', [App\Http\Controllers\Teacher\ManageTeachers\TeacherAdditionController::class, 'addTeacher'])->middleware('adminTeacherAuth');
 
-Route::get('/manage-market', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'createView'])->middleware('teacherAuth')->name('/manage-market');
+Route::get('/manage-market', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'createView'])->middleware('teacherAuth');
 Route::get('/manage-market/{className}', function () {
 	return view('teacher.manage_market.class_specific_market');
-})->middleware('teacherAuth')->name('/manage-market/{className}');
+})->middleware('teacherAuth');
 Route::get('/manage-market/get-stock/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'getClassStock'])->middleware('teacherAuth');
 Route::get('/manage-market/update-marketable/{saleName}/{marketable}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'updateMarketable'])->middleware('teacherAuth');
 Route::get('/manage-market/delete-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleDeletionController::class, 'deleteSale'])->middleware('teacherAuth');
@@ -50,3 +50,14 @@ Route::get('/manage-market/add-sale/{className}', function () {
 })->middleware('teacherAuth');
 Route::post('/manage-market/add-sale/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleAdditionController::class, 'addSale'])->middleware('teacherAuth');
 Route::post('/manage-market/edit-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'editSale'])->middleware('teacherAuth');
+
+Route::get('/manage-classes', function () {
+	return view('teacher.manage_classes.rpg_classes_manager');
+})->middleware('teacherAuth');
+Route::get('/manage-classes/get-classes', [App\Http\Controllers\Teacher\ManageClasses\RPGClassesController::class, 'getRPGClasses'])->middleware('teacherAuth');
+Route::get('/manage-classes/add-class', function () {
+	return view('teacher.manage_classes.add_class');
+})->middleware('teacherAuth');
+Route::post('/manage-classes/add-class', [App\Http\Controllers\Teacher\ManageClasses\RPGClassAdditionController::class, 'addClass'])->middleware('teacherAuth');
+Route::post('/manage-classes/edit-class/{className}', [App\Http\Controllers\Teacher\ManageClasses\RPGClassesController::class, 'editClass'])->middleware('teacherAuth');
+Route::get('/manage-classes/delete-class/{className}', [App\Http\Controllers\Teacher\ManageClasses\RPGClassesController::class, 'deleteClass'])->middleware('teacherAuth');

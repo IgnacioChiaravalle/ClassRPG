@@ -33,7 +33,7 @@ class MarketSaleEditionController extends Controller {
 			'added_health' => $request->added_health,
 			'cost' => $request->cost
 		]);
-		return back();
+		return back()->with('success', "Artículo editado con éxito.");;
 	}
 
 	private function validateRequest(Request $request) {

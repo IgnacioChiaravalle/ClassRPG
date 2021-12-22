@@ -7,7 +7,7 @@
 					<td class="table-header-cell">Correo Electrónico</td>
 					<td class="table-header-cell">Nombre de Usuario</td>
 					<td class="table-header-cell">¿Puede Administrar Docentes?</td>
-					<td class="table-header-cell">¿Desea Eliminar su Usuario?</td>
+					<td class="table-header-cell">¿Querés Eliminar su Usuario?</td>
 				</tr>
 			</thead>
 			<tbody :key="tableBody">

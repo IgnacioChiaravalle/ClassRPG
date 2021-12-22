@@ -11,7 +11,7 @@
 					<td class="table-header-cell">Costo</td>
 					<td class="table-header-cell">¿Está a la Venta?</td>
 					<td class="table-header-cell">Alumnos que lo Usan</td>
-					<td class="table-header-cell">¿Desea Eliminar el Artículo?</td>
+					<td class="table-header-cell">¿Querés Eliminar el Artículo?</td>
 				</tr>
 			</thead>
 			<tbody :key="tableBody">
@@ -52,7 +52,7 @@
 		
 		<p></p>
 
-		<form v-if="selectedSale != null" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name"> <!-- check how to add variable here -->
+		<form v-if="selectedSale != null" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name">
 			<input type="hidden" name="_token" v-bind:value="csrf">
 
 			<p>{{ selectedSale.name }}</p>
@@ -127,7 +127,7 @@
 			async confirmSaleDelete(saleName, saleUsers) {
 				if (saleUsers != 0)
 					alert("¡No podés eliminar este artículo porque al menos un alumno lo está usando!")
-				else if (confirm("¿Estás seguro de que querés este artículo: " + saleName + "? Esto es irreversible.")) {
+				else if (confirm("¿Estás seguro de que querés eliminar este artículo: " + saleName + "? Esto es irreversible.")) {
 					await axios
 						.get('/manage-market/delete-sale/' + saleName)
 						.then(
@@ -135,7 +135,7 @@
 							this.changeClassMarketTableVisibility('hidden')
 						)
 						.catch(e => console.log("Error deleting sale:\n" + e))
-					if (this.selectedSale = null && this.selectedSale.name == saleName)
+					if (this.selectedSale != null && this.selectedSale.name == saleName)
 						this.selectedSale = null
 					await this.getStock()
 					this.tableBody++

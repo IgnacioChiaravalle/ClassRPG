@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$teacher->name}}</title>
+		<title>Clases de los Alumnos</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
@@ -24,67 +24,22 @@
 
 	<body class="antialiased">
 		@if (Session::has('success'))
-			<div class="alert-toast" id="teacher-welcome-alert-toast">
+			<div class="alert-toast" id="rpg-classes-manager-alert-toast">
 				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('teacher-welcome-alert-toast')">X</div>
+				<div class="toast-closer" onclick="closeToast('rpg-classes-manager-alert-toast')">X</div>
 			</div>
 		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 
-		@if (Route::has('login'))
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-					Cerrar Sesión
-				</button>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
+		<div id="parent-component">
+			<rpg-classes-table csrf="{{csrf_token()}}" ref="classMarketTable"></rpg-classes-table>
+		</div>
+		<script src = "{{asset('/js/app.js')}}" defer></script>
 
-				<button class="dropdown-item" onclick="location.href='/my-account'">
-					Mi Cuenta
-				</button>
-			</div>
-		@endif
-		
-		<p>{{$teacher->name}}</p>
-		
-		@if (isset ($my_students))
-			<p>Mis Alumnos:</p>
-			
-			<table class="main-table">
-				<tr class="table-header-row">
-					<td class="table-header-cell">Nombre</td>
-					<td class="table-header-cell">Correo Electrónico</td>
-					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud</td>
-					<td class="table-header-cell">Oro</td>
-				</tr>
+		<button onclick="location.href='/manage-classes/add-class'">Crear una Nueva Clase</button>
 
-				@foreach ($my_students as $studentUser)
-					<tr onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
-						<td>{{$studentUser->real_name}}</td>
-						<td>{{$studentUser->email}}</td>
-						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
-						<td>{{$studentUser->coins}}</td>
-					</tr>
-				@endforeach
-			</table>
-		@else
-			<p>¡Aún no tenés alumnos asignados!</p>
-		@endif
-
-		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
-
-		@if ($teacher->can_manage_teachers)
-			<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
-		@endif
-
-		<button onclick="location.href='/manage-market'">Stock del Mercado</button>
-
-		<button onclick="location.href='/manage-classes'">Administrar Clases</button>
-
+		<button onclick="location.href='/'">Volver</button>
 	</body>
 </html>

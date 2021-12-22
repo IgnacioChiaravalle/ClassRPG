@@ -4,8 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>{{$teacher->name}}</title>
-		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<title>Crear Clase</title>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,68 +22,53 @@
 	</head>
 
 	<body class="antialiased">
-		@if (Session::has('success'))
-			<div class="alert-toast" id="teacher-welcome-alert-toast">
-				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('teacher-welcome-alert-toast')">X</div>
-			</div>
-		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 
-		@if (Route::has('login'))
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-					Cerrar Sesión
-				</button>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-					@csrf
-				</form>
+		<p>Crear un Nuevo Artículo</p>
+		<form method="POST" action="{{url('/manage-classes/add-class')}}" enctype="multipart/form-data">
+		@csrf
 
-				<button class="dropdown-item" onclick="location.href='/my-account'">
-					Mi Cuenta
-				</button>
+			<div>
+				<label for="name">Nombre:</label>
+				<div>
+					<input id="name" type="text" class="{{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre de la Clase" required autocomplete="name"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('name')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
 			</div>
-		@endif
-		
-		<p>{{$teacher->name}}</p>
-		
-		@if (isset ($my_students))
-			<p>Mis Alumnos:</p>
-			
-			<table class="main-table">
-				<tr class="table-header-row">
-					<td class="table-header-cell">Nombre</td>
-					<td class="table-header-cell">Correo Electrónico</td>
-					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud</td>
-					<td class="table-header-cell">Oro</td>
-				</tr>
 
-				@foreach ($my_students as $studentUser)
-					<tr onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
-						<td>{{$studentUser->real_name}}</td>
-						<td>{{$studentUser->email}}</td>
-						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
-						<td>{{$studentUser->coins}}</td>
-					</tr>
-				@endforeach
-			</table>
-		@else
-			<p>¡Aún no tenés alumnos asignados!</p>
-		@endif
+			<div>
+				<label for="base_damage">Daño Base:</label>
+				<div>
+					<input id="base_damage" type="number" class="{{old('base_damage') ? 'active-field' : 'default-field'}}" name="base_damage" value="{{old('base_damage') ? old('base_damage') : 0}}" required autocomplete="base_damage"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('base_damage')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
 
-		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+			<div>
+				<label for="base_health">Salud Base:</label>
+				<div>
+					<input id="base_health" type="number" class="{{old('base_health') ? 'active-field' : 'default-field'}}" name="base_health" value="{{old('base_health') ? old('base_health') : 0}}" required autocomplete="base_health"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
+					@error('base_health')
+						<label class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+			</div>
 
-		@if ($teacher->can_manage_teachers)
-			<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
-		@endif
+			<input type="submit" value="Aceptar">
+		</form>
 
-		<button onclick="location.href='/manage-market'">Stock del Mercado</button>
-
-		<button onclick="location.href='/manage-classes'">Administrar Clases</button>
-
+		<button onclick="location.href='/manage-classes'">Descartar Cambios y Volver</button>
 	</body>
 </html>
