@@ -68,7 +68,7 @@
 			</div>
 
 			<div>
-				<label for="cost">Precio:</label>
+				<label for="cost">Costo:</label>
 				<input id="cost" v-model="selectedSale.cost" required name="cost" type="number">
 			</div>
 

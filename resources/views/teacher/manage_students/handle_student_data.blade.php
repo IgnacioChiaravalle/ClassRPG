@@ -58,6 +58,33 @@
 			</div>
 			
 			<div>
+				<label for="weapon">Arma Equipada:</label>
+				<select id="weapon" name="weapon">
+					@foreach ($weaponsForStudentClass as $weapon)
+						<option value="{{$weapon->name}}" {{$weapon->name == $studentCharacter->weapon ? 'selected' : ''}}>{{$weapon->name}} (Daño que Añade: {{$weapon->added_damage}}; Costo: {{$weapon->cost}})</option>
+					@endforeach
+				</select>
+			</div>
+
+			<div>
+				<label for="item">Ítem Equipado:</label>
+				<select id="item" name="item">
+					@foreach ($itemsForStudentClass as $item)
+						<option value="{{$item->name}}" {{$item->name == $studentCharacter->item ? 'selected' : ''}}>{{$item->name}} (Daño que Añade: {{$item->added_damage}}; Salud que Añade: {{$item->added_health}}; Costo: {{$item->cost}})</option>
+					@endforeach
+				</select>
+			</div>
+
+			<div>
+				<label for="armor">Armadura Equipada:</label>
+				<select id="armor" name="armor" value="{{$studentCharacter->armor}}">
+					@foreach ($armorsForStudentClass as $armor)
+						<option value="{{$armor->name}}" {{$armor->name == $studentCharacter->armor ? 'selected' : ''}}>{{$armor->name}} (Salud que Añade: {{$armor->added_health}}; Costo: {{$armor->cost}})</option>
+					@endforeach
+				</select>
+			</div>
+
+			<div>
 				<label for="notes_on_student">Mis notas sobre {{$studentUser->name}}:</label>
 				<div>
 					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}" maxlength="65,535">@if($studentNotes != null){{$studentNotes}}@endif</textarea>

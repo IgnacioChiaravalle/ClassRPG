@@ -39187,7 +39187,7 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", [
-                  _c("label", { attrs: { for: "cost" } }, [_vm._v("Precio:")]),
+                  _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [

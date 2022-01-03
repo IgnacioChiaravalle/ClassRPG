@@ -83,7 +83,7 @@
 			</div>
 
 			<div>
-				<label for="cost">Precio:</label>
+				<label for="cost">Costo:</label>
 				<div>
 					<input id="cost" type="number" class="{{old('cost') ? 'active-field' : 'default-field'}}" name="cost" value="{{old('cost') ? old('cost') : 0}}" autocomplete="cost"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(7, 'submit-btn-addgame')" -->
 					@error('cost')

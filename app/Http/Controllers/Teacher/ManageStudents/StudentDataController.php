@@ -38,6 +38,9 @@ class StudentDataController extends Controller {
 																		->with('studentUser', $this->getStudentUser($studentName))
 																		->with('studentCharacter', $studentCharacter)
 																		->with('maxStudentHealth', $maxStudentHealth)
+																		->with('weaponsForStudentClass', $this->getWearablesForStudentClass($studentCharacter->rpg_class, 'Weapon'))
+																		->with('itemsForStudentClass', $this->getWearablesForStudentClass($studentCharacter->rpg_class, 'Item'))
+																		->with('armorsForStudentClass', $this->getWearablesForStudentClass($studentCharacter->rpg_class, 'Armor'))
 																		->with('studentNotes', $teacherStudentRelation->notes_on_student);
 	}
 
@@ -56,6 +59,10 @@ class StudentDataController extends Controller {
 	private function getStudentUser($studentName) {
 		return (new UserManagementController)->getUserByName($studentName);
 	}
+	private function getWearablesForStudentClass($rpgClass, $wearableType) {
+		$modelName = "App\Models\\" . $wearableType;
+		return $modelName::where('rpg_class', $rpgClass)->orderBy('name', 'asc')->get();
+	}
 
 	protected function editStudentData(Request $request, $studentName) {
 		$teacherStudentRelation = $this->getOrFail_TeacherStudentRelation($this->getUserName(), $studentName);
@@ -65,7 +72,10 @@ class StudentDataController extends Controller {
 		$finalHealth = $studentCharacter->health + $request->health;
 		$studentCharacter->update([
 			'coins' => $finalCoins >= 0 ? $finalCoins : 0,
-			'health' => $this->adjustHealth($studentCharacter, $finalHealth)
+			'health' => $this->adjustHealth($studentCharacter, $finalHealth),
+			'weapon' => $request->weapon,
+			'item' => $request->item,
+			'armor' => $request->armor
 		]);
 		$teacherStudentRelation->update([
 			'notes_on_student' => $request->notes_on_student
@@ -77,6 +87,9 @@ class StudentDataController extends Controller {
 		$request->validate([
 			'health' => ['numeric', 'integer'],
 			'coins' => ['numeric', 'integer'],
+			'weapon' => ['string'],
+			'item' => ['string'],
+			'armor' => ['string'],
 			'notes_on_student' => ['nullable', 'max:65,535']
 		]);
 	}
