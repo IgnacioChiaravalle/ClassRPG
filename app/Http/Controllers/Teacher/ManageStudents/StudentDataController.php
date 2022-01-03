@@ -61,7 +61,7 @@ class StudentDataController extends Controller {
 	}
 	private function getWearablesForStudentClass($rpgClass, $wearableType) {
 		$modelName = "App\Models\\" . $wearableType;
-		return $modelName::where('rpg_class', $rpgClass)->orderBy('name', 'asc')->get();
+		return $modelName::where('rpg_class', $rpgClass)->orderBy('cost', 'asc')->get();
 	}
 
 	protected function editStudentData(Request $request, $studentName) {
