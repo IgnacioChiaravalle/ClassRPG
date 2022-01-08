@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher\ManageTeachers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ListSortController;
+use App\Http\Controllers\ListSort\ListSortController;
 use App\Http\Controllers\User\UserManagementController;
 use App\Http\Controllers\Teacher\ManageTeachers\TeacherDeletionController;
 use Illuminate\Support\Facades\Auth;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher\ManageMarket;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ListSortController;
+use App\Http\Controllers\ListSort\ListSortController;
 use App\Http\Controllers\Student\MarketController;
 use Illuminate\Support\Facades\View;
 use App\Models\RPGClass;

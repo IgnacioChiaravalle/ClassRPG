@@ -15,7 +15,7 @@ class CreateStudentsTable extends Migration
 	{
 		Schema::create('students', function (Blueprint $table) {
 			$table->id();
-			$table->string('name')->unique();;
+			$table->string('name')->unique();
 			$table->foreign('name')->references('name')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('rpg_class');
 			$table->foreign('rpg_class')->references('name')->on('rpg_classes')->onDelete('cascade')->onUpdate('cascade');

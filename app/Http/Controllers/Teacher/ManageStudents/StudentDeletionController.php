@@ -8,7 +8,11 @@ use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class StudentDeleterController extends Controller {
+class StudentDeletionController extends Controller {
+	public function __construct() {
+		$this->middleware('teacherAuth');
+	}
+	
 	protected function deleteStudent($studentName) {
 		$sDC = new StudentDataController;
 		$currentTeacherName = Auth::user()->name;

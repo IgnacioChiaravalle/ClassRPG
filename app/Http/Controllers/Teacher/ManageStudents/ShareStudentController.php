@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\UserManagementController;
-use App\Http\Controllers\GeneralFunctions\ListSortController;
+use App\Http\Controllers\ListSort\ListSortController;
 use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class ShareStudentController extends Controller {
+	public function __construct() {
+		$this->middleware('teacherAuth');
+	}
+
 	protected function createView($studentName) {
 		(new StudentDataController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
 		$unrelatedTeachers = $this->getUnrelatedTeachers($studentName);

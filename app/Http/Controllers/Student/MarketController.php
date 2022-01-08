@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ListSortController;
-use App\Http\Controllers\GeneralFunctions\HealthValuesController;
+use App\Http\Controllers\ListSort\ListSortController;
+use App\Http\Controllers\HealthValues\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;

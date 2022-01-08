@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call(TeacherSeeder::Class);
 		$this->call(StudentSeeder::Class);
 		$this->call(TeacherStudentSeeder::Class);
+
+		$this->call(MissionSeeder::Class);
 	}
 
 	private function truncateTables(array $tables) {

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GeneralFunctions\ListSortController;
-use App\Http\Controllers\GeneralFunctions\HealthValuesController;
+use App\Http\Controllers\ListSort\ListSortController;
+use App\Http\Controllers\HealthValues\HealthValuesController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher_Student;
@@ -25,7 +25,6 @@ class TeacherWelcomeController extends Controller {
 			array_push($my_students, User::where('name', $ts->student_name)->first());
 			$this->addHealthAndCoins($hVC, end($my_students));
 		}
-		
 		if (!empty($my_students)) {
 			$my_students = (new ListSortController)->quicksort($my_students, 'user');
 			return View::make('teacher.teacher_welcome')->with('teacher', $teacher)->with('my_students', $my_students);

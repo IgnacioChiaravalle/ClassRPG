@@ -16,11 +16,11 @@ class StudentAdditionController extends Controller {
 		$this->middleware('teacherAuth');
 	}
 
-	public function createView() {
+	protected function createView() {
 		return View::make('teacher.manage_students.add_student')->with('classes', RPGClass::get());
 	}
 
-	public function addStudent(Request $request) {
+	protected function addStudent(Request $request) {
 		$uMC = new UserManagementController;
 		$this->validateRequest($request, $uMC);
 		$this->createNewStudent($request, $uMC);

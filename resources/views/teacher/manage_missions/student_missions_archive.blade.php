@@ -4,7 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Compartir Alumno</title>
+		<title>{{$studentName}} - Archivo</title>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
@@ -23,49 +24,50 @@
 	</head>
 
 	<body class="antialiased">
+		@if (Session::has('success'))
+			<div class="alert-toast" id="handle-student-data-alert-toast">
+				<div>{{ session('success') }}</div>
+				<div class="toast-closer" onclick="closeToast('handle-student-data-alert-toast')">X</div>
+			</div>
+		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		
-		<p>Compartir a {{$studentName}}</p>
-		
-		@if (isset ($unrelatedTeachers))
-			<form method="POST" action="{{url('manage-students/share-student/' . $studentName)}}" enctype="multipart/form-data">
-			@csrf
-
-				<div class="form-group">
-					<label for="teacher_name">Seleccioná al Docente con el que desees compartir a {{$studentName}}:</label>
-					<select class="form-control" id="teacher_name" name="teacher_name">
-						@foreach ($unrelatedTeachers as $teacher)
-							<option value="{{$teacher->name}}">{{$teacher->real_name}} ({{$teacher->name}})</option>
-						@endforeach
-					</select>
-					@error('name')
-						<label class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</label>
-					@enderror
-				</div>
-
-				<input type="submit" value="Aceptar">
-			</form>
-		@else
-			<p>No hay docentes a los que compartirles este alumno.</p>
-		@endif
-
-		@if (isset ($relatedTeachers))
-			<div class="already-student-of-list">{{$studentName}} ya es alumno de:</div>
-			@foreach ($relatedTeachers as $teacher)
-				<div>* {{$teacher->real_name}} ({{$teacher->name}})</div>
-			@endforeach
-		@else
-			<p>Hasta el momento, sos el único docente de {{$studentName}}.</p>
-		@endif
+		<p>Archivo de {{$studentName}}</p>
 
 		<script>
-			var url = removeSectionsOfURL(2);
+			var studentDataURL = removeSectionsOfURL(1);
 		</script>
-		<button onclick="location.href=url + 'handle-student-data/{{$studentName}}'">Volver</button>
-		
+		@if (isset ($missions))
+			@foreach ($missions as $mission)
+				<div>
+					<h2>{{$mission->name}}</h2>
+					<p>{{$mission->description}}</p>
+					<p>
+						Fecha de Inicio: {{$mission->start_date}}<br>
+						@if ($mission->finish_date != null)
+							Fecha de Finalización: {{$mission->finish_date}}
+						@else
+							La misión aún no ha sido completada.
+						@endif
+					</p>
+					<p>Causa {{$mission->damage_caused}} puntos de daño cada {{$mission->damage_period}}.</p>
+					<p>Salud de la Misión: {{$mission->current_health}} / {{$mission->max_health}}</p>
+					<p>
+						Recompensas:<br>
+						{{$mission->coins_reward}} Monedas de Oro.
+						@if ($mission->other_rewards != null)
+							<br>{{$mission->other_rewards}}
+						@endif
+					</p>
+					<button onclick="location.href=studentDataURL + 'handle-mission/{{$mission->id}}/set-archive/false'">Desarchivar la Misión</button>
+					<button onclick="confirmMissionDelete('{{$mission->id}}', '{{$mission->name}}')">&#128465;</button>
+				</div>
+			@endforeach
+		@else
+			<p>¡No misiones en este archivo!</p>
+		@endif
+		<button onclick="location.href=studentDataURL">Volver</button>
 	</body>
 </html>

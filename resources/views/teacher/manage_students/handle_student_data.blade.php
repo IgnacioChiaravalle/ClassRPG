@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$studentUser->name}} - Administración</title>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
@@ -23,6 +24,12 @@
 	</head>
 
 	<body class="antialiased">
+		@if (Session::has('success'))
+			<div class="alert-toast" id="handle-student-data-alert-toast">
+				<div>{{ session('success') }}</div>
+				<div class="toast-closer" onclick="closeToast('handle-student-data-alert-toast')">X</div>
+			</div>
+		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
@@ -60,6 +67,7 @@
 			<div>
 				<label for="weapon">Arma Equipada:</label>
 				<select id="weapon" name="weapon">
+					<option value=null {{null == $studentCharacter->weapon ? 'selected' : ''}}>[Ninguna]</option>
 					@foreach ($weaponsForStudentClass as $weapon)
 						<option value="{{$weapon->name}}" {{$weapon->name == $studentCharacter->weapon ? 'selected' : ''}}>{{$weapon->name}} (Daño que Añade: {{$weapon->added_damage}}; Costo: {{$weapon->cost}})</option>
 					@endforeach
@@ -69,6 +77,7 @@
 			<div>
 				<label for="item">Ítem Equipado:</label>
 				<select id="item" name="item">
+					<option value=null {{null == $studentCharacter->item ? 'selected' : ''}}>[Ninguno]</option>
 					@foreach ($itemsForStudentClass as $item)
 						<option value="{{$item->name}}" {{$item->name == $studentCharacter->item ? 'selected' : ''}}>{{$item->name}} (Daño que Añade: {{$item->added_damage}}; Salud que Añade: {{$item->added_health}}; Costo: {{$item->cost}})</option>
 					@endforeach
@@ -78,6 +87,7 @@
 			<div>
 				<label for="armor">Armadura Equipada:</label>
 				<select id="armor" name="armor" value="{{$studentCharacter->armor}}">
+					<option value=null {{null == $studentCharacter->armor ? 'selected' : ''}}>[Ninguna]</option>
 					@foreach ($armorsForStudentClass as $armor)
 						<option value="{{$armor->name}}" {{$armor->name == $studentCharacter->armor ? 'selected' : ''}}>{{$armor->name}} (Salud que Añade: {{$armor->added_health}}; Costo: {{$armor->cost}})</option>
 					@endforeach
@@ -95,14 +105,46 @@
 					@enderror
 				</div>
 			</div>
-
 			<input type="submit" value="Aceptar Cambios">
 		</form>
 
-		<button onclick="location.href='../share-student/{{$studentUser->name}}'">Compartir a Otro Docente</button>
-		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
-
 		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
-		
+
+		<script>
+			var url = removeSectionsOfURL(0);
+			var shareURL = removeSectionsOfURL(2);
+		</script>
+		@foreach ($missions as $mission)
+			<div>
+				<h2>{{$mission->name}}</h2>
+				<p>{{$mission->description}}</p>
+				<p>
+					Fecha de Inicio: {{$mission->start_date}}<br>
+					@if ($mission->finish_date != null)
+						Fecha de Finalización: {{$mission->finish_date}}
+					@else
+						La misión aún no ha sido completada.
+					@endif
+				</p>
+				<p>Causa <button onclick="location.href=url + 'handle-mission/{{$mission->id}}/do-damage'">{{$mission->damage_caused}} puntos de daño</button> cada {{$mission->damage_period}}.</p>
+				<p>Salud de la Misión: {{$mission->current_health}} / {{$mission->max_health}}</p>
+				<p>
+					Recompensas:<br>
+					<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/give-coins-reward'">{{$mission->coins_reward}} Monedas de Oro.</button>
+					@if ($mission->other_rewards != null)
+						<br>{{$mission->other_rewards}}
+					@endif
+				</p>
+				<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/set-archive/true'">Archivar la Misión</button>
+			</div>
+		@endforeach
+
+		<button onclick="location.href=url + 'view-mission-archive'">Ver el Archivo de {{$studentUser->name}}</button>
+		<button onclick="location.href=url + 'add-mission'">Asignar una Nueva Misión</button>
+
+		<p></p>
+
+		<button onclick="location.href=shareURL + 'share-student/{{$studentUser->name}}'">Compartir a Otro Docente</button>
+		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
 	</body>
 </html>

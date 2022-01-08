@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\GeneralFunctions;
+namespace App\Http\Controllers\ListSort;
 
 use App\Http\Controllers\Controller;
 
