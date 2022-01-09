@@ -29,7 +29,7 @@
 						<div class="card-header">Confirmar Contraseña</div>
 
 						<div class="card-body">
-							Por favor, confirmá tu contraseña para continuar.
+							Por favor, ingresá tu contraseña actual para continuar.
 
 							<form method="POST" action="{{ route('password.confirm') }}">
 								@csrf

@@ -6,6 +6,7 @@
 
 		<title>{{$studentUser->name}} - Administración</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
@@ -34,8 +35,13 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		
+		<script>
+			var url = removeSectionsOfURL(0);
+			var shareURL = removeSectionsOfURL(2);
+		</script>
+
 		<p>{{$studentUser->name}} ({{$studentUser->real_name}})</p>
-		<form method="POST" action="{{url('manage-students/handle-student-data/' . $studentUser->name)}}" enctype="multipart/form-data">
+		<form method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
 			<div class="health-and-coins">
@@ -110,10 +116,6 @@
 
 		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
 
-		<script>
-			var url = removeSectionsOfURL(0);
-			var shareURL = removeSectionsOfURL(2);
-		</script>
 		@foreach ($missions as $mission)
 			<div>
 				<h2>{{$mission->name}}</h2>

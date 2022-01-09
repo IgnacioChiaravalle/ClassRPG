@@ -12,21 +12,10 @@ function confirmStudentDelete(userName) {
 function confirmSelfDelete() {
 	if(confirm("¿Estás seguro de que querés eliminar tu cuenta? Esto es irreversible."))
 		window.location.replace("/my-account/delete-self");
-}
+}	
 
 function confirmMissionDelete(missionID, missionName) {
 	continueURL = removeSectionsOfURL(1);
 	if(confirm("¿Estás seguro de que querés eliminar la misión " + missionName + "? Esto es irreversible."))
 		window.location.replace(continueURL + "handle-mission/" + missionID + "/delete-mission");
-}
-
-function removeSectionsOfURL(sectionsToRemove) {
-	currentURL = window.location.href;
-	if (currentURL.slice(-1) == "/")
-		currentURL = currentURL.slice(0, -1);
-	splitURL = currentURL.split("/");
-	toReturn = "";
-	for (i = 0; i < splitURL.length - sectionsToRemove; i++)
-		toReturn += splitURL[i] + "/";
-	return toReturn;
 }

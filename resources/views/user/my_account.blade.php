@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{$user->name}} - Mi Cuenta</title>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
@@ -26,9 +27,11 @@
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
+
+		<script> var url = removeSectionsOfURL(0); </script>
 		
 		<p>Administrar Mis Datos</p>
-		<form method="POST" action="{{url('my-account')}}" enctype="multipart/form-data">
+		<form method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
 			<div>

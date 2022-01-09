@@ -6,6 +6,7 @@
 
 		<title>Crear Artículo</title>
 		<script src = "{{url('/js/FormFieldEnabler.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,14 +28,15 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 
+		<script> var url = removeSectionsOfURL(0); </script>
 		<?php
 			$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$splitURL = explode("/", $url);
-			$rpgClass = end($splitURL);
+			$rpgClass = end($splitURL) != "" ? end($splitURL) : $splitURL[count($splitURL)-2];
 		?>
 
 		<p>Crear un Nuevo Artículo</p>
-		<form method="POST" action="{{url('/manage-market/add-sale/' . $rpgClass)}}" enctype="multipart/form-data">
+		<form method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
 			<div>

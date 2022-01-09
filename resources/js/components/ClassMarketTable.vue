@@ -86,7 +86,7 @@
 
 		data() {
 			return {
-				rpgClass: new URL(location.href).toString().split('/').pop(),
+				rpgClass: null,
 				onSaleList: null,
 				selectedSale: null,
 				tableBody: 0
@@ -94,11 +94,17 @@
 		},
 		
 		mounted() {
+			this.getRPGClass()
 			this.getStock()
 			this.changeLoadingVisibility('hidden')
 		},
 
 		methods: {
+			getRPGClass() {
+				var url = new URL(location.href).toString().split('/')
+				this.rpgClass = url[url.length-1] != "" ? url[url.length-1] : url[url.length-2]
+			},
+
 			async getStock() {
 				await axios
 					.get('/manage-market/get-stock/' + this.rpgClass)

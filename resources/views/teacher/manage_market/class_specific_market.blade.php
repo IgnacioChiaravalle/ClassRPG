@@ -41,7 +41,7 @@
 		<?php
 			$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$splitURL = explode("/", $url);
-			$rpgClass = end($splitURL);
+			$rpgClass = end($splitURL) != "" ? end($splitURL) : $splitURL[count($splitURL)-2];
 		?>
 		<button onclick="location.href='/manage-market/add-sale/{{$rpgClass}}'">Crear un Artículo para esta Clase</button>
 

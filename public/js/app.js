@@ -1950,17 +1950,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['csrf'],
   data: function data() {
     return {
-      rpgClass: new URL(location.href).toString().split('/').pop(),
+      rpgClass: null,
       onSaleList: null,
       selectedSale: null,
       tableBody: 0
     };
   },
   mounted: function mounted() {
+    this.getRPGClass();
     this.getStock();
     this.changeLoadingVisibility('hidden');
   },
   methods: {
+    getRPGClass: function getRPGClass() {
+      var url = new URL(location.href).toString().split('/');
+      this.rpgClass = url[url.length - 1] != "" ? url[url.length - 1] : url[url.length - 2];
+    },
     getStock: function getStock() {
       var _this = this;
 

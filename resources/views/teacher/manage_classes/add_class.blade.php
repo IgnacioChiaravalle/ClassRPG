@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Crear Clase</title>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,8 +27,10 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 
+		<script> var url = removeSectionsOfURL(0); </script>
+
 		<p>Crear un Nuevo Artículo</p>
-		<form method="POST" action="{{url('/manage-classes/add-class')}}" enctype="multipart/form-data">
+		<form method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
 			<div>

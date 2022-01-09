@@ -6,6 +6,7 @@
 
 		<title>Compartir Alumno</title>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,11 +27,16 @@
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
+
+		<script>
+			var url = removeSectionsOfURL(0);
+			var shareURL = removeSectionsOfURL(2);
+		</script>
 		
 		<p>Compartir a {{$studentName}}</p>
 		
 		@if (isset ($unrelatedTeachers))
-			<form method="POST" action="{{url('manage-students/share-student/' . $studentName)}}" enctype="multipart/form-data">
+			<form method="POST" action=""+url enctype="multipart/form-data">
 			@csrf
 
 				<div class="form-group">
@@ -62,10 +68,7 @@
 			<p>Hasta el momento, sos el único docente de {{$studentName}}.</p>
 		@endif
 
-		<script>
-			var url = removeSectionsOfURL(2);
-		</script>
-		<button onclick="location.href=url + 'handle-student-data/{{$studentName}}'">Volver</button>
+		<button onclick="location.href=shareURL + 'handle-student-data/{{$studentName}}'">Volver</button>
 		
 	</body>
 </html>

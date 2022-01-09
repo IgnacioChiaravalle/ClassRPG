@@ -6,8 +6,8 @@
 
 		<title>{{$studentName}} - Archivo</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
-
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -34,11 +34,10 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		
+		<script> var studentDataURL = removeSectionsOfURL(1); </script>
+
 		<p>Archivo de {{$studentName}}</p>
 
-		<script>
-			var studentDataURL = removeSectionsOfURL(1);
-		</script>
 		@if (isset ($missions))
 			@foreach ($missions as $mission)
 				<div>
