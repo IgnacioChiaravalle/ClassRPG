@@ -29,12 +29,7 @@
 		@endif
 
 		<script> var url = removeSectionsOfURL(0); </script>
-		<?php
-			$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-			$splitURL = explode("/", $url);
-			$rpgClass = end($splitURL) != "" ? end($splitURL) : $splitURL[count($splitURL)-2];
-		?>
-
+		
 		<p>Crear un Nuevo Artículo</p>
 		<form method="POST" action=""+url enctype="multipart/form-data">
 		@csrf

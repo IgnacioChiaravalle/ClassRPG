@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Teacher\ManageMissions;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
+use App\Http\Controllers\Teacher\ManageStudents\StudentDataForTeacherController;
 use App\Models\Mission;
 
-class MissionFunctionsController extends Controller {
+class MissionFunctionsForTeacherController extends Controller {
 	public function __construct() {
 		$this->middleware('teacherAuth');
 	}
 
 	private function getStudentCharacter($studentName) {
-		return (new StudentDataController)->getStudentCharacter($studentName);
+		return (new StudentDataForTeacherController)->getStudentCharacter($studentName);
 	}
 	public function getMission($missionID) {
 		return Mission::where('id', $missionID)->first();
@@ -21,10 +21,10 @@ class MissionFunctionsController extends Controller {
 	protected function doDamage($studentName, $missionID) {
 		$studentCharacter = $this->getStudentCharacter($studentName);
 		$missionDamage = $this->getMission($missionID)->damage_caused;
-		$studentCharacter->update(['health' => $this->adjustHealth($studentCharacter->health, $missionDamage)]);
+		$studentCharacter->update(['health' => $this->adjustStudentHealth($studentCharacter->health, $missionDamage)]);
 		return back()->with('success', "Daño ejercido.");
 	}
-	private function adjustHealth($studentHealth, $missionDamage) {
+	private function adjustStudentHealth($studentHealth, $missionDamage) {
 		$finalHealth = $studentHealth - $missionDamage;
 		return ($finalHealth >= 0) ? $finalHealth : 0;
 	}

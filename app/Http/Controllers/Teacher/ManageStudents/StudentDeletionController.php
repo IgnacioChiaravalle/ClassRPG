@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\UserManagementController;
-use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
+use App\Http\Controllers\Teacher\ManageStudents\StudentDataForTeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class StudentDeletionController extends Controller {
 	}
 	
 	protected function deleteStudent($studentName) {
-		$sDC = new StudentDataController;
+		$sDC = new StudentDataForTeacherController;
 		$currentTeacherName = Auth::user()->name;
 		$teacherStudentRelation = $sDC->getOrFail_TeacherStudentRelation($currentTeacherName, $studentName);
 		$otherTeachers = $sDC->getOtherTeachers($currentTeacherName, $studentName);

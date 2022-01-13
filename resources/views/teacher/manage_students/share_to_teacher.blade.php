@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Compartir Alumno</title>
-		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

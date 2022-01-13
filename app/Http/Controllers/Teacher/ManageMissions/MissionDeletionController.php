@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Teacher\ManageMissions;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsController;
+use App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsForTeacherController;
 
 class MissionDeletionController extends Controller {
 	public function __construct() {
@@ -11,7 +11,7 @@ class MissionDeletionController extends Controller {
 	}
 
 	protected function deleteMission($studentName, $missionID) {
-		(new MissionFunctionsController)->getMission($missionID)->delete();
+		(new MissionFunctionsForTeacherController)->getMission($missionID)->delete();
 		return back()->with('success', "Misión eliminada con éxito.");
 	}
 }

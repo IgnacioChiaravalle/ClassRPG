@@ -19,16 +19,22 @@ Route::get('/market', [App\Http\Controllers\Student\MarketController::class, 'ge
 Route::get('/market/buy-item/{saleName}/{saleCost}', [App\Http\Controllers\Student\MarketController::class, 'buyItem'])->middleware('studentAuth');
 Route::get('/market/heal-student/{healCost}', [App\Http\Controllers\Student\MarketController::class, 'healStudent'])->middleware('studentAuth');
 
+Route::get('/attack-mission/{missionID}', [App\Http\Controllers\Student\MissionFunctionsForStudentController::class, 'takeDamage'])->middleware('studentAuth');
+
 Route::get('/manage-students/handle-student-data/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentEditionController::class, 'createView'])->middleware('teacherAuth');
 Route::post('/manage-students/handle-student-data/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentEditionController::class, 'editStudentData'])->middleware('teacherAuth');
 
-Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/do-damage', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsController::class, 'doDamage'])->middleware('teacherAuth');
-Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/give-coins-reward', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsController::class, 'giveCoinsReward'])->middleware('teacherAuth');
-Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/set-archive/{archive}', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsController::class, 'setArchive'])->middleware('teacherAuth');
-Route::get('/manage-students/handle-student-data/{studentName}/view-mission-archive', [App\Http\Controllers\Teacher\ManageMissions\MissionArchiveController::class, 'createView'])->middleware('teacherAuth');
-Route::get('/manage-students/handle-student-data/{studentName}/add-mission', function () {
-	return view('teacher.manage_missions.add_mission');
+Route::get('/manage-students/handle-student-data/{studentName}/add-mission', function ($studentName) {
+	return view('teacher.manage_missions.add_mission')->with('studentName', $studentName);
 })->middleware('teacherAuth');
+Route::post('/manage-students/handle-student-data/{studentName}/add-mission', [App\Http\Controllers\Teacher\ManageMissions\MissionAdditionController::class, 'addMission'])->middleware('teacherAuth');
+Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/edit-mission', [App\Http\Controllers\Teacher\ManageMissions\MissionEditionController::class, 'createView'])->middleware('teacherAuth');
+Route::post('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/edit-mission', [App\Http\Controllers\Teacher\ManageMissions\MissionEditionController::class, 'editMission'])->middleware('teacherAuth');
+Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/do-damage', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsForTeacherController::class, 'doDamage'])->middleware('teacherAuth');
+Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/give-coins-reward', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsForTeacherController::class, 'giveCoinsReward'])->middleware('teacherAuth');
+Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/set-archive/{archive}', [App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsForTeacherController::class, 'setArchive'])->middleware('teacherAuth');
+Route::get('/manage-students/handle-student-data/{studentName}/view-mission-archive', [App\Http\Controllers\Teacher\ManageMissions\MissionArchiveController::class, 'createView'])->middleware('teacherAuth');
+
 Route::get('/manage-students/handle-student-data/{studentName}/handle-mission/{missionID}/delete-mission', [App\Http\Controllers\Teacher\ManageMissions\MissionDeletionController::class, 'deleteMission'])->middleware('teacherAuth');
 
 Route::get('/manage-students/delete-student/{studentName}', [App\Http\Controllers\Teacher\ManageStudents\StudentDeletionController::class, 'deleteStudent'])->middleware('teacherAuth');
@@ -49,14 +55,14 @@ Route::get('/manage-teachers/add-teacher', function () {
 Route::post('/manage-teachers/add-teacher', [App\Http\Controllers\Teacher\ManageTeachers\TeacherAdditionController::class, 'addTeacher'])->middleware('adminTeacherAuth');
 
 Route::get('/manage-market', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'createView'])->middleware('teacherAuth');
-Route::get('/manage-market/{className}', function () {
-	return view('teacher.manage_market.class_specific_market');
+Route::get('/manage-market/{className}', function ($className) {
+	return view('teacher.manage_market.class_specific_market')->with('rpgClass', $className);
 })->middleware('teacherAuth');
 Route::get('/manage-market/get-stock/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketStockController::class, 'getClassStock'])->middleware('teacherAuth');
 Route::get('/manage-market/update-marketable/{saleName}/{marketable}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'updateMarketable'])->middleware('teacherAuth');
 Route::get('/manage-market/delete-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleDeletionController::class, 'deleteSale'])->middleware('teacherAuth');
-Route::get('/manage-market/add-sale/{className}', function () {
-	return view('teacher.manage_market.add_sale');
+Route::get('/manage-market/add-sale/{className}', function ($className) {
+	return view('teacher.manage_market.add_sale')->with('rpgClass', $className);
 })->middleware('teacherAuth');
 Route::post('/manage-market/add-sale/{className}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleAdditionController::class, 'addSale'])->middleware('teacherAuth');
 Route::post('/manage-market/edit-sale/{saleName}', [App\Http\Controllers\Teacher\ManageMarket\MarketSaleEditionController::class, 'editSale'])->middleware('teacherAuth');

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HealthValues\HealthValuesController;
+use App\Http\Controllers\Student\StudentDataLookUpController;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
 use App\Models\RPGClass;
 use App\Models\Weapon;
 use App\Models\Item;
@@ -18,24 +18,27 @@ class StudentWelcomeController extends Controller {
 	}
 
 	public function getStudentWelcome(Student $student) {
-		$rpg_class = RPGClass::where('name', $student->rpg_class)->first();
-		
-		$weapon = Weapon::where('name', $student->weapon)->first();
-		$weapon_damage = $weapon != null ? $weapon->added_damage : 0;
-		$item = Item::where('name', $student->item)->first();
-		$item_damage = $item != null ? $item->added_damage : 0;
-		$item_health = $item != null ? $item->added_health : 0;
-		$armor = Armor::where('name', $student->armor)->first();
-		$armor_health = $armor != null ? $armor->added_health : 0;
-		$max_health = (new HealthValuesController)->getMaxStudentHealth($student);
+		$sDLUC = new StudentDataLookUpController;
 
-		$damage = $rpg_class->base_damage + $weapon_damage + $item_damage;
+		$weapon_damage = $sDLUC->getWeaponAddedDamage($sDLUC->getWeapon($student));
+		$item_damage = $sDLUC->getItemAddedDamage($sDLUC->getItem($student));
+		$item_health = $sDLUC->getItemAddedHealth($sDLUC->getItem($student));
+		$armor_health = $sDLUC->getArmorAddedHealth($sDLUC->getArmor($student));
+		$damage = $sDLUC->getStudentDamage(
+											$sDLUC->getRPGClassBaseDamage($sDLUC->getRPGClass($student)),
+											$weapon_damage,
+											$item_damage
+										);
+		$max_health = (new HealthValuesController)->getMaxStudentHealth($student);
+		$missions = $sDLUC->getMissions($student);
+
 		return View::make('student.student_welcome')->with('student', $student)
 													->with('damage', $damage)
 													->with('weapon_damage', $weapon_damage)
 													->with('item_damage', $item_damage)
 													->with('item_health', $item_health)
 													->with('armor_health', $armor_health)
-													->with('max_health', $max_health);
+													->with('max_health', $max_health)
+													->with('missions', $missions);
 	}
 }

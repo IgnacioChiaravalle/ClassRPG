@@ -34,15 +34,10 @@
 		@endif
 
 		<div id="parent-component">
-			<class-market-table csrf="{{csrf_token()}}" ref="classMarketTable"></class-market-table>
+			<class-market-table csrf="{{csrf_token()}}" :rpg_class="'{{$rpgClass}}'" ref="classMarketTable"></class-market-table>
 		</div>
 		<script src = "{{asset('/js/app.js')}}" defer></script>
 
-		<?php
-			$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-			$splitURL = explode("/", $url);
-			$rpgClass = end($splitURL) != "" ? end($splitURL) : $splitURL[count($splitURL)-2];
-		?>
 		<button onclick="location.href='/manage-market/add-sale/{{$rpgClass}}'">Crear un Artículo para esta Clase</button>
 
 		<button onclick="location.href='/manage-market'">Volver</button>

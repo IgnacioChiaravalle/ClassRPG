@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
+use App\Http\Controllers\Teacher\ManageStudents\StudentDataForTeacherController;
 use Illuminate\Http\Request;
 
 class StudentEditionController extends Controller {
@@ -12,12 +12,12 @@ class StudentEditionController extends Controller {
 		$this->middleware('teacherAuth');
 	}
 
-	private function makeStudentDataController() {
-		return new StudentDataController;
+	private function makeStudentDataForTeacherController() {
+		return new StudentDataForTeacherController;
 	}
 
 	protected function createView($studentName) {
-		$sDC = $this->makeStudentDataController();
+		$sDC = $this->makeStudentDataForTeacherController();
 		$teacherStudentRelation = $sDC->getOrFail_TeacherStudentRelation($sDC->getUserName(), $studentName);
 		$studentCharacter = $sDC->getStudentCharacter($studentName);
 		return View::make('teacher.manage_students.handle_student_data')->with('teacher', $sDC->getTeacher())
@@ -32,7 +32,7 @@ class StudentEditionController extends Controller {
 	}
 
 	protected function editStudentData(Request $request, $studentName) {
-		$sDC = $this->makeStudentDataController();
+		$sDC = $this->makeStudentDataForTeacherController();
 		$teacherStudentRelation = $sDC->getOrFail_TeacherStudentRelation($sDC->getUserName(), $studentName);
 		$this->validateStudentDataRequest($request);
 		$studentCharacter = $sDC->getStudentCharacter($studentName);

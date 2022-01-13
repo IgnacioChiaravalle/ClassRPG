@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teacher\ManageStudents;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\UserManagementController;
 use App\Http\Controllers\ListSort\ListSortController;
-use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
+use App\Http\Controllers\Teacher\ManageStudents\StudentDataForTeacherController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -20,7 +20,7 @@ class ShareStudentController extends Controller {
 	}
 
 	protected function createView($studentName) {
-		(new StudentDataController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
+		(new StudentDataForTeacherController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
 		$unrelatedTeachers = $this->getUnrelatedTeachers($studentName);
 		$relatedTeachers = $this->getRelatedTeachers($studentName);
 		if ($unrelatedTeachers != null && $relatedTeachers != null)
@@ -36,7 +36,7 @@ class ShareStudentController extends Controller {
 	private function getUnrelatedTeachers($studentName) {
 		$otherTeachers = Teacher::where('name', '!=', Auth::user()->name)->get();
 		$unrelatedTeachers = array();
-		$sDC = new StudentDataController;
+		$sDC = new StudentDataForTeacherController;
 		$uMC = new UserManagementController;
 		foreach ($otherTeachers as $teacher) {
 			try { $sDC->getOrFail_TeacherStudentRelation($teacher->name, $studentName); }
@@ -48,7 +48,7 @@ class ShareStudentController extends Controller {
 	}
 
 	private function getRelatedTeachers($studentName) {
-		$otherTeacher_Students = (new StudentDataController)->getOtherTeachers(Auth::user()->name, $studentName);
+		$otherTeacher_Students = (new StudentDataForTeacherController)->getOtherTeachers(Auth::user()->name, $studentName);
 		$uMC = new UserManagementController;
 		$relatedTeachers = array();
 		foreach ($otherTeacher_Students as $teacher_student)
@@ -64,7 +64,7 @@ class ShareStudentController extends Controller {
 	}
 
 	protected function shareStudent(Request $request, $studentName) {
-		(new StudentDataController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
+		(new StudentDataForTeacherController)->getOrFail_TeacherStudentRelation(Auth::user()->name, $studentName);
 		Teacher_Student::create([
 			'teacher_name' => $request->teacher_name,
 			'student_name' => $studentName,

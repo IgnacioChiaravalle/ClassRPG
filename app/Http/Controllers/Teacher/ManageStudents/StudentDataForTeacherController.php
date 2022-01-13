@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\Teacher_Student;
 use App\Models\Mission;
 
-class StudentDataController extends Controller {
+class StudentDataForTeacherController extends Controller {
 	public function __construct() {
 		$this->middleware('teacherAuth');
 	}

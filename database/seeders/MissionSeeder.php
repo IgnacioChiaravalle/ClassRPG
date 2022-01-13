@@ -35,7 +35,7 @@ class MissionSeeder extends Seeder {
 			null,
 			'420',
 			null,
-			true
+			false
 		]);
 
 		$this->insertIntoTable([

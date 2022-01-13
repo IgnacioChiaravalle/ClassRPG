@@ -1947,25 +1947,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['csrf'],
+  props: ['csrf', 'rpg_class'],
   data: function data() {
     return {
-      rpgClass: null,
       onSaleList: null,
       selectedSale: null,
       tableBody: 0
     };
   },
   mounted: function mounted() {
-    this.getRPGClass();
     this.getStock();
     this.changeLoadingVisibility('hidden');
   },
   methods: {
-    getRPGClass: function getRPGClass() {
-      var url = new URL(location.href).toString().split('/');
-      this.rpgClass = url[url.length - 1] != "" ? url[url.length - 1] : url[url.length - 2];
-    },
     getStock: function getStock() {
       var _this = this;
 
@@ -1975,7 +1969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/manage-market/get-stock/' + _this.rpgClass).then(function (response) {
+                return axios.get('/manage-market/get-stock/' + _this.rpg_class).then(function (response) {
                   _this.onSaleList = response.data;
                   if (_this.onSaleList == null) _this.onSaleList = 0;
                 })["catch"](function (e) {
@@ -38915,7 +38909,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.onSaleList != 0
     ? _c("div", [
-        _c("p", [_vm._v("Stock para el " + _vm._s(_vm.rpgClass) + ":")]),
+        _c("p", [_vm._v("Stock para el " + _vm._s(_vm.rpg_class) + ":")]),
         _vm._v(" "),
         _c(
           "table",

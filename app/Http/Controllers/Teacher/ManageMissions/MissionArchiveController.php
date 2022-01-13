@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageMissions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use App\Http\Controllers\Teacher\ManageStudents\StudentDataController;
+use App\Http\Controllers\Teacher\ManageStudents\StudentDataForTeacherController;
 
 class MissionArchiveController extends Controller {
 	public function __construct() {
@@ -12,7 +12,7 @@ class MissionArchiveController extends Controller {
 	}
 
 	protected function createView($studentName) {
-		$sDC = new StudentDataController;
+		$sDC = new StudentDataForTeacherController;
 		$teacherStudentRelation = $sDC->getOrFail_TeacherStudentRelation($sDC->getUserName(), $studentName);
 		$missions = $sDC->getTeacherStudentMissionsByArchive($teacherStudentRelation->id, true);
 		if (!$missions->isEmpty())

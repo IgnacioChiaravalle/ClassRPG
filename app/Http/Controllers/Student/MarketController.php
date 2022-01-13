@@ -34,7 +34,7 @@ class MarketController extends Controller {
 		
 		$onSaleList = $this->putTogether($weapons, $items, $armors);
 		if (!empty($onSaleList)) {
-			$onSaleList = (new ListSortController)->quicksort($onSaleList, 'sale');
+			$onSaleList = (new ListSortController)->quicksort($onSaleList, 'cost');
 			return View::make('student.market')->with('student', $student)->with('onSaleList', $onSaleList);
 		}
 		else

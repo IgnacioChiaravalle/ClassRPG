@@ -35,7 +35,7 @@ class MarketStockController extends Controller {
 		
 		$onSaleList = $mC->putTogether($weapons, $items, $armors);
 		if (!empty($onSaleList))
-			return (new ListSortController)->quicksort($onSaleList, 'sale');
+			return (new ListSortController)->quicksort($onSaleList, 'cost');
 		else
 			return null;
 	}

@@ -114,11 +114,14 @@
 			<input type="submit" value="Aceptar Cambios">
 		</form>
 
-		<button onclick="location.href='/'">Descartar Cambios y Volver</button>
+		<button onclick="location.href='/'">Volver</button>
 
 		@foreach ($missions as $mission)
 			<div>
-				<h2>{{$mission->name}}</h2>
+				<div class="mission-name-and-edit">
+					<h2>{{$mission->name}}</h2>
+					<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/edit-mission'">&#128393;</button>
+				</div>
 				<p>{{$mission->description}}</p>
 				<p>
 					Fecha de Inicio: {{$mission->start_date}}<br>

@@ -6,6 +6,8 @@
 
 		<title>{{$student->name}}</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -105,5 +107,33 @@
 		</table>
 
 		<button onclick="location.href='/market'">Ir al Mercado</button>
+
+		@foreach ($missions as $mission)
+			<div>
+				<h2>{{$mission->name}}</h2>
+				<p>{{$mission->description}}</p>
+				<p>
+					Fecha de Inicio: {{$mission->start_date}}<br>
+					@if ($mission->finish_date != null)
+						Fecha de Finalización: {{$mission->finish_date}}
+					@else
+						La misión aún no ha sido completada.
+					@endif
+				</p>
+				<p>Causa {{$mission->damage_caused}} puntos de daño cada {{$mission->damage_period}}.</p>
+				<p>Salud de la Misión: {{$mission->current_health}} / {{$mission->max_health}}</p>
+				<p>
+					Recompensas:<br>
+					{{$mission->coins_reward}} Monedas de Oro.
+					@if ($mission->other_rewards != null)
+						<br>{{$mission->other_rewards}}
+					@endif
+				</p>
+				@if ($mission->current_health > 0)
+					<button onclick="confirmMissionAttack('{{$student->health}}', '{{$mission->id}}', '{{$mission->name}}')">¡Atacar!</button>
+				@endif
+			</div>
+		@endforeach
+
 	</body>
 </html>

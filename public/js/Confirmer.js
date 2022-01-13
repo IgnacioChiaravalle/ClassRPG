@@ -19,3 +19,13 @@ function confirmMissionDelete(missionID, missionName) {
 	if(confirm("¿Estás seguro de que querés eliminar la misión " + missionName + "? Esto es irreversible."))
 		window.location.replace(continueURL + "handle-mission/" + missionID + "/delete-mission");
 }
+
+function confirmMissionAttack(studentHealth, missionID, missionName) {
+	if (studentHealth == 0)
+		alert("¡No podés atacar! ¡No tenés puntos de salud!");
+	else {
+		continueURL = removeSectionsOfURL(0);
+		if(confirm("¿Atacar a la misión " + missionName + "?"))
+			window.location.replace(continueURL + "attack-mission/" + missionID);
+	}
+}

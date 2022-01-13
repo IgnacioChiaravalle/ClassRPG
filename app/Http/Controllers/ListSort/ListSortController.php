@@ -24,10 +24,10 @@ class ListSortController extends Controller {
 	private function compare($element, $pivot, $criteria) {
 		if ($criteria == 'user')
 			return strcasecmp($element->real_name, $pivot->real_name);
-		if ($criteria == 'sale') {
-			if ($element->cost < $pivot->cost)
+		if ($criteria == 'cost' || $criteria == 'start_date') {
+			if ($element->$criteria < $pivot->$criteria)
 				return -1;
-			elseif ($element->cost > $pivot->cost)
+			elseif ($element->$criteria > $pivot->$criteria)
 				return 1;
 			else
 				return 0;

@@ -1,6 +1,6 @@
 <template>
 	<div v-if="onSaleList != 0">
-		<p>Stock para el {{ rpgClass }}:</p>
+		<p>Stock para el {{ rpg_class }}:</p>
 		<table id="class_market_table" ref="class_market_table">
 			<thead>
 				<tr class="table-header-row">
@@ -82,11 +82,13 @@
 
 <script>
 	export default {
-		props: ['csrf'],
+		props: [
+			'csrf',
+			'rpg_class'
+		],
 
 		data() {
 			return {
-				rpgClass: null,
 				onSaleList: null,
 				selectedSale: null,
 				tableBody: 0
@@ -94,20 +96,14 @@
 		},
 		
 		mounted() {
-			this.getRPGClass()
 			this.getStock()
 			this.changeLoadingVisibility('hidden')
 		},
 
 		methods: {
-			getRPGClass() {
-				var url = new URL(location.href).toString().split('/')
-				this.rpgClass = url[url.length-1] != "" ? url[url.length-1] : url[url.length-2]
-			},
-
 			async getStock() {
 				await axios
-					.get('/manage-market/get-stock/' + this.rpgClass)
+					.get('/manage-market/get-stock/' + this.rpg_class)
 					.then(response => {
 						this.onSaleList = response.data
 						if (this.onSaleList == null)
