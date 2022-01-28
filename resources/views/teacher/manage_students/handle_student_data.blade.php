@@ -131,7 +131,7 @@
 						La misión aún no ha sido completada.
 					@endif
 				</p>
-				<p>Causa <button onclick="location.href=url + 'handle-mission/{{$mission->id}}/do-damage'">{{$mission->damage_caused}} puntos de daño</button> cada {{$mission->damage_period}}.</p>
+				<p>Causa <button onclick="location.href=url + 'handle-mission/{{$mission->id}}/do-damage'">{{$mission->damage_caused}} @if ($mission->damage_caused == 1) punto @else puntos @endif de daño</button> cada {{$mission->damage_period}}.</p>
 				<p>Salud de la Misión: {{$mission->current_health}} / {{$mission->max_health}}</p>
 				<p>
 					Recompensas:<br>

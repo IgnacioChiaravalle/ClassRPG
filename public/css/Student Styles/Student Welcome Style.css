@@ -1,0 +1,157 @@
+body {
+	background-image: url("Images/RPG\ Camp\ -\ Welcome\ Background.jpg");
+	color: white;
+}
+
+#name-and-class-p {
+	text-align: center;
+	font-family: MedievalSharp;
+	font-size: 250%;
+	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
+	color: rgb(56, 255, 132);
+	margin-bottom: 1.5%;
+}
+
+table.main-table {
+	animation: expandVertically 1500ms;
+	border: 6px rgb(180, 146, 66) outset;
+	border-radius: 0.5%/4%;
+	background-image: url("Images/Wooden\ Table\ Texture\ -\ Table\ Body.jpg");
+}
+
+tr.table-header-row {
+	background-image: url("Images/Wooden\ Table\ Texture\ -\ Table\ Header.jpg");
+}
+
+td.table-header-cell, td.main-table-cell {
+	border: 2px brown solid;
+}
+td.table-header-cell {
+	padding-top: 0.75%;
+	padding-bottom: 0.75%;
+	font-family: Bungee;
+	color: yellow;
+	font-size: 150%;
+	text-shadow: -3px -3px 4px black, 3px -3px 4px black, -3px 3px 4px black, 3px 3px 4px black;
+}
+#inventory-tag-cell {
+	padding-top: 0%;
+	padding-bottom: 0%;
+	font-size: 180%;
+}
+td.main-table-cell {
+	font-family: MuseoModerno;
+	font-size: 150%;
+	text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black;
+}
+#inner-table-container {
+	padding: 0%;
+	font-size: 115%;
+}
+
+td.inner-table-cell-with-border {
+	border-bottom: 2px brown solid;
+}
+
+#market-button {
+	display: flex;
+	margin-top: 1.75%;
+	margin-left: auto;
+	margin-right: 0%;
+	font-family: VollkornSC;
+	font-size: 150%;
+	padding-top: 0.75%;
+	padding-bottom: 0.75%;
+	padding-left: 2.25%;
+	padding-right: 2.25%;
+	box-shadow: 2px 2px 2px 1px black;
+	background-image: url("Images/Sword -\ Market\ Button\ Background.jpg");
+	background-repeat: no-repeat;
+	background-size: 105% 105%;
+	text-shadow: -3px -3px 4px black, 3px -3px 4px black, -3px 3px 4px black, 3px 3px 4px black;
+	border: 5px outset;
+	border-radius: 4%/18%;
+	border-color: darkblue;
+	color: rgb(253, 235, 135);
+	transition: 500ms;
+}
+	#market-button:hover {
+		cursor: pointer;
+		animation: growFromCenter 500ms;
+		transform: scale(1.1);
+		border-color: rgb(6, 194, 219);
+		color: rgb(253, 139, 135);
+	}
+
+div.mission-div {
+	box-shadow: 2px 2px 2px 1px black;
+	border: 5px outset;
+	border-radius: 5%/10%;
+	width: 30%;
+	margin-top: 1%;
+	margin-left: 0%;
+	margin-right: auto;
+	padding: 1%;
+	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
+}
+	div.mission-div:hover {
+		border-color: rgb(202, 199, 5);
+	}
+
+	div.active-mission {
+		background-image: url("Images/Obsidian\ Texture\ -\ Active\ Mission\ Background.jpg");
+		background-repeat: no-repeat;
+		background-size: 105% 105%;
+		border-color: rgb(0, 139, 74);
+	}
+	div.completed-mission {
+		background-image: url("Images/Scroll\ Texture\ -\ Completed\ Mission\ Background.jpg");
+		background-repeat: no-repeat;
+		background-size: 105% 105%;
+		border-color: rgb(134, 0, 139);
+	}
+
+h2.mission-name-h2 {
+	text-align: center;
+	text-shadow: -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black, 2px 2px 3px black;
+	margin-top: 0%;
+	margin-bottom: 2%;
+}
+	h2.active-mission-h2 {
+		color: rgb(241, 209, 106);
+	}
+	h2.completed-mission-h2 {
+		color: rgb(241, 138, 106);
+	}
+
+hr {
+	border: 0;
+	height: 1px;
+	width: auto;
+}
+	hr.active-mission-hr {
+		border-top: 1px solid white;
+		box-shadow: 1px 1px 1px 1px black;
+	}
+	hr.completed-mission-hr {
+		border-top: 2px solid black;
+	}
+
+button.attack-button {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: VollkornSC;
+	font-size: 110%;
+	color: white;
+	background-color: brown;
+	border-radius: 4%/18%;
+	border: 1px outset whitesmoke;
+	transition: 400ms;
+}
+	button.attack-button:hover {
+		cursor: pointer;
+		animation: growFromCenter 400ms;
+		transform: scale(1.1);
+	}

@@ -1,0 +1,24 @@
+button.my-account-button {
+	position: fixed;
+	top: 6.75%;
+	right: 5.5%;
+	font-family: OdibeeSans;
+	font-size: 115%;
+	padding-top: 0.25%;
+	padding-bottom: 0.25%;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
+	box-shadow: 2px 2px 2px 1px black;
+	background: linear-gradient(to top left, rgb(13, 13, 180), rgb(112, 209, 226));
+	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
+	border: 2px outset darkblue;
+	border-radius: 4%/18%;
+	color: rgb(253, 235, 135);
+	transition: 350ms;
+}
+	button.my-account-button:hover {
+		cursor: pointer;
+		background: linear-gradient(to top left, rgb(180, 13, 13), rgb(226, 148, 112));
+		animation: growFromCenter 350ms;
+		transform: scale(1.1);
+	}

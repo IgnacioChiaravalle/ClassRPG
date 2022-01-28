@@ -1,0 +1,107 @@
+@font-face {
+	font-family: AllertaStencil;
+	src: url(Fonts/AllertaStencil_Font.ttf);
+}
+@font-face {
+	font-family: ArcadeClassic;
+	src: url(Fonts/ArcadeClassic_Font.ttf);
+}
+@font-face {
+	font-family: ArchitectsDaughter;
+	src: url(Fonts/ArchitectsDaughter_Font.ttf);
+}
+@font-face {
+	font-family: Audiowide;
+	src: url(Fonts/Audiowide_Font.ttf);
+}
+@font-face {
+	font-family: Bungee;
+	src: url(Fonts/Bungee_Font.ttf);
+}
+@font-face {
+	font-family: ChakraPetch;
+	src: url(Fonts/ChakraPetch_Font.ttf);
+}
+@font-face {
+	font-family: LondrinaSolid;
+	src: url(Fonts/LondrinaSolid_Font.ttf);
+}
+@font-face {
+	font-family: LuckiestGuy;
+	src: url(Fonts/LuckiestGuy_Font.ttf);
+}
+@font-face {
+	font-family: MedievalSharp;
+	src: url(Fonts/MedievalSharp_Font.ttf);
+}
+@font-face {
+	font-family: MuseoModerno;
+	src: url(Fonts/MuseoModerno_Font.ttf);
+}
+@font-face {
+	font-family: Notable;
+	src: url(Fonts/Notable_Font.ttf);
+}
+@font-face {
+	font-family: Nunito;
+	src: url(Fonts/Nunito_Font.ttf);
+}
+@font-face {
+	font-family: OdibeeSans;
+	src: url(Fonts/OdibeeSans_Font.ttf);
+}
+@font-face {
+	font-family: Orbitron;
+	src: url(Fonts/Orbitron_Font.ttf);
+}
+@font-face {
+	font-family: PermanentMarker;
+	src: url(Fonts/PermanentMarker_Font.ttf);
+}
+@font-face {
+	font-family: Quantico;
+	src: url(Fonts/Quantico_Font.ttf);
+}
+@font-face {
+	font-family: RockSalt;
+	src: url(Fonts/RockSalt_Font.ttf);
+}
+@font-face {
+	font-family: SedgwickAveDisplay;
+	src: url(Fonts/SedgwickAveDisplay_Font.ttf);
+}
+@font-face {
+	font-family: Staatliches;
+	src: url(Fonts/Staatliches_Font.ttf);
+}
+@font-face {
+	font-family: VollkornSC;
+	src: url(Fonts/VollkornSC_Font.ttf);
+}
+
+@keyframes expandFromCenter {
+	from { transform: scale(0); }
+	to { transform: scale(1); }
+}
+@keyframes expandVertically {
+	from { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+@keyframes growFromCenter {
+	from { transform: scale(1); }
+	to { transform: scale(1.1); }
+}
+
+html{
+	height: 100%;
+	width: 100%;
+	margin:0;
+	cursor: auto;
+}
+
+body {
+	font-family: Nunito;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+}
