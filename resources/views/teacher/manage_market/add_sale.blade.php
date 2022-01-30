@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Crear Artículo</title>
-		<script src = "{{url('/js/FormFieldEnabler.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 
 		<!-- Fonts -->

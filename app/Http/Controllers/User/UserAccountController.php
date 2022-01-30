@@ -16,7 +16,7 @@ class UserAccountController extends Controller {
 	}
 
 	protected function createUserDataView() {
-		return View::make('user.my_account')->with('user', $this->getUser());
+		return View::make('user.account_settings')->with('user', $this->getUser());
 	}
 
 	protected function editUserData(Request $request) {
