@@ -1,65 +1,53 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">Restablecer mi Contraseña</div>
+		<title>Restablecer Contraseña</title>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Reset Style.css')}}">
+	</head>
 
-				<div class="card-body">
-					<form method="POST" action="{{ route('password.update') }}">
-						@csrf
+	<body>
+		<h1>Restablecer mi Contraseña</h1>
 
-						<input type="hidden" name="token" value="{{ $token }}">
+		<form class="input-form" method="POST" action="{{ route('password.update') }}">
+			@csrf
+			<input type="hidden" name="token" value="{{ $token }}">
 
-						<div class="form-group row">
-							<label for="email" class="col-md-4 col-form-label text-md-right">Dirección de Correo Electrónico</label>
-
-							<div class="col-md-6">
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus>
-
-								@error('email')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
-
-							<div class="col-md-6">
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="new-password">
-
-								@error('password')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
-
-							<div class="col-md-6">
-								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Contraseña" required autocomplete="new-password">
-							</div>
-						</div>
-
-						<div class="form-group row mb-0">
-							<div class="col-md-6 offset-md-4">
-								<button type="submit" class="btn btn-primary">
-									Restablecer Contraseña
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
+			<label for="email">Dirección de Correo Electrónico</label>
+			<div>
+				<input id="email" type="email" class="field {{$email || old('email') ? 'active-field' : 'default-field'}} @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
+				@error('email')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
 			</div>
-		</div>
-	</div>
-</div>
-@endsection
+
+			<label for="password">Nueva Contraseña</label>
+			<div>
+				<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}} @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="new-password" autofocus onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
+				@error('password')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
+			</div>
+
+			<label for="password-confirm">Confirmar Nueva Contraseña</label>
+			<div>
+				<input id="password-confirm" type="password" class="field {{old('password_confirmation') ? 'active-field' : 'default-field'}}" name="password_confirmation" placeholder="Contraseña" required autocomplete="new-password" onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
+			</div>
+
+			<input type="submit" id="password-reset-submit" class="submit disabled-submit" disabled="disabled" value="Restablecer Contraseña">
+		</form>
+	</body>
+</html>

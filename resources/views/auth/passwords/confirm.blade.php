@@ -9,7 +9,8 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password Confirm Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Confirm Style.css')}}">
 	</head>
 
 	<body>
@@ -22,7 +23,7 @@
 
 			<label for="password">Por favor, ingresá tu contraseña actual para continuar.</label>
 			<div>
-				<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}} @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="current-password" onkeypress="activateField(this); enableSubmit('password-confirm-submit')" onclick="activateField(this); enableSubmit('password-confirm-submit')">
+				<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}} @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="current-password" autofocus onkeypress="activateField(this); enableSubmit('password-confirm-submit')" onclick="activateField(this); enableSubmit('password-confirm-submit')">
 				@error('password')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>

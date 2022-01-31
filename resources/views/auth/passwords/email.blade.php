@@ -1,49 +1,48 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">Restablecer Contraseña</div>
+		<title>Recuperación de Contraseña</title>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Reset Email Request Style.css')}}">
+	</head>
 
-				<div class="card-body">
-					@if (session('status'))
-						<div class="alert alert-success" role="alert">
-							{{ session('status') }}
-						</div>
-					@endif
-
-					<form method="POST" action="{{ route('password.email') }}">
-						@csrf
-
-						<div class="form-group row">
-							<label for="email" class="col-md-4 col-form-label text-md-right">Dirección de Correo Electrónico</label>
-
-							<div class="col-md-6">
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus>
-
-								@error('email')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row mb-0">
-							<div class="col-md-6 offset-md-4">
-								<button type="submit" class="btn btn-primary">
-									Enviar enlace de recuperación de contraseña
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<button onclick="location.href='/'">Cancelar</button>
+	<body>
+		@if (session('status'))
+			<div class="alert-toast-wrapper-div" id="password-reset-email-request-alert-toast">
+				<div class="alert-toast">
+					<p class="toast-text">{{ session('status') }}</p>
+					<div class="toast-closer" onclick="closeToast('password-reset-email-request-alert-toast')">&#10006;</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-@endsection
+		@endif
+
+		<button title="Cancelar y Volver" class="go-back-button" onclick="location.href='/'"></button>
+
+		<h1>Recuperación de Contraseña</h1>
+
+		<form class="input-form" method="POST" action="{{ route('password.email') }}">
+			@csrf
+			
+			<label for="email">Dirección de Correo Electrónico</label>
+			<div>
+				<input id="email" type="email" class="field {{old('email') ? 'active-field' : 'default-field'}} @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus onkeypress="activateField(this); enableSubmit('password-reset-email-request-submit')" onclick="activateField(this); enableSubmit('password-reset-email-request-submit')">
+				@error('email')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
+			</div>
+
+			<input type="submit" id="password-reset-email-request-submit" class="submit disabled-submit" disabled="disabled" value="Enviar enlace de recuperación de contraseña">
+		</form>
+	</body>
+</html>

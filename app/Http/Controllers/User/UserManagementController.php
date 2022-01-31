@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
-use App\Mail\NewUserRegistered;
-use App\Mail\EmailUpdated;
-use App\Mail\AccountDeleted;
+use App\Notifications\NewUserRegistered;
+use App\Notifications\EmailUpdated;
+use App\Notifications\AccountDeleted;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller {
@@ -37,7 +37,7 @@ class UserManagementController extends Controller {
 			'password' => Hash::make($password),
 			'type' => $type
 		]);
-		//Mail::to($request->email)->send(new NewUserRegistered($user,$password));
+		$user->notify(new NewUserRegistered($user, $password));
 	}
 		private function randomPassword() {
 			$password = "";
@@ -65,7 +65,7 @@ class UserManagementController extends Controller {
 		]);
 		if ($user->email != $request->email) {
 			$user->update(['email' => $request->email]);
-			//Mail::to($request->email)->send(new EmailUpdated($user));
+			$user->notify(new EmailUpdated($user));
 		}
 	}
 
@@ -85,7 +85,7 @@ class UserManagementController extends Controller {
 	}
 
 	public function deleteUser(User $user) {
-		//Mail::to($user->email)->send(new AccountDeleted($user));
+		$user->notify(new AccountDeleted($user));
 		$user->delete();
 	}
 }

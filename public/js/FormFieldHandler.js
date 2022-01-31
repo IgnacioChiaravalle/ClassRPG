@@ -34,7 +34,7 @@ function activateField(field) {
 
 function enableSubmitIfAllActive(minimum, toEnableID) {
 	if (document.getElementsByClassName("active-field").length >= minimum)
-		enable(toEnableID);
+		enableSubmit(toEnableID);
 }
 
 function enableSubmit(toEnableID) {
