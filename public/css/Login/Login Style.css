@@ -1,0 +1,132 @@
+body {
+	background-image: url("Login\ Background.jpg");
+}
+
+h1 {
+	position: absolute;
+	top: 5%;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: VollkornSC;
+	color: rgb(230, 193, 29);
+	font-size: 300%;
+	text-shadow: -3px -3px 4px black, 3px -3px 4px black, -3px 3px 4px black, 3px 3px 4px black;
+}
+
+div.form-and-h2-wrapper-div {
+	background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+	margin-top: 12.5%;	
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	box-shadow: 0 1px 4px 1px rgba(0, 0, 50, 0.9);
+}
+
+h2 {
+	padding-top: 2%;
+	margin-bottom: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: Staatliches;
+	font-size: 200%;
+	letter-spacing: 3px;
+	color: rgb(170, 23, 23);
+	text-shadow: -1px -1px 2px rgb(220, 220, 220), 1px -1px 2px rgb(220, 220, 220), -1px 1px 2px rgb(220, 220, 220), 1px 1px 2px rgb(220, 220, 220);
+}
+
+form {
+	padding-bottom: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	left: 0%;
+}
+
+label {
+	text-shadow: -1px -1px 1px white, 1px -1px 1px white, -1px 1px 1px white, 1px 1px 1px white;
+}
+	label.descriptive-label {
+		font-family: MedievalSharp;
+		font-weight: bold;
+		font-size: 120%;
+		color: rgb(0, 0, 70);
+	}
+	label.invalid-feedback-label {
+		color: rgb(255, 0, 0);
+	}
+	label.form-check-label {
+		font-size: 100%;
+		cursor: pointer;
+	}
+
+input.field {
+	padding-top: 1%;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	margin-bottom: 2%;
+	width: 97.25%;
+	font-family: ChakraPetch;
+	font-size: 110%;
+}
+	input.default-field {
+		background-color: rgb(231, 231, 231);
+		color: rgb(119, 55, 55);
+	}
+	input.active-field {
+		background-color: moccasin;
+		color: rgb(51, 32, 156);
+	}
+
+input.form-check-input:hover {
+	cursor: pointer;
+}
+
+a {
+	float: right;
+	font-family: Quantico;
+	font-style: italic;
+	text-decoration: none;
+	color: khaki;
+	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
+}
+	a:hover {
+		font-style: normal;
+		text-shadow: -2px -2px 3px rgb(76, 0, 109), 2px -2px 3px rgb(76, 0, 109), -2px 2px 3px rgb(76, 0, 109), 2px 2px 3px rgb(76, 0, 109);
+	}
+
+input.submit {
+	display: flex;
+	margin-top: 6%;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5%/20%;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	border: 3px outset;
+	font-family: Quantico;
+	font-weight: bold;
+	font-size: 150%;
+}
+	input.disabled-submit {
+		border-color: rgba(0, 0, 0, 0.3);
+	}
+	input.enabled-submit {
+		background-color: greenyellow;
+		border-color: indigo;
+		color: rgb(53, 0, 90);
+		transition: 550ms;
+	}
+		input.enabled-submit:hover {
+			cursor: pointer;
+			animation: growFromCenter 550ms;
+			transform: scale(1.1);
+			background-color: indigo;
+			color: whitesmoke;
+		}

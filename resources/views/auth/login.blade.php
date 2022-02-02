@@ -1,87 +1,66 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+		<title>ClassRPG</title>
+		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Login/Login Style.css')}}">
+		<!-- <link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Confirm Style.css')}}"> -->
+	</head>
 
-<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
-
-
-@if (Session::has('success'))
-	<div class="alert-toast" id="login-alert-toast">
-		<div>{{ session('success') }}</div>
-		<div class="toast-closer" onclick="closeToast('login-alert-toast')">X</div>
-	</div>
-@endif
-@if (Session::has('message'))
-	<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
-@endif
-
-<div class="container">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">Ingresar</div>
-
-				<div class="card-body">
-					<form method="POST" action="{{ route('login') }}">
-						@csrf
-
-						<div class="form-group row">
-							<label for="email" class="col-md-4 col-form-label text-md-right">Dirección de Correo Electrónico</label>
-
-							<div class="col-md-6">
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus>
-
-								@error('email')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
-
-							<div class="col-md-6">
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="current-password">
-
-								@error('password')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-md-6 offset-md-4">
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-									<label class="form-check-label" for="remember">
-										Recordar mis datos
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group row mb-0">
-							<div class="col-md-8 offset-md-4">
-								<button type="submit" class="btn btn-primary">
-									Ingresar
-								</button>
-
-								@if (Route::has('password.request'))
-									<a class="btn btn-link" href="{{ route('password.request') }}">
-										¿Olvidaste tu contraseña?
-									</a>
-								@endif
-							</div>
-						</div>
-					</form>
+	<body>
+		@if (Session::has('success'))
+			<div class="alert-toast-wrapper-div" id="login-alert-toast">
+				<div class="alert-toast">
+					<p class="toast-text">{{ session('success') }}</p>
+					<div class="toast-closer" onclick="closeToast('login-alert-toast')">&#10006;</div>
 				</div>
 			</div>
+		@endif
+		@if (Session::has('message'))
+			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
+		@endif
+
+		<h1>ClassRPG</h1>
+
+		<div class="form-and-h2-wrapper-div">
+			<h2>Iniciar Sesión</h2>
+
+			<form method="POST" action="{{ route('login') }}">
+				@csrf
+
+				<label class="descriptive-label" for="email">Dirección de Correo Electrónico</label>
+				<div>
+					<input id="email" type="email" class="field {{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{old('email')}}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus onkeypress="activateField(this); enableSubmitIfAllActive(2, 'login-submit')" onclick="activateField(this); enableSubmitIfAllActive(2, 'login-submit')">
+					@error('email')
+						<label class="invalid-feedback-label" role="alert">
+							<strong><br>{{ $message }}</strong>
+						</label>
+					@enderror
+				</div>
+				
+				<label class="descriptive-label" for="password">Contraseña</label>
+				<div>
+					<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}}" name="password" placeholder="Contraseña" required autocomplete="current-password" onkeypress="activateField(this); enableSubmitIfAllActive(2, 'login-submit')" onclick="activateField(this); enableSubmitIfAllActive(2, 'login-submit')">
+				</div>
+
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+					<label class="descriptive-label form-check-label" for="remember">
+						Recordar mis datos
+					</label>
+				</div>
+				
+				<a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
+
+				<input type="submit" id="login-submit" class="submit disabled-submit" disabled="disabled" value="INGRESAR">
+			</form>
 		</div>
-	</div>
-</div>
-@endsection
+	</body>
+</html>

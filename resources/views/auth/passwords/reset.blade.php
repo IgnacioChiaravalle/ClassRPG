@@ -5,11 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Restablecer Contraseña</title>
-		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Reset Style.css')}}">
@@ -24,7 +21,7 @@
 
 			<label for="email">Dirección de Correo Electrónico</label>
 			<div>
-				<input id="email" type="email" class="field {{$email || old('email') ? 'active-field' : 'default-field'}} @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
+				<input id="email" type="email" class="field {{$email || old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{ $email ?? old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
 				@error('email')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>
@@ -34,7 +31,7 @@
 
 			<label for="password">Nueva Contraseña</label>
 			<div>
-				<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}} @error('password') is-invalid @enderror" name="password" placeholder="Contraseña" required autocomplete="new-password" autofocus onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
+				<input id="password" type="password" class="field {{old('password') ? 'active-field' : 'default-field'}}" name="password" placeholder="Contraseña" required autocomplete="new-password" autofocus onkeypress="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')" onclick="activateField(this); enableSubmitIfAllActive(3, 'password-reset-submit')">
 				@error('password')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>

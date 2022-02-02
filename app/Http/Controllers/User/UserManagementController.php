@@ -37,7 +37,7 @@ class UserManagementController extends Controller {
 			'password' => Hash::make($password),
 			'type' => $type
 		]);
-		$user->notify(new NewUserRegistered($user, $password));
+		//$user->notify(new NewUserRegistered($user, $password));
 	}
 		private function randomPassword() {
 			$password = "";
@@ -65,7 +65,7 @@ class UserManagementController extends Controller {
 		]);
 		if ($user->email != $request->email) {
 			$user->update(['email' => $request->email]);
-			$user->notify(new EmailUpdated($user));
+			//$user->notify(new EmailUpdated($user));
 		}
 	}
 
@@ -85,7 +85,7 @@ class UserManagementController extends Controller {
 	}
 
 	public function deleteUser(User $user) {
-		$user->notify(new AccountDeleted($user));
+		//$user->notify(new AccountDeleted($user));
 		$user->delete();
 	}
 }

@@ -38,8 +38,7 @@ class UserAccountController extends Controller {
 
 	protected function deleteSelf() {
 		$user = Auth::user();
-		$userType = $user->type;
-		if ($userType == 'teacher' && !$this->handleTeacherDeletion($user))
+		if ($user->type == 'teacher' && !$this->handleTeacherDeletion($user))
 			return back()->with('message', "¡No podés eliminar tu cuenta! Sos el único docente que puede administrar a otros docentes. Antes de darte de baja, por favor cedé ese permiso a otro docente del sistema.");
 		(new UserManagementController)->deleteUser($user);
 		return redirect()->route('/log-me-in')->with('success', "Cuenta de usuario eliminada con éxito.");

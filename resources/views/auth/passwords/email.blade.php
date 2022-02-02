@@ -34,7 +34,7 @@
 			
 			<label for="email">Dirección de Correo Electrónico</label>
 			<div>
-				<input id="email" type="email" class="field {{old('email') ? 'active-field' : 'default-field'}} @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus onkeypress="activateField(this); enableSubmit('password-reset-email-request-submit')" onclick="activateField(this); enableSubmit('password-reset-email-request-submit')">
+				<input id="email" type="email" class="field {{old('email') ? 'active-field' : 'default-field'}}" name="email" value="{{ old('email') }}" placeholder="ejemplo@mail.com" required autocomplete="email" autofocus onkeypress="activateField(this); enableSubmit('password-reset-email-request-submit')" onclick="activateField(this); enableSubmit('password-reset-email-request-submit')">
 				@error('email')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>
