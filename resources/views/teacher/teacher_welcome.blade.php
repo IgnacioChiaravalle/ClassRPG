@@ -6,10 +6,12 @@
 
 		<title>{{$teacher->name}}</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/TextCopier.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/User General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Teacher/Teacher Welcome Style.css')}}">
 	</head>
 
@@ -39,41 +41,43 @@
 		
 		<p id="name-p">{{$teacher->name}}</p>
 		
-		@if (isset ($my_students))
-			<p>Mis Alumnos:</p>
-			
-			<table class="main-table">
-				<tr class="table-header-row">
-					<td class="table-header-cell">Nombre</td>
-					<td class="table-header-cell">Correo Electrónico</td>
-					<td class="table-header-cell">Nombre de Usuario</td>
-					<td class="table-header-cell">Salud</td>
-					<td class="table-header-cell">Oro</td>
-				</tr>
-
-				@foreach ($my_students as $studentUser)
-					<tr title="Ver detalles del alumno" class="table-inner-row" onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'">
-						<td>{{$studentUser->real_name}}</td>
-						<td>{{$studentUser->email}}</td>
-						<td>{{$studentUser->name}}</td>
-						<td>{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
-						<td>{{$studentUser->coins}}</td>
+		<div class="page-container-div">
+			@if (isset ($my_students))
+				<p>Mis Alumnos:</p>
+				
+				<table class="main-table">
+					<tr class="table-header-row">
+						<td class="table-header-cell">Nombre</td>
+						<td class="table-header-cell">Nombre de Usuario</td>
+						<td class="table-header-cell">Salud</td>
+						<td class="table-header-cell">Oro</td>
+						<td class="table-header-cell">Correo Electrónico</td>
 					</tr>
-				@endforeach
-			</table>
-		@else
-			<p>¡Aún no tenés alumnos asignados!</p>
-		@endif
 
-		<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+					@foreach ($my_students as $studentUser)
+						<tr class="table-inner-row">
+							<td class="main-table-cell" onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" title="Ver detalles del alumno">{{$studentUser->real_name}}</td>
+							<td class="main-table-cell" onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" title="Ver detalles del alumno">{{$studentUser->name}}</td>
+							<td class="main-table-cell" onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" title="Ver detalles del alumno">{{$studentUser->current_health}} / {{$studentUser->max_health}}</td>
+							<td class="main-table-cell" onclick="location.href='/manage-students/handle-student-data/{{$studentUser->name}}'" title="Ver detalles del alumno">{{$studentUser->coins}}</td>
+							<td class="main-table-cell email-cell" onclick="copyToClipboard('{{$studentUser->email}}', 'Correo electrónico')" title="Copiar correo electrónico">{{$studentUser->email}}</td>
+						</tr>
+					@endforeach
+				</table>
+			@else
+				<p class="no-data-p">¡Aún no tenés alumnos asignados!</p>
+			@endif
 
-		@if ($teacher->can_manage_teachers)
-			<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
-		@endif
+			<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
 
-		<button onclick="location.href='/manage-market'">Stock del Mercado</button>
+			@if ($teacher->can_manage_teachers)
+				<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
+			@endif
+			
+			<button onclick="location.href='/manage-market'">Stock del Mercado</button>
 
-		<button onclick="location.href='/manage-classes'">Administrar Clases</button>
+			<button onclick="location.href='/manage-classes'">Administrar Clases</button>
+		</div>
 
 	</body>
 </html>

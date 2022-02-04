@@ -1,0 +1,43 @@
+body {
+	color: white;
+}
+
+#name-p {
+	text-align: center;
+	font-size: 250%;
+	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
+	margin-bottom: 1.5%;
+}
+
+div.page-container-div {
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 2%;
+	width: 95%;
+}
+
+table {
+	text-align: center;
+	border-spacing: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+table.main-table {
+	border: 6px outset;
+	border-radius: 0.5%/4%;
+}
+
+td {
+	width: auto;
+}
+
+p.no-data-p {
+	position: absolute;
+	top: 18%;
+	left: 6%;
+	font-family: PermanentMarker;
+	font-size: 150%;
+	text-shadow: -3px -3px 4px black, 3px -3px 3px black, -3px 3px 4px black, 3px 3px 4px black;
+}

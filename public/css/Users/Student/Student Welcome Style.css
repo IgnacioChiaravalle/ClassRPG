@@ -1,21 +1,15 @@
 body {
 	background-image: url("Images/RPG\ Camp\ -\ Welcome\ Background.jpg");
-	color: white;
 }
 
-#name-and-class-p {
-	text-align: center;
+#name-p {
 	font-family: MedievalSharp;
-	font-size: 250%;
-	text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black;
 	color: rgb(56, 255, 132);
-	margin-bottom: 1.5%;
 }
 
 table.main-table {
 	animation: expandVertically 1500ms;
-	border: 6px rgb(180, 146, 66) outset;
-	border-radius: 0.5%/4%;
+	border-color: rgb(180, 146, 66);
 	background-image: url("Images/Wooden\ Table\ Texture\ -\ Table\ Body.jpg");
 }
 

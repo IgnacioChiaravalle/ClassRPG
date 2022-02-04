@@ -12,7 +12,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Student/Student General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/User General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Student/Student Welcome Style.css')}}">
 	</head>
 	
@@ -40,9 +40,9 @@
 			</button>
 		@endif
 		
-		<p id="name-and-class-p">{{$student->name}} - {{$student->rpg_class}}</p>
+		<p id="name-p">{{$student->name}} - {{$student->rpg_class}}</p>
 		
-		<div class="page-container">
+		<div class="page-container-div">
 			<table class="main-table">
 				<tr class="table-header-row">
 					<td class="table-header-cell" id="inventory-tag-cell">INVENTARIO</td>
@@ -93,7 +93,6 @@
 					<td class="main-table-cell">{{$student->health}} / {{$max_health}}</td>
 					<td class="main-table-cell">{{$student->coins}}</td>
 				</tr>
-
 			</table>
 
 			<button id="market-button" onclick="location.href='/market'">Ir al Mercado</button>
@@ -125,8 +124,7 @@
 					@endif
 				</div>
 			@endforeach
-		
 		</div>
-
+		
 	</body>
 </html>

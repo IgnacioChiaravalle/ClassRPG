@@ -9,7 +9,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Student/Student General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/User General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Student/Market Style.css')}}">
 	</head>
 
@@ -58,11 +58,10 @@
 			</table>
 
 		@else
-			<p class="no-stock-p">¡Aún no artículos para vos disponibles en el mercado! ¡Volvé pronto!</p>
+			<p class="no-data-p">¡Aún no artículos para vos disponibles en el mercado! ¡Volvé pronto!</p>
 		@endif
 
-
 		<button id="heal-self-button" onclick="location.href='/market/heal-student/5'"><span class="heal-self-sign">Poción Curativa<br></span><span class="heal-self-cost">Costo: 5 Monedas de Oro</span></button>
-
+		
 	</body>
 </html>

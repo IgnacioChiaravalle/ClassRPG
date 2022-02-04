@@ -1,6 +1,5 @@
 body {
 	background-image: url("Images/Marketplace\ -\ Market\ Background.jpg");
-	color: white;
 }
 
 #current-coins-p {
@@ -12,8 +11,7 @@ body {
 }
 
 table.main-table {
-	border: 6px rgb(207, 95, 3) outset;
-	border-radius: 0.5%/4%;
+	border-color: rgb(207, 95, 3);
 	background-color: rgb(129, 66, 180);
 	table-layout: fixed;
 }
@@ -37,7 +35,7 @@ td {
 
 td.table-header-cell {
 	padding-top: 0.5%;
-	padding-bottom: 0.55%;
+	padding-bottom: 0.5%;
 	font-family: Staatliches;
 	color: rgb(167, 240, 72);
 	font-size: 175%;
@@ -98,13 +96,4 @@ span.heal-self-sign {
 span.heal-self-cost {
 	font-family: ChakraPetch;
 	font-size: 125%;
-}
-
-p.no-stock-p {
-	position: fixed;
-	top: 18%;
-	left: 6%;
-	font-family: PermanentMarker;
-	font-size: 150%;
-	text-shadow: -3px -3px 4px black, 3px -3px 3px black, -3px 3px 4px black, 3px 3px 4px black;
 }
