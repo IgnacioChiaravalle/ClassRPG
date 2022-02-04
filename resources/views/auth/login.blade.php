@@ -10,8 +10,6 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Login/Login Style.css')}}">
-		<!-- <link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Confirm Style.css')}}"> -->
 	</head>
 
 	<body>
