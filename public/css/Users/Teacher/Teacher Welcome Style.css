@@ -1,11 +1,21 @@
 body {
-	background-image: url("Images/Welcome\ Background\ 2.jpg");
+	background-image: url("Images/Warrior\ VS\ Troll\ -\ Welcome\ Background.jpg");
 }
 
 #name-p {
 	font-family: Staatliches;
 	letter-spacing: 3px;
 	color: rgb(56, 255, 132);
+}
+
+#my-students-p {
+	margin-left: 1%;
+	margin-bottom: 0%;
+	font-family: Quantico;
+	font-size: 150%;
+	letter-spacing: 2px;
+	text-shadow: -2px -2px 2px black, 2px -2px 2px black, -2px 2px 2px black, 2px 2px 2px black;
+	color: rgb(68, 240, 168);
 }
 
 table.main-table {
@@ -45,4 +55,55 @@ td.main-table-cell {
 td.email-cell:hover {
 	cursor: copy;
 	background: linear-gradient(to top left, rgba(0, 238, 255, 0.753), rgba(245, 228, 136, 0.753));
+}
+
+div.send-down-div {
+	position: fixed;
+	top: 35%;
+	width: 100%;
+}
+
+div.user-manager-buttons-div {
+	position: absolute;
+	left: 0%;
+	width: 50%;
+}
+
+div.game-manager-buttons-div {
+	position: absolute;
+	right: 0%;
+	width: 50%;
+}
+
+button.manager-button {
+	display: flex;
+	margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 35%;
+	justify-content: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	box-shadow: 2px 2px 2px 1px black;
+	text-shadow: -1px -1px 3px black, 1px -1px 3px black, -1px 1px 3px black, 1px 1px 3px black;
+	border: 4px outset rgb(139, 56, 0);
+	background: linear-gradient(to top left, rgb(13, 13, 180), rgb(112, 209, 226));
+	border-radius: 4%/25%;
+	font-family: VollkornSC;
+	font-size: 115%;
+	color: rgb(245, 238, 179);
+	transition: 300ms;
+}
+	button.manager-button:hover {
+		cursor: pointer;
+		animation: growFromCenter 300ms;
+		transform: scale(1.1);
+		background: linear-gradient(to top left, rgb(180, 13, 110), rgb(192, 226, 112));
+		border-color: rgb(0, 130, 139);
+		color: white;
+		font-size: 112%;
+	}
+
+button.centered-button {
+	margin-top: 5.55%;
 }

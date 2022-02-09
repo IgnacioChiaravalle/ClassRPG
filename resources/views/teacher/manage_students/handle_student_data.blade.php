@@ -103,7 +103,7 @@
 			<div>
 				<label for="notes_on_student">Mis notas sobre {{$studentUser->name}}:</label>
 				<div>
-					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}" maxlength="65,535">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
+					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
 					@error('notes_on_student')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>

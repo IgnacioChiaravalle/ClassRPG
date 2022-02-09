@@ -43,7 +43,7 @@
 		
 		<div class="page-container-div">
 			@if (isset ($my_students))
-				<p>Mis Alumnos:</p>
+				<p id="my-students-p">Mis Alumnos:</p>
 				
 				<table class="main-table">
 					<tr class="table-header-row">
@@ -67,17 +67,20 @@
 			@else
 				<p class="no-data-p">¡Aún no tenés alumnos asignados!</p>
 			@endif
-
-			<button onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
-
-			@if ($teacher->can_manage_teachers)
-				<button onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
-			@endif
-			
-			<button onclick="location.href='/manage-market'">Stock del Mercado</button>
-
-			<button onclick="location.href='/manage-classes'">Administrar Clases</button>
 		</div>
 
+		<div class="@if (!isset ($my_students)) send-down-div @endif">
+			<div class="user-manager-buttons-div">
+				<button class="manager-button @if (!$teacher->can_manage_teachers) centered-button @endif" onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+				@if ($teacher->can_manage_teachers)
+					<button class="manager-button" onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
+				@endif
+			</div>
+
+			<div class="game-manager-buttons-div">
+				<button class="manager-button" onclick="location.href='/manage-market'">Stock del Mercado</button>
+				<button class="manager-button" onclick="location.href='/manage-classes'">Administrar Clases</button>
+			</div>
+		</div>
 	</body>
 </html>

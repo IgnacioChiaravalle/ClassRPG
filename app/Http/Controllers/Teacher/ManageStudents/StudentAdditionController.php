@@ -17,7 +17,7 @@ class StudentAdditionController extends Controller {
 	}
 
 	protected function createView() {
-		return View::make('teacher.manage_students.add_student')->with('classes', RPGClass::get());
+		return View::make('teacher.manage_students.add_student')->with('classes', RPGClass::orderBy('name', 'asc')->get());
 	}
 
 	protected function addStudent(Request $request) {
