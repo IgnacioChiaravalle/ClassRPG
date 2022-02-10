@@ -39568,16 +39568,18 @@ var render = function() {
                   "tr",
                   {
                     key: teacher.name,
-                    staticClass: "tr-body",
+                    staticClass: "table-inner-row",
                     attrs: { id: teacher.name }
                   },
                   [
-                    _c("td", [_vm._v(_vm._s(teacher.real_name))]),
+                    _c("td", { staticClass: "main-table-cell" }, [
+                      _vm._v(_vm._s(teacher.real_name))
+                    ]),
                     _vm._v(" "),
                     _c(
                       "td",
                       {
-                        staticClass: "email-cell",
+                        staticClass: "main-table-cell email-cell",
                         attrs: { title: "Copiar correo electrónico" },
                         on: {
                           click: function($event) {
@@ -39591,10 +39593,12 @@ var render = function() {
                       [_vm._v(_vm._s(teacher.email))]
                     ),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(teacher.name))]),
+                    _c("td", { staticClass: "main-table-cell" }, [
+                      _vm._v(_vm._s(teacher.name))
+                    ]),
                     _vm._v(" "),
                     teacher.can_manage_teachers
-                      ? _c("td", [
+                      ? _c("td", { staticClass: "main-table-cell" }, [
                           _c("input", {
                             staticClass: "checkbox",
                             attrs: {
@@ -39612,7 +39616,7 @@ var render = function() {
                             }
                           })
                         ])
-                      : _c("td", [
+                      : _c("td", { staticClass: "main-table-cell" }, [
                           _c("input", {
                             staticClass: "checkbox",
                             attrs: {
@@ -39630,11 +39634,12 @@ var render = function() {
                           })
                         ]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "main-table-cell" }, [
                       _c(
                         "button",
                         {
                           staticClass: "deleter-button",
+                          attrs: { title: "Eliminar al Docente" },
                           on: {
                             click: function($event) {
                               return _vm.confirmTeacherDelete(teacher.name)
@@ -39652,11 +39657,17 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
-          _vm._v("(Refrescando tabla...)")
-        ])
+        _c(
+          "p",
+          {
+            ref: "loading",
+            staticClass: "loading-p",
+            attrs: { id: "loading" }
+          },
+          [_vm._v("(Refrescando tabla...)")]
+        )
       ])
-    : _c("div", [_c("p", [_vm._v("No hay otros docentes en el sistema.")])])
+    : _c("div", [_vm._m(1)])
 }
 var staticRenderFns = [
   function() {
@@ -39682,6 +39693,16 @@ var staticRenderFns = [
         _c("td", { staticClass: "table-header-cell" }, [
           _vm._v("¿Querés Eliminar su Usuario?")
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "no-data-p" }, [
+        _vm._v("No hay otros docentes en el sistema.")
       ])
     ])
   }

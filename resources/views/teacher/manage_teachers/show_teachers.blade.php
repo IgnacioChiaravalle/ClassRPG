@@ -6,30 +6,47 @@
 
 		<title>Docentes Activos</title>
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
-
-		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+		<script src = "{{url('/js/TextCopier.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/User General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Manager Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Teacher Management/Show Teachers Style.css')}}">
 	</head>
 
 	<body>
 		@if (Session::has('success'))
-			<div class="alert-toast" id="show-teachers-alert-toast">
-				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('show-teachers-alert-toast')">X</div>
+			<div class="alert-toast-wrapper-div" id="show-teachers-alert-toast">
+				<div class="alert-toast">
+					<p class="toast-text">{{ session('success') }}</p>
+					<div class="toast-closer" onclick="closeToast('show-teachers-alert-toast')">&#10006;</div>
+				</div>
 			</div>
 		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 
-		<div id="parent-component">
-			<teacher-table ref="teacherTable"></teacher-table>
+		@if (Route::has('login'))
+		<button title="Cerrar Sesión" class="logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST">
+				@csrf
+			</form>
+		@endif
+
+		<button title="Volver" class="go-back-button" onclick="location.href='/'"></button>
+
+		<p id="name-p">Docentes Activos</p>
+
+		<div class="page-container-div">
+			<div id="parent-component">
+				<teacher-table ref="teacherTable"></teacher-table>
+			</div>
+			<script src = "{{asset('/js/app.js')}}" defer></script>
+
+			<button class="manager-button" onclick="location.href='/manage-teachers/add-teacher'">Crear un Nuevo Docente</button>
 		</div>
-		<script src = "{{asset('/js/app.js')}}" defer></script>
-
-		<button onclick="location.href='/manage-teachers/add-teacher'">Crear un Nuevo Docente</button>
-
-		<button onclick="location.href='/'">Volver</button>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 <template>
 	<div v-if="teachers != 0">
-		<table id="teacher_table" ref="teacher_table">
+		<table id="teacher_table" ref="teacher_table" class="main-table">
 			<thead>
 				<tr class="table-header-row">
 					<td class="table-header-cell">Nombre</td>
@@ -11,28 +11,28 @@
 				</tr>
 			</thead>
 			<tbody :key="tableBody">
-				<tr v-for="teacher in teachers" :key="teacher.name" :id="teacher.name" class="tr-body">
-					<td>{{ teacher.real_name }}</td>
-					<td>{{ teacher.email }}</td>
-					<td>{{ teacher.name }}</td>
+				<tr v-for="teacher in teachers" :key="teacher.name" :id="teacher.name" class="table-inner-row">
+					<td class="main-table-cell">{{ teacher.real_name }}</td>
+					<td @click="copyToClipboardShell(teacher.email, 'Correo electrónico')" title="Copiar correo electrónico" class="main-table-cell email-cell">{{ teacher.email }}</td>
+					<td class="main-table-cell">{{ teacher.name }}</td>
 
-					<td v-if="teacher.can_manage_teachers">
-						<input type="checkbox" value="can_manage_teachers" checked v-on:change="setCanManageTeachers(teacher.name, false)">
+					<td v-if="teacher.can_manage_teachers" class="main-table-cell">
+						<input type="checkbox" class="checkbox" value="can_manage_teachers" checked v-on:change="setCanManageTeachers(teacher.name, false)">
 					</td>
-					<td v-else>
-						<input type="checkbox" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
+					<td v-else class="main-table-cell">
+						<input type="checkbox" class="checkbox" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
 					</td>
 
-					<td><button @click="confirmTeacherDelete(teacher.name)">&#128465;</button></td>
+					<td class="main-table-cell"><button @click="confirmTeacherDelete(teacher.name)" title="Eliminar al Docente" class="deleter-button">&#128465;</button></td>
 				</tr>
 			</tbody>
 		</table>
 
-		<p id="loading" ref="loading">(Refrescando tabla...)</p>
+		<p id="loading" ref="loading" class="loading-p">(Refrescando tabla...)</p>
 
 	</div>
 	<div v-else>
-		<p>No hay otros docentes en el sistema.</p>
+		<div><p class="no-data-p">No hay otros docentes en el sistema.</p></div>
 	</div>
 </template>
 
@@ -97,6 +97,10 @@
 			},
 			changeTeacherTableVisibility(visibility) {
 				if (this.teachers != 0) this.$refs.teacher_table.style.visibility = visibility
+			},
+
+			copyToClipboardShell(textToCopy, textType) {
+				copyToClipboard(textToCopy, textType)
 			}
 		}
 	}
