@@ -11,8 +11,8 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/User General Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Teacher/Teacher Welcome Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/User General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Teacher Welcome Style.css')}}">
 	</head>
 
 	<body>

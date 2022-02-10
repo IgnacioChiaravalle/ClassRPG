@@ -9,8 +9,8 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/User General Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Users/Student/Market Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/User General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Student/Market Style.css')}}">
 	</head>
 
 	<body>

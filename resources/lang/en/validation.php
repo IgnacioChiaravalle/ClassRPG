@@ -118,7 +118,7 @@ return [
 	'starts_with' => 'The :attribute must start with one of the following: :values.',
 	'string' => 'Debe ingresarse una cadena de texto.',
 	'timezone' => 'The :attribute must be a valid timezone.',
-	'unique' => 'El valor ingresado en este campo ya se haya registrado en la base de datos, y debe ser único.',
+	'unique' => 'El contenido de este campo ya se haya registrado en la base de datos, y debe ser único.',
 	'uploaded' => 'The :attribute failed to upload.',
 	'url' => 'The :attribute must be a valid URL.',
 	'uuid' => 'The :attribute must be a valid UUID.',

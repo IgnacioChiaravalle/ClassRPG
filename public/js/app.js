@@ -2460,6 +2460,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     changeTeacherTableVisibility: function changeTeacherTableVisibility(visibility) {
       if (this.teachers != 0) this.$refs.teacher_table.style.visibility = visibility;
+    },
+    copyToClipboardShell: function copyToClipboardShell(textToCopy, textType) {
+      copyToClipboard(textToCopy, textType);
     }
   }
 });
@@ -39547,81 +39550,107 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.teachers != 0
     ? _c("div", [
-        _c("table", { ref: "teacher_table", attrs: { id: "teacher_table" } }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            { key: _vm.tableBody },
-            _vm._l(_vm.teachers, function(teacher) {
-              return _c(
-                "tr",
-                {
-                  key: teacher.name,
-                  staticClass: "tr-body",
-                  attrs: { id: teacher.name }
-                },
-                [
-                  _c("td", [_vm._v(_vm._s(teacher.real_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(teacher.email))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(teacher.name))]),
-                  _vm._v(" "),
-                  teacher.can_manage_teachers
-                    ? _c("td", [
-                        _c("input", {
-                          attrs: {
-                            type: "checkbox",
-                            value: "can_manage_teachers",
-                            checked: ""
-                          },
-                          on: {
-                            change: function($event) {
-                              return _vm.setCanManageTeachers(
-                                teacher.name,
-                                false
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    : _c("td", [
-                        _c("input", {
-                          attrs: {
-                            type: "checkbox",
-                            value: "can_manage_teachers"
-                          },
-                          on: {
-                            change: function($event) {
-                              return _vm.setCanManageTeachers(
-                                teacher.name,
-                                true
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                  _vm._v(" "),
-                  _c("td", [
+        _c(
+          "table",
+          {
+            ref: "teacher_table",
+            staticClass: "main-table",
+            attrs: { id: "teacher_table" }
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              { key: _vm.tableBody },
+              _vm._l(_vm.teachers, function(teacher) {
+                return _c(
+                  "tr",
+                  {
+                    key: teacher.name,
+                    staticClass: "tr-body",
+                    attrs: { id: teacher.name }
+                  },
+                  [
+                    _c("td", [_vm._v(_vm._s(teacher.real_name))]),
+                    _vm._v(" "),
                     _c(
-                      "button",
+                      "td",
                       {
+                        staticClass: "email-cell",
+                        attrs: { title: "Copiar correo electrónico" },
                         on: {
                           click: function($event) {
-                            return _vm.confirmTeacherDelete(teacher.name)
+                            return _vm.copyToClipboardShell(
+                              teacher.email,
+                              "Correo electrónico"
+                            )
                           }
                         }
                       },
-                      [_vm._v("🗑")]
-                    )
-                  ])
-                ]
-              )
-            }),
-            0
-          )
-        ]),
+                      [_vm._v(_vm._s(teacher.email))]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(teacher.name))]),
+                    _vm._v(" "),
+                    teacher.can_manage_teachers
+                      ? _c("td", [
+                          _c("input", {
+                            staticClass: "checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              value: "can_manage_teachers",
+                              checked: ""
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.setCanManageTeachers(
+                                  teacher.name,
+                                  false
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      : _c("td", [
+                          _c("input", {
+                            staticClass: "checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              value: "can_manage_teachers"
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.setCanManageTeachers(
+                                  teacher.name,
+                                  true
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "deleter-button",
+                          on: {
+                            click: function($event) {
+                              return _vm.confirmTeacherDelete(teacher.name)
+                            }
+                          }
+                        },
+                        [_vm._v("🗑")]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("p", { ref: "loading", attrs: { id: "loading" } }, [
           _vm._v("(Refrescando tabla...)")
