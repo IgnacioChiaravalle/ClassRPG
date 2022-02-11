@@ -2,31 +2,6 @@ body {
 	background-image: url("Party\ -\ Student\ Creation\ Background.jpg");
 }
 
-h1 {
-	padding-top: 0.75%;
-	margin-left: 7%;
-	margin-bottom: 2%;
-	font-family: VollkornSC;
-	color: gold;
-	font-size: 250%;
-	text-shadow: -3px -3px 4px black, 3px -3px 4px black, -3px 3px 4px black, 3px 3px 4px black;
-}
-
-form.input-form {
-	margin-left: 3%;
-}
-
-label {
-	font-size: 110%;
-}
-
-input.field {
-	margin-bottom: 1%;
-	font-size: 115%;
-	width: 40%;
-	border-radius: 1%/15%;
-}
-
 select {
 	margin-bottom: 1%;
 	margin-left: 0.5%;
@@ -51,18 +26,9 @@ option {
 textarea {
 	width: 40%;
 	padding: 0.5%;
-	margin-bottom: 1%;
 	font-family: Nunito;
 	font-size: 95%;
 	letter-spacing: 1px;
 	border: 3px outset indigo;
 	background-color: beige;
-}
-
-input.submit {
-	margin-left: 17.5%;
-	font-family: Staatliches;
-	font-size: 150%;
-	border-radius: 10%/20%;
-	width: fit-content;
 }

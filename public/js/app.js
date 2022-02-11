@@ -2350,6 +2350,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -39601,10 +39603,28 @@ var render = function() {
                     _vm._v(" "),
                     teacher.can_manage_teachers
                       ? _c("td", { staticClass: "main-table-cell" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "checkbox-label",
+                              attrs: { for: "can_manage_teachers" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setCanManageTeachers(
+                                    teacher.name,
+                                    false
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Deshabilitar:")]
+                          ),
+                          _vm._v(" "),
                           _c("input", {
                             staticClass: "checkbox",
                             attrs: {
                               type: "checkbox",
+                              name: "can_manage_teachers",
                               value: "can_manage_teachers",
                               checked: ""
                             },
@@ -39619,10 +39639,28 @@ var render = function() {
                           })
                         ])
                       : _c("td", { staticClass: "main-table-cell" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "checkbox-label",
+                              attrs: { for: "can_manage_teachers" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setCanManageTeachers(
+                                    teacher.name,
+                                    true
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Habilitar:")]
+                          ),
+                          _vm._v(" "),
                           _c("input", {
                             staticClass: "checkbox",
                             attrs: {
                               type: "checkbox",
+                              name: "can_manage_teachers",
                               value: "can_manage_teachers"
                             },
                             on: {

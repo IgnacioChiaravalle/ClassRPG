@@ -13,14 +13,16 @@
 			<tbody :key="tableBody">
 				<tr v-for="teacher in teachers" :key="teacher.name" :id="teacher.name" class="table-inner-row">
 					<td class="main-table-cell">{{ teacher.real_name }}</td>
-					<td @click="copyToClipboardShell(teacher.email, 'Correo electrónico')" title="Copiar correo electrónico" class="main-table-cell email-cell">{{ teacher.email }}</td>
+					<td class="main-table-cell email-cell" title="Copiar correo electrónico" @click="copyToClipboardShell(teacher.email, 'Correo electrónico')">{{ teacher.email }}</td>
 					<td class="main-table-cell">{{ teacher.name }}</td>
 
 					<td v-if="teacher.can_manage_teachers" class="main-table-cell">
-						<input type="checkbox" class="checkbox" value="can_manage_teachers" checked v-on:change="setCanManageTeachers(teacher.name, false)">
+						<label for="can_manage_teachers" class="checkbox-label" @click="setCanManageTeachers(teacher.name, false)">Deshabilitar:</label>
+						<input type="checkbox" class="checkbox" name="can_manage_teachers" value="can_manage_teachers" checked v-on:change="setCanManageTeachers(teacher.name, false)">
 					</td>
 					<td v-else class="main-table-cell">
-						<input type="checkbox" class="checkbox" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
+						<label for="can_manage_teachers" class="checkbox-label" @click="setCanManageTeachers(teacher.name, true)">Habilitar:</label>
+						<input type="checkbox" class="checkbox" name="can_manage_teachers" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
 					</td>
 
 					<td class="main-table-cell"><button @click="confirmTeacherDelete(teacher.name)" title="Eliminar al Docente" class="deleter-button">&#128465;</button></td>

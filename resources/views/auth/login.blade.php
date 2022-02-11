@@ -51,7 +51,7 @@
 
 				<div class="form-check">
 					<input type="checkbox" class="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-					<label class="descriptive-label form-check-label" for="remember">
+					<label class="descriptive-label checkbox-label" for="remember">
 						Recordar mis datos
 					</label>
 				</div>

@@ -10,6 +10,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Add User General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Student Creation/Add Student Style.css')}}">
 	</head>
 

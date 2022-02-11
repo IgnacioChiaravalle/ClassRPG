@@ -58,9 +58,8 @@ label {
 	label.invalid-feedback-label {
 		color: rgb(255, 0, 0);
 	}
-	label.form-check-label {
+	label.checkbox-label {
 		font-size: 100%;
-		cursor: pointer;
 	}
 
 input.field {

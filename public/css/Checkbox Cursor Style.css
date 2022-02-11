@@ -1,3 +1,7 @@
 input.checkbox {
 	cursor: pointer;
 }
+
+label.checkbox-label {
+	cursor: pointer;
+}
