@@ -9,6 +9,7 @@
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Login/Login Style.css')}}">
 	</head>
 
@@ -49,7 +50,7 @@
 				</div>
 
 				<div class="form-check">
-					<input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+					<input type="checkbox" class="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 					<label class="descriptive-label form-check-label" for="remember">
 						Recordar mis datos
 					</label>

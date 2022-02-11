@@ -42,10 +42,6 @@ td.email-cell:hover {
 	background: linear-gradient(to top left, rgba(255, 17, 0, 0.753), rgba(245, 228, 136, 0.753));
 }
 
-input.checkbox {
-	cursor: pointer;
-}
-
 button.deleter-button {
 	width: 100%;
 	height: 100%;

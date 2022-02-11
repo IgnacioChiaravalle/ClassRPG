@@ -7,6 +7,7 @@
 		<title>Crear Artículo</title>
 		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -93,7 +94,7 @@
 			
 			<div>
 				<label for="marketable">¿Estará a la Venta?</label>
-				<input id="marketable" type="checkbox" name="marketable" value="marketable">
+				<input id="marketable" type="checkbox" class="checkbox" name="marketable" value="marketable">
 			</div>
 
 			<input type="submit" value="Aceptar">

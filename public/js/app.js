@@ -39031,6 +39031,7 @@ var render = function() {
                     sale.marketable
                       ? _c("td", [
                           _c("input", {
+                            staticClass: "checkbox",
                             attrs: {
                               type: "checkbox",
                               value: "marketable",
@@ -39045,6 +39046,7 @@ var render = function() {
                         ])
                       : _c("td", [
                           _c("input", {
+                            staticClass: "checkbox",
                             attrs: { type: "checkbox", value: "marketable" },
                             on: {
                               change: function($event) {

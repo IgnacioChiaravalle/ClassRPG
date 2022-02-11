@@ -82,10 +82,6 @@ input.field {
 		color: rgb(51, 32, 156);
 	}
 
-input.checkbox {
-	cursor: pointer;
-}
-
 a {
 	float: right;
 	font-family: Quantico;

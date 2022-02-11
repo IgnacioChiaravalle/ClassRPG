@@ -35,10 +35,10 @@
 					<td @click="setSelected(sale)">{{ sale.cost }}</td>
 
 					<td v-if="sale.marketable">
-						<input type="checkbox" value="marketable" checked @change="setMarketable(sale.name, false)">
+						<input type="checkbox" class="checkbox" value="marketable" checked @change="setMarketable(sale.name, false)">
 					</td>
 					<td v-else>
-						<input type="checkbox" value="marketable" @change="setMarketable(sale.name, true)">
+						<input type="checkbox" class="checkbox" value="marketable" @change="setMarketable(sale.name, true)">
 					</td>
 
 					<td @click="setSelected(sale)">{{ sale.users }}</td>
