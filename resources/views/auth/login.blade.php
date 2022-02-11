@@ -49,7 +49,7 @@
 				</div>
 
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+					<input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 					<label class="descriptive-label form-check-label" for="remember">
 						Recordar mis datos
 					</label>

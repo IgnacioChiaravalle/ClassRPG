@@ -10,6 +10,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password Reset Email Request Style.css')}}">

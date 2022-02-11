@@ -82,7 +82,7 @@ input.field {
 		color: rgb(51, 32, 156);
 	}
 
-input.form-check-input:hover {
+input.checkbox {
 	cursor: pointer;
 }
 
