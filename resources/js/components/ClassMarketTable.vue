@@ -58,17 +58,17 @@
 
 				<div v-if="selectedSale.added_damage != null">
 					<label for="added_damage">Daño que Añade:</label>
-					<input class="field default-field" id="added_damage" ref="added_damage" :value="selectedSale.added_damage" name="added_damage" type="number" @keypress="activateFieldShell('added_damage'); resizeInput('added_damage'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('added_damage'); resizeInput('added_damage'); enableSubmitShell('class-market-table-edition-submit')">
+					<input class="field default-field" id="added_damage" ref="added_damage" :value="selectedSale.added_damage" name="added_damage" type="number" @keypress="activateFieldShell('added_damage'); resizeFieldShell('added_damage'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('added_damage'); resizeFieldShell('added_damage'); enableSubmitShell('class-market-table-edition-submit')">
 				</div>
 
 				<div v-if="selectedSale.added_health != null">
 					<label for="added_health">Salud que Añade:</label>
-					<input class="field default-field" id="added_health" ref="added_health" :value="selectedSale.added_health" name="added_health" type="number" @keypress="activateFieldShell('added_health'); resizeInput('added_health'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('added_health'); resizeInput('added_health'); enableSubmitShell('class-market-table-edition-submit')">
+					<input class="field default-field" id="added_health" ref="added_health" :value="selectedSale.added_health" name="added_health" type="number" @keypress="activateFieldShell('added_health'); resizeFieldShell('added_health'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('added_health'); resizeFieldShell('added_health'); enableSubmitShell('class-market-table-edition-submit')">
 				</div>
 
 				<div>
 					<label for="cost">Costo:</label>
-					<input class="field default-field" id="cost" ref="cost" :value="selectedSale.cost" required name="cost" type="number" @keypress="activateFieldShell('cost'); resizeInput('cost'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('cost'); resizeInput('cost'); enableSubmitShell('class-market-table-edition-submit')">
+					<input class="field default-field" id="cost" ref="cost" :value="selectedSale.cost" required name="cost" type="number" @keypress="activateFieldShell('cost'); resizeFieldShell('cost'); enableSubmitShell('class-market-table-edition-submit')" @click="activateFieldShell('cost'); resizeFieldShell('cost'); enableSubmitShell('class-market-table-edition-submit')">
 				</div>
 
 				<input type="submit" id="class-market-table-edition-submit" class="submit disabled-submit" :class="(selectedSale.added_damage != null && selectedSale.added_health != null) ? 'higher-submit' : 'lower-submit'" disabled="disabled" value="Aceptar" @click="submitForm()">
@@ -165,11 +165,8 @@
 				this.resetFieldClassAndWidth(this.$refs['cost'])
 			},
 			resetFieldClassAndWidth(field) {
-				if (field.classList.contains("active-field")) {
-					field.classList.remove("active-field")
-					field.classList.add("default-field")
-				}
-				field.style.width = 5 + 'ch'
+				deactivateField(field)
+				field.style.width = '5ch'
 			},
 
 			activateFieldShell(fieldRef) {
@@ -179,9 +176,8 @@
 				enableSubmit(toEnableID)
 			},
 
-			resizeInput(fieldRef) {
-				var field = this.$refs[fieldRef]
-				field.style.width = field.value.length + 3 + 'ch'
+			resizeFieldShell(fieldRef) {
+				resizeField(this.$refs[fieldRef])
 			},
 
 			async submitForm() {

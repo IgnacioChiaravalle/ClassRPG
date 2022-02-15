@@ -12,7 +12,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/User General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Student/Student Welcome Style.css')}}">
 	</head>
 	

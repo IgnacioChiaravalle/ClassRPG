@@ -13,7 +13,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/User General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Reactive Table General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Manager Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Market Management General Style.css')}}">

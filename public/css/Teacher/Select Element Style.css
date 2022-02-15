@@ -1,0 +1,20 @@
+select {
+	margin-bottom: 1%;
+	margin-left: 0.5%;
+	padding: 0.25%;
+	border: 3px outset rgb(218, 0, 0);
+	border-radius: 2%/20%;
+	background-color: rgb(126, 7, 7);
+	color: whitesmoke;
+	font-family: VollkornSC;
+	font-size: 110%;
+	cursor: pointer;
+}
+option {
+	font-family: ArchitectsDaughter;
+	color: black;
+	background-color: palegoldenrod;
+}
+	option:checked {
+		background-color: rgb(245, 196, 106)
+	}

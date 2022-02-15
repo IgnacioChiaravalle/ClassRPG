@@ -2081,12 +2081,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.resetFieldClassAndWidth(this.$refs['cost']);
     },
     resetFieldClassAndWidth: function resetFieldClassAndWidth(field) {
-      if (field.classList.contains("active-field")) {
-        field.classList.remove("active-field");
-        field.classList.add("default-field");
-      }
-
-      field.style.width = 5 + 'ch';
+      deactivateField(field);
+      field.style.width = '5ch';
     },
     activateFieldShell: function activateFieldShell(fieldRef) {
       activateField(this.$refs[fieldRef]);
@@ -2094,9 +2090,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     enableSubmitShell: function enableSubmitShell(toEnableID) {
       enableSubmit(toEnableID);
     },
-    resizeInput: function resizeInput(fieldRef) {
-      var field = this.$refs[fieldRef];
-      field.style.width = field.value.length + 3 + 'ch';
+    resizeFieldShell: function resizeFieldShell(fieldRef) {
+      resizeField(this.$refs[fieldRef]);
     },
     submitForm: function submitForm() {
       var _this4 = this;
@@ -39198,14 +39193,14 @@ var render = function() {
                           on: {
                             keypress: function($event) {
                               _vm.activateFieldShell("added_damage")
-                              _vm.resizeInput("added_damage")
+                              _vm.resizeFieldShell("added_damage")
                               _vm.enableSubmitShell(
                                 "class-market-table-edition-submit"
                               )
                             },
                             click: function($event) {
                               _vm.activateFieldShell("added_damage")
-                              _vm.resizeInput("added_damage")
+                              _vm.resizeFieldShell("added_damage")
                               _vm.enableSubmitShell(
                                 "class-market-table-edition-submit"
                               )
@@ -39233,14 +39228,14 @@ var render = function() {
                           on: {
                             keypress: function($event) {
                               _vm.activateFieldShell("added_health")
-                              _vm.resizeInput("added_health")
+                              _vm.resizeFieldShell("added_health")
                               _vm.enableSubmitShell(
                                 "class-market-table-edition-submit"
                               )
                             },
                             click: function($event) {
                               _vm.activateFieldShell("added_health")
-                              _vm.resizeInput("added_health")
+                              _vm.resizeFieldShell("added_health")
                               _vm.enableSubmitShell(
                                 "class-market-table-edition-submit"
                               )
@@ -39266,14 +39261,14 @@ var render = function() {
                       on: {
                         keypress: function($event) {
                           _vm.activateFieldShell("cost")
-                          _vm.resizeInput("cost")
+                          _vm.resizeFieldShell("cost")
                           _vm.enableSubmitShell(
                             "class-market-table-edition-submit"
                           )
                         },
                         click: function($event) {
                           _vm.activateFieldShell("cost")
-                          _vm.resizeInput("cost")
+                          _vm.resizeFieldShell("cost")
                           _vm.enableSubmitShell(
                             "class-market-table-edition-submit"
                           )

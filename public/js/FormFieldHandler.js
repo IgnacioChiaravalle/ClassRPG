@@ -5,19 +5,32 @@ function updateEnabledFields(dropDownMenu) {
 	damageField = document.getElementById("added_damage");
 	healthField = document.getElementById("added_health");
 	selectedValue = dropDownMenu.value;
-	if (DAMAGE_ADDERS.includes(selectedValue))
+	if (DAMAGE_ADDERS.includes(selectedValue)) {
 		damageField.disabled = false;
+		activateField(damageField);
+	}
 	else {
 		damageField.disabled = true;
 		damageField.value = 0;
+		deactivateField(damageField);
 	}
 	
-	if (HEALTH_ADDERS.includes(selectedValue))
+	if (HEALTH_ADDERS.includes(selectedValue)) {
 		healthField.disabled = false;
+		activateField(healthField);
+	}
 	else {
 		healthField.disabled = true;
 		healthField.value = 0;
+		deactivateField(healthField);
 	}
+}
+
+function resizeManyFields(fieldArray) {
+	fieldArray.forEach(fieldID => {
+		field = document.getElementById(fieldID);
+		resizeField(field);
+	})
 }
 
 function clearFieldIfDefault(field) {
@@ -30,6 +43,16 @@ function activateField(field) {
 		field.classList.remove("default-field");
 		field.classList.add("active-field");
 	}
+}
+function deactivateField(field) {
+	if (field.classList.contains("active-field")) {
+		field.classList.remove("active-field");
+		field.classList.add("default-field");
+	}
+}
+
+function resizeField(field) {
+	field.style.width = field.value.length + 3 + 'ch'
 }
 
 function enableSubmitIfAllActive(minimum, toEnableID) {

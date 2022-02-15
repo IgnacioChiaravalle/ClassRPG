@@ -1,0 +1,32 @@
+form.input-form {
+	margin-left: 3%;
+}
+
+label {
+	font-size: 110%;
+}
+
+input.field {
+	margin-bottom: 1%;
+	font-size: 115%;
+}
+
+input.text-field {
+	width: 40%;
+	border-radius: 1%/15%;
+}
+input.number-field {
+	margin-left: 0.5%;
+	width: 3ch;
+	text-align: center;
+	border-radius: 10%/25%;
+}
+
+input.submit {
+	margin-top: 1%;
+	margin-left: 17.5%;
+	font-family: LondrinaSolid;
+	font-size: 150%;
+	border-radius: 10%/20%;
+	width: fit-content;
+}
