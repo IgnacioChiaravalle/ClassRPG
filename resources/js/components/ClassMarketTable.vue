@@ -180,8 +180,8 @@
 			},
 
 			resizeInput(fieldRef) {
-				var input = this.$refs[fieldRef]
-				input.style.width = input.value.length + 3 + 'ch'
+				var field = this.$refs[fieldRef]
+				field.style.width = field.value.length + 3 + 'ch'
 			},
 
 			async submitForm() {

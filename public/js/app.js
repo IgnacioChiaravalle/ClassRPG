@@ -2095,8 +2095,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       enableSubmit(toEnableID);
     },
     resizeInput: function resizeInput(fieldRef) {
-      var input = this.$refs[fieldRef];
-      input.style.width = input.value.length + 3 + 'ch';
+      var field = this.$refs[fieldRef];
+      field.style.width = field.value.length + 3 + 'ch';
     },
     submitForm: function submitForm() {
       var _this4 = this;
