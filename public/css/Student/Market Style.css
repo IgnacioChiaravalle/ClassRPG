@@ -59,9 +59,15 @@ td.Armadura-cell {
 td.Ítem-cell {
 	color: yellow;
 }
+
 td.number-cell {
 	font-size: 130%;
+}
+td.addition-cell {
 	color: lightyellow;
+}
+td.cost-cell {
+	color: gold;
 }
 
 #heal-self-button {

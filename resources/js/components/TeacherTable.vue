@@ -25,7 +25,7 @@
 						<input type="checkbox" class="checkbox" name="can_manage_teachers" value="can_manage_teachers" v-on:change="setCanManageTeachers(teacher.name, true)">
 					</td>
 
-					<td class="main-table-cell"><button @click="confirmTeacherDelete(teacher.name)" title="Eliminar al Docente" class="deleter-button">&#128465;</button></td>
+					<td class="main-table-cell"><button class="deleter-button" title="Eliminar al Docente" @click="confirmTeacherDelete(teacher.name)">&#128465;</button></td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,0 +1,95 @@
+table.main-table {
+	border-color: rgb(4, 102, 12);
+	background-color: rgba(136, 2, 170, 0.753);
+	cursor: default;
+}
+
+tr.table-header-row {
+	background-color: rgba(5, 80, 39, 0.897);
+}
+
+tr.table-inner-row:hover {
+	background-color: rgba(92, 4, 114, 0.753);
+}
+
+td {
+	border: 1px rgb(5, 109, 14) solid;
+}
+
+td.table-header-cell {
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+	font-family: MedievalSharp;
+	color: rgb(255, 174, 0);
+	font-size: 130%;
+	text-shadow: -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black, 2px 2px 3px black;
+}
+
+td.clickable-cell {
+	cursor: pointer;
+}
+
+td.Arma-cell {
+	color: rgb(255, 81, 0);
+}
+td.Armadura-cell {
+	color: rgb(150, 212, 250);
+}
+td.Ítem-cell {
+	color: yellow;
+}
+
+td.cost-cell {
+	color: greenyellow;
+}
+
+h2.sale-name-h2 {
+	font-family: LuckiestGuy;
+	font-weight: normal;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px 3px black, 2px 2px 3px black, 2px 2px 3px black, 2px 2px 3px black;
+}
+	h2.Arma-h2 {
+		color: rgb(255, 35, 0);
+	}
+	h2.Armadura-h2 {
+		color: rgb(150, 212, 250);
+	}
+	h2.Ítem-h2 {
+		color: yellow;
+	}
+
+
+label {
+	font-size: 110%;
+}
+
+input.field {
+	display: inline-block;
+	margin-bottom: 0.5%;
+	margin-left: 0.5%;
+	font-size: 110%;
+	width: 5ch;
+	text-align: center;
+	border-radius: 10%/25%;
+}
+
+input.submit {
+	position: absolute;
+	margin-left: 20%;
+	font-family: LondrinaSolid;
+	font-size: 150%;
+	border-radius: 10%/20%;
+	width: fit-content;
+}
+	input.higher-submit {
+		margin-top: -5.5%;
+	}
+	input.lower-submit {
+		margin-top: -4%;
+	}
+
+button.manager-button {
+	margin-top: 7.5%;
+	width: 27%;
+}

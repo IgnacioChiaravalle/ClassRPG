@@ -1952,7 +1952,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       onSaleList: null,
       selectedSale: null,
-      tableBody: 0
+      tableBody: 0,
+      formBody: 0
     };
   },
   mounted: function mounted() {
@@ -2072,6 +2073,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     setSelected: function setSelected(sale) {
       this.selectedSale = sale;
+      this.formBody++;
+    },
+    resetFields: function resetFields() {
+      this.resetFieldClassAndWidth(this.$refs['added_damage']);
+      this.resetFieldClassAndWidth(this.$refs['added_health']);
+      this.resetFieldClassAndWidth(this.$refs['cost']);
+    },
+    resetFieldClassAndWidth: function resetFieldClassAndWidth(field) {
+      if (field.classList.contains("active-field")) {
+        field.classList.remove("active-field");
+        field.classList.add("default-field");
+      }
+
+      field.style.width = 5 + 'ch';
+    },
+    activateFieldShell: function activateFieldShell(fieldRef) {
+      activateField(this.$refs[fieldRef]);
+    },
+    enableSubmitShell: function enableSubmitShell(toEnableID) {
+      enableSubmit(toEnableID);
+    },
+    resizeInput: function resizeInput(fieldRef) {
+      var input = this.$refs[fieldRef];
+      input.style.width = input.value.length + 3 + 'ch';
     },
     submitForm: function submitForm() {
       var _this4 = this;
@@ -38912,334 +38937,376 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.onSaleList != 0
-    ? _c("div", [
-        _c("p", [_vm._v("Stock para el " + _vm._s(_vm.rpg_class) + ":")]),
-        _vm._v(" "),
-        _c(
-          "table",
-          { ref: "class_market_table", attrs: { id: "class_market_table" } },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              { key: _vm.tableBody },
-              _vm._l(_vm.onSaleList, function(sale) {
-                return _c(
-                  "tr",
-                  {
-                    key: sale.name,
-                    staticClass: "tr-body",
-                    attrs: { id: sale.name }
-                  },
-                  [
-                    _c(
-                      "td",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.setSelected(sale)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(sale.name))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.setSelected(sale)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(sale.type))]
-                    ),
-                    _vm._v(" "),
-                    sale.added_damage != null
-                      ? _c(
-                          "td",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.setSelected(sale)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t" +
-                                _vm._s(sale.added_damage) +
-                                "\n\t\t\t\t"
-                            )
-                          ]
-                        )
-                      : _c(
-                          "td",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.setSelected(sale)
-                              }
-                            }
-                          },
-                          [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]
-                        ),
-                    _vm._v(" "),
-                    sale.added_health != null
-                      ? _c(
-                          "td",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.setSelected(sale)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t" +
-                                _vm._s(sale.added_health) +
-                                "\n\t\t\t\t"
-                            )
-                          ]
-                        )
-                      : _c(
-                          "td",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.setSelected(sale)
-                              }
-                            }
-                          },
-                          [_vm._v("\n\t\t\t\t\t0\n\t\t\t\t")]
-                        ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.setSelected(sale)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(sale.cost))]
-                    ),
-                    _vm._v(" "),
-                    sale.marketable
-                      ? _c("td", [
-                          _c("input", {
-                            staticClass: "checkbox",
-                            attrs: {
-                              type: "checkbox",
-                              value: "marketable",
-                              checked: ""
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.setMarketable(sale.name, false)
-                              }
-                            }
-                          })
-                        ])
-                      : _c("td", [
-                          _c("input", {
-                            staticClass: "checkbox",
-                            attrs: { type: "checkbox", value: "marketable" },
-                            on: {
-                              change: function($event) {
-                                return _vm.setMarketable(sale.name, true)
-                              }
-                            }
-                          })
-                        ]),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.setSelected(sale)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(sale.users))]
-                    ),
-                    _vm._v(" "),
-                    _c("td", [
+  return _c("div", [
+    _c("p", { staticClass: "title-p" }, [
+      _vm._v("Stock para el " + _vm._s(_vm.rpg_class) + ":")
+    ]),
+    _vm._v(" "),
+    _vm.onSaleList != 0
+      ? _c("div", [
+          _c(
+            "table",
+            {
+              ref: "class_market_table",
+              staticClass: "main-table",
+              attrs: { id: "class_market_table" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                { key: _vm.tableBody },
+                _vm._l(_vm.onSaleList, function(sale) {
+                  return _c(
+                    "tr",
+                    {
+                      key: sale.name,
+                      staticClass: "table-inner-row",
+                      attrs: { id: sale.name }
+                    },
+                    [
                       _c(
-                        "button",
+                        "td",
                         {
+                          staticClass: "main-table-cell clickable-cell",
                           on: {
                             click: function($event) {
-                              return _vm.confirmSaleDelete(
-                                sale.name,
-                                sale.users
+                              return _vm.setSelected(sale)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(sale.name))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass: "main-table-cell clickable-cell",
+                          class: sale.type + "-cell",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSelected(sale)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(sale.type))]
+                      ),
+                      _vm._v(" "),
+                      sale.added_damage != null
+                        ? _c(
+                            "td",
+                            {
+                              staticClass: "main-table-cell clickable-cell",
+                              on: {
+                                click: function($event) {
+                                  return _vm.setSelected(sale)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t" +
+                                  _vm._s(sale.added_damage) +
+                                  "\n\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        : _c(
+                            "td",
+                            {
+                              staticClass: "main-table-cell clickable-cell",
+                              on: {
+                                click: function($event) {
+                                  return _vm.setSelected(sale)
+                                }
+                              }
+                            },
+                            [_vm._v("\n\t\t\t\t\t\t0\n\t\t\t\t\t")]
+                          ),
+                      _vm._v(" "),
+                      sale.added_health != null
+                        ? _c(
+                            "td",
+                            {
+                              staticClass: "main-table-cell clickable-cell",
+                              on: {
+                                click: function($event) {
+                                  return _vm.setSelected(sale)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t" +
+                                  _vm._s(sale.added_health) +
+                                  "\n\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        : _c(
+                            "td",
+                            {
+                              staticClass: "main-table-cell clickable-cell",
+                              on: {
+                                click: function($event) {
+                                  return _vm.setSelected(sale)
+                                }
+                              }
+                            },
+                            [_vm._v("\n\t\t\t\t\t\t0\n\t\t\t\t\t")]
+                          ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "main-table-cell clickable-cell cost-cell",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSelected(sale)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(sale.cost))]
+                      ),
+                      _vm._v(" "),
+                      sale.marketable
+                        ? _c("td", { staticClass: "main-table-cell" }, [
+                            _c("input", {
+                              staticClass: "checkbox",
+                              attrs: {
+                                type: "checkbox",
+                                value: "marketable",
+                                checked: ""
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.setMarketable(sale.name, false)
+                                }
+                              }
+                            })
+                          ])
+                        : _c("td", { staticClass: "main-table-cell" }, [
+                            _c("input", {
+                              staticClass: "checkbox",
+                              attrs: { type: "checkbox", value: "marketable" },
+                              on: {
+                                change: function($event) {
+                                  return _vm.setMarketable(sale.name, true)
+                                }
+                              }
+                            })
+                          ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass: "main-table-cell clickable-cell",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSelected(sale)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(sale.users))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "main-table-cell" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "deleter-button",
+                            attrs: { title: "Eliminar el Artículo" },
+                            on: {
+                              click: function($event) {
+                                return _vm.confirmSaleDelete(
+                                  sale.name,
+                                  sale.users
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("🗑")]
+                        )
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              ref: "loading",
+              staticClass: "loading-p",
+              attrs: { id: "loading" }
+            },
+            [_vm._v("(Refrescando tabla...)")]
+          ),
+          _vm._v(" "),
+          _vm.selectedSale != null
+            ? _c(
+                "form",
+                {
+                  key: _vm.formBody,
+                  ref: "form",
+                  staticClass: "input-form",
+                  attrs: {
+                    method: "POST",
+                    action: "/manage-market/edit-sale/" + _vm.selectedSale.name
+                  },
+                  on: {
+                    load: function($event) {
+                      return _vm.resetFields()
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "h2",
+                    {
+                      staticClass: "sale-name-h2",
+                      class: _vm.selectedSale.type + "-h2"
+                    },
+                    [_vm._v(_vm._s(_vm.selectedSale.name))]
+                  ),
+                  _vm._v(" "),
+                  _vm.selectedSale.added_damage != null
+                    ? _c("div", [
+                        _c("label", { attrs: { for: "added_damage" } }, [
+                          _vm._v("Daño que Añade:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "added_damage",
+                          staticClass: "field default-field",
+                          attrs: {
+                            id: "added_damage",
+                            name: "added_damage",
+                            type: "number"
+                          },
+                          domProps: { value: _vm.selectedSale.added_damage },
+                          on: {
+                            keypress: function($event) {
+                              _vm.activateFieldShell("added_damage")
+                              _vm.resizeInput("added_damage")
+                              _vm.enableSubmitShell(
+                                "class-market-table-edition-submit"
+                              )
+                            },
+                            click: function($event) {
+                              _vm.activateFieldShell("added_damage")
+                              _vm.resizeInput("added_damage")
+                              _vm.enableSubmitShell(
+                                "class-market-table-edition-submit"
                               )
                             }
                           }
-                        },
-                        [_vm._v("🗑")]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
-          _vm._v("(Refrescando tabla...)")
-        ]),
-        _vm._v(" "),
-        _c("p"),
-        _vm._v(" "),
-        _vm.selectedSale != null
-          ? _c(
-              "form",
-              {
-                ref: "form",
-                attrs: {
-                  method: "POST",
-                  action: "/manage-market/edit-sale/" + _vm.selectedSale.name
-                }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.selectedSale.name))]),
-                _vm._v(" "),
-                _vm.selectedSale.added_damage != null
-                  ? _c("div", [
-                      _c("label", { attrs: { for: "added_damage" } }, [
-                        _vm._v("Daño que Añade:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedSale.added_damage,
-                            expression: "selectedSale.added_damage"
-                          }
-                        ],
-                        attrs: {
-                          id: "added_damage",
-                          name: "added_damage",
-                          type: "number"
-                        },
-                        domProps: { value: _vm.selectedSale.added_damage },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.selectedSale.added_health != null
+                    ? _c("div", [
+                        _c("label", { attrs: { for: "added_health" } }, [
+                          _vm._v("Salud que Añade:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "added_health",
+                          staticClass: "field default-field",
+                          attrs: {
+                            id: "added_health",
+                            name: "added_health",
+                            type: "number"
+                          },
+                          domProps: { value: _vm.selectedSale.added_health },
+                          on: {
+                            keypress: function($event) {
+                              _vm.activateFieldShell("added_health")
+                              _vm.resizeInput("added_health")
+                              _vm.enableSubmitShell(
+                                "class-market-table-edition-submit"
+                              )
+                            },
+                            click: function($event) {
+                              _vm.activateFieldShell("added_health")
+                              _vm.resizeInput("added_health")
+                              _vm.enableSubmitShell(
+                                "class-market-table-edition-submit"
+                              )
                             }
-                            _vm.$set(
-                              _vm.selectedSale,
-                              "added_damage",
-                              $event.target.value
-                            )
                           }
-                        }
-                      })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.selectedSale.added_health != null
-                  ? _c("div", [
-                      _c("label", { attrs: { for: "added_health" } }, [
-                        _vm._v("Salud que Añade:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedSale.added_health,
-                            expression: "selectedSale.added_health"
-                          }
-                        ],
-                        attrs: {
-                          id: "added_health",
-                          name: "added_health",
-                          type: "number"
+                        })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo:")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      ref: "cost",
+                      staticClass: "field default-field",
+                      attrs: {
+                        id: "cost",
+                        required: "",
+                        name: "cost",
+                        type: "number"
+                      },
+                      domProps: { value: _vm.selectedSale.cost },
+                      on: {
+                        keypress: function($event) {
+                          _vm.activateFieldShell("cost")
+                          _vm.resizeInput("cost")
+                          _vm.enableSubmitShell(
+                            "class-market-table-edition-submit"
+                          )
                         },
-                        domProps: { value: _vm.selectedSale.added_health },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.selectedSale,
-                              "added_health",
-                              $event.target.value
-                            )
-                          }
+                        click: function($event) {
+                          _vm.activateFieldShell("cost")
+                          _vm.resizeInput("cost")
+                          _vm.enableSubmitShell(
+                            "class-market-table-edition-submit"
+                          )
                         }
-                      })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo:")]),
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.selectedSale.cost,
-                        expression: "selectedSale.cost"
-                      }
-                    ],
+                    staticClass: "submit disabled-submit",
+                    class:
+                      _vm.selectedSale.added_damage != null &&
+                      _vm.selectedSale.added_health != null
+                        ? "higher-submit"
+                        : "lower-submit",
                     attrs: {
-                      id: "cost",
-                      required: "",
-                      name: "cost",
-                      type: "number"
+                      type: "submit",
+                      id: "class-market-table-edition-submit",
+                      disabled: "disabled",
+                      value: "Aceptar"
                     },
-                    domProps: { value: _vm.selectedSale.cost },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.selectedSale, "cost", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
                     on: {
                       click: function($event) {
                         return _vm.submitForm()
                       }
                     }
-                  },
-                  [_vm._v("Aceptar")]
-                )
-              ]
-            )
-          : _vm._e()
-      ])
-    : _c("div", [
-        _c("p", [_vm._v("¡Aún no hay stock en el mercado para esta clase!")])
-      ])
+                  })
+                ]
+              )
+            : _vm._e()
+        ])
+      : _c("div", [_vm._m(1)])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -39273,6 +39340,16 @@ var staticRenderFns = [
         _c("td", { staticClass: "table-header-cell" }, [
           _vm._v("¿Querés Eliminar el Artículo?")
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "no-data-p" }, [
+        _vm._v("¡Aún no hay stock en el mercado para esta clase!")
       ])
     ])
   }

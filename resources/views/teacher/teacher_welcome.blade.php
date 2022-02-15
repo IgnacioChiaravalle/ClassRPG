@@ -30,7 +30,7 @@
 		@endif
 
 		@if (Route::has('login'))
-		<button title="Cerrar Sesión" class="logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<button title="Cerrar Sesión" class="logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST">
 				@csrf
 			</form>
@@ -72,7 +72,7 @@
 
 		<div class="@if (!isset ($my_students)) send-down-div @endif">
 			<div class="user-manager-buttons-div">
-				<button class="manager-button @if (!$teacher->can_manage_teachers) centered-button @endif" onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
+				<button class="manager-button @if (!$teacher->can_manage_teachers) vertically-centered-button @endif" onclick="location.href='/manage-students/add-student'">Crear un Nuevo Alumno</button>
 				@if ($teacher->can_manage_teachers)
 					<button class="manager-button" onclick="location.href='/manage-teachers'">Ver Docentes Activos</button>
 				@endif

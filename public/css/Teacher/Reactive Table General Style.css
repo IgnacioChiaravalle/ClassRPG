@@ -1,0 +1,25 @@
+td.main-table-cell {
+	font-size: 115%;
+	letter-spacing: 1px;
+	text-shadow: -1px -1px 1px black, 1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black;
+}
+
+button.deleter-button {
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: none;
+	font-size: 115%;
+	color: whitesmoke;
+}
+	button.deleter-button:hover {
+		cursor: pointer;
+		background-color: red;
+		font-weight: bold;
+	}
+
+p.loading-p {
+	font-family: VollkornSC;
+	font-size: 110%;
+	text-shadow: -2px -2px 3px black, 2px -2px 3px black, -2px 2px 2px black, 2px 2px 3px black;
+}

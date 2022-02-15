@@ -43,16 +43,16 @@
 						<td class="main-table-cell name-cell">{{$sale->name}}</td>
 						<td class="main-table-cell {{$sale->type}}-cell">{{$sale->type}}</td>
 						@if ($sale->added_damage != null)
-							<td class="main-table-cell number-cell">{{$sale->added_damage}}</td>
+							<td class="main-table-cell number-cell addition-cell">{{$sale->added_damage}}</td>
 						@else
-							<td class="main-table-cell number-cell">0</td>
+							<td class="main-table-cell number-cell addition-cell">0</td>
 						@endif
 						@if ($sale->added_health != null)
-							<td class="main-table-cell number-cell">{{$sale->added_health}}</td>
+							<td class="main-table-cell number-cell addition-cell">{{$sale->added_health}}</td>
 						@else
-							<td class="main-table-cell number-cell">0</td>
+							<td class="main-table-cell number-cell addition-cell">0</td>
 						@endif
-						<td class="main-table-cell number-cell">{{$sale->cost}}</td>
+						<td class="main-table-cell number-cell cost-cell">{{$sale->cost}}</td>
 					</tr>
 				@endforeach
 			</table>
