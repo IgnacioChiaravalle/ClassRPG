@@ -11,6 +11,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
@@ -42,6 +43,7 @@
 		@endif
 
 		<button title="Volver" class="page-button go-back-button" onclick="location.href='/manage-market'"></button>
+		<button title="Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
 
 		<div class="page-container-div">
 			<div id="parent-component">

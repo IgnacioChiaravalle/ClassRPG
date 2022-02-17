@@ -10,7 +10,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
@@ -40,7 +40,7 @@
 			</form>
 		@endif
 
-		<button title="Volver" class="page-button go-back-button" onclick="location.href='/'"></button>
+		<button title="Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
 
 		<p id="name-p">Docentes Activos</p>
 

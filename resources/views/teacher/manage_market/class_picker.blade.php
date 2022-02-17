@@ -8,8 +8,9 @@
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Manager Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Market Management General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Class Picker Style.css')}}">
@@ -29,13 +30,13 @@
 		@endif
 
 		@if (Route::has('login'))
-			<button title="Cerrar Sesión" class="logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<button title="Cerrar Sesión" class="page-button logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST">
 				@csrf
 			</form>
 		@endif
 
-		<button title="Volver" class="go-back-button" onclick="location.href='/'"></button>
+		<button title="Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
 
 		<p class="title-p">Elegí la Clase para la que querés editar el Stock del Mercado</p>
 		

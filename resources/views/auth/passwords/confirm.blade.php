@@ -9,6 +9,8 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
@@ -16,7 +18,15 @@
 	</head>
 
 	<body>
-		<button title="Volver" class="page-button go-back-button" onclick="location.href='/my-account'"></button>
+		@if (Route::has('login'))
+			<button title="Cerrar Sesión" class="page-button logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST">
+				@csrf
+			</form>
+		@endif
+
+		<button title="Cancelar y Volver" class="page-button go-back-button" onclick="location.href='/my-account'"></button>
+		<button title="Cancelar e Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
 
 		<h1>Confirmar Contraseña</h1>
 

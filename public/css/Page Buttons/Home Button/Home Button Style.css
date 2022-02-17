@@ -1,0 +1,8 @@
+button.home-button {
+	right: 5.5%;
+	background-image: url("Home\ Button.png");
+	padding: 1.5%;
+}
+	button.home-button:hover {
+		background-image: url("Larger\ Home\ Button.png");
+	}

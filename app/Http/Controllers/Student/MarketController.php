@@ -84,7 +84,7 @@ class MarketController extends Controller {
 			'health' => $newHealth
 		]);
 
-		return redirect()->route('/');
+		return redirect()->route('/')->with('success', "¡Compra exitosa!");
 	}
 	
 	protected function healStudent($healCost) {
@@ -99,6 +99,6 @@ class MarketController extends Controller {
 			'coins' => $student->coins - $healCost,
 			'health' => $maxStudentHealth
 		]);
-		return redirect()->route('/');
+		return redirect()->route('/')->with('success', "¡Salud recuperada!");
 	}
 }

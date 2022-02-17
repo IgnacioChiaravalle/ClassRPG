@@ -8,7 +8,7 @@
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Student/Market Style.css')}}">
@@ -25,7 +25,7 @@
 			</form>
 		@endif
 
-		<button title="Volver" class="page-button go-back-button" onclick="location.href='/'"></button>
+		<button title="Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
 
 		<p id="current-coins-p"><b>Oro Actual:</b> {{$student->coins}} Monedas</p>
 		
