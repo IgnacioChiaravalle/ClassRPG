@@ -8,9 +8,10 @@
 		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Select Element Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Market Management General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Add Sale Style.css')}}">
@@ -23,7 +24,7 @@
 
 		<script> var url = removeSectionsOfURL(0); </script>
 		
-		<button title="Descartar Cambios y Volver" class="go-back-button" onclick="location.href='/manage-market/{{$rpgClass}}'"></button>
+		<button title="Descartar Cambios y Volver" class="page-button go-back-button" onclick="location.href='/manage-market/{{$rpgClass}}'"></button>
 
 		<p class="title-p">Crear un Nuevo Artículo</p>
 		<form class="input-form" method="POST" action=""+url enctype="multipart/form-data">

@@ -7,8 +7,9 @@
 		<title>Mercado</title>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Logout Button/Logout Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Student/Market Style.css')}}">
 	</head>
@@ -18,13 +19,13 @@
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
 		@endif
 		@if (Route::has('login'))
-			<button title="Cerrar Sesión" class="logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<button title="Cerrar Sesión" class="page-button logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST">
 				@csrf
 			</form>
 		@endif
 
-		<button title="Volver" class="go-back-button" onclick="location.href='/'"></button>
+		<button title="Volver" class="page-button go-back-button" onclick="location.href='/'"></button>
 
 		<p id="current-coins-p"><b>Oro Actual:</b> {{$student->coins}} Monedas</p>
 		

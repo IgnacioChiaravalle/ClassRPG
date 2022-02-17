@@ -7,7 +7,8 @@
 		<title>Confirmar Contraseña</title>
 		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/Password/Password General Style.css')}}">
@@ -15,7 +16,7 @@
 	</head>
 
 	<body>
-		<button title="Volver" class="go-back-button" onclick="location.href='/my-account'"></button>
+		<button title="Volver" class="page-button go-back-button" onclick="location.href='/my-account'"></button>
 
 		<h1>Confirmar Contraseña</h1>
 

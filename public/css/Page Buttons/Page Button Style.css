@@ -1,17 +1,13 @@
-button.go-back-button {
+button.page-button {
 	position: fixed;
-	left: 1.5%;
-	background-image: url("Go\ Back\ Button.png");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	padding: 2%;
 	background-color: transparent;
 	border: none;
 	transition: 400ms;
 }
-	button.go-back-button:hover {
+	button.page-button:hover {
 		cursor: pointer;
 		animation: growFromCenter 400ms;
 		transform: scale(1.1);
-		background-image: url("Larger\ Go\ Back\ Button.png");
 	}

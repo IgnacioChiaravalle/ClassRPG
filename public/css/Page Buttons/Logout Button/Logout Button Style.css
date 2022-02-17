@@ -1,0 +1,8 @@
+button.logout-button {
+	right: 1.5%;
+	background-image: url("Logout\ Button.png");
+	padding: 1.5%;
+}
+	button.logout-button:hover {
+		background-image: url("Larger\ Logout\ Button.png");
+	}

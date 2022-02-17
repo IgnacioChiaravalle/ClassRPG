@@ -8,7 +8,8 @@
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Go Back Button/Go Back Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Go Back Button/Go Back Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Add User General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Select Element Style.css')}}">
@@ -22,7 +23,7 @@
 		
 		<script> var url = removeSectionsOfURL(0); </script>
 
-		<button title="Descartar Cambios y Volver" class="go-back-button" onclick="location.href='/'"></button>
+		<button title="Descartar Cambios y Volver" class="page-button go-back-button" onclick="location.href='/'"></button>
 
 		<h1>Crear un Nuevo Alumno</h1>
 		<form class="input-form" method="POST" action=""+url enctype="multipart/form-data">
