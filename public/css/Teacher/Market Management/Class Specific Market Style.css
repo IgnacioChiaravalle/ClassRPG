@@ -13,20 +13,16 @@ tr.table-inner-row:hover {
 }
 
 td {
-	border: 1px rgb(5, 109, 14) solid;
+	border: 1px solid rgb(5, 109, 14);
 }
 
 td.table-header-cell {
 	padding-top: 0.5%;
 	padding-bottom: 0.5%;
 	font-family: MedievalSharp;
-	color: rgb(255, 174, 0);
 	font-size: 130%;
+	color: rgb(255, 174, 0);
 	text-shadow: -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black, 2px 2px 3px black;
-}
-
-td.clickable-cell {
-	cursor: pointer;
 }
 
 td.Arma-cell {
@@ -43,11 +39,9 @@ td.cost-cell {
 	color: greenyellow;
 }
 
-h2.sale-name-h2 {
+h2.selection-name-h2 {
 	font-family: LuckiestGuy;
-	font-weight: normal;
 	letter-spacing: 2px;
-	text-shadow: 2px 2px 3px black, 2px 2px 3px black, 2px 2px 3px black, 2px 2px 3px black;
 }
 	h2.Arma-h2 {
 		color: rgb(255, 35, 0);
@@ -64,22 +58,10 @@ label {
 	font-size: 110%;
 }
 
-input.field {
-	margin-bottom: 0.5%;
-	margin-left: 0.5%;
-	font-size: 110%;
-	width: 5ch;
-	text-align: center;
-	border-radius: 10%/25%;
-}
-
 input.submit {
-	position: absolute;
 	margin-left: 20%;
 	font-family: LondrinaSolid;
 	font-size: 150%;
-	border-radius: 10%/20%;
-	width: fit-content;
 }
 	input.higher-submit {
 		margin-top: -5.5%;

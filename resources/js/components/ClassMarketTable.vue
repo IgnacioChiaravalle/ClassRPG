@@ -54,7 +54,7 @@
 			<form class="input-form" v-if="selectedSale != null" :key="formBody" ref="form" method="POST" :action="'/manage-market/edit-sale/' + selectedSale.name" @load="resetFields()">
 				<input type="hidden" name="_token" v-bind:value="csrf">
 
-				<h2 class="sale-name-h2" :class="selectedSale.type + '-h2'">{{ selectedSale.name }}</h2>
+				<h2 class="selection-name-h2" :class="selectedSale.type + '-h2'">{{ selectedSale.name }}</h2>
 
 				<div v-if="selectedSale.added_damage != null">
 					<label for="added_damage">Daño que Añade:</label>

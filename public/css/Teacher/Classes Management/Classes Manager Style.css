@@ -1,0 +1,69 @@
+#name-p {
+	font-family: ChakraPetch;
+	color: rgb(255, 202, 56);
+}
+
+table.main-table {
+	border-color: rgb(4, 102, 102);
+	background-color: rgba(2, 69, 170, 0.753);
+	table-layout: fixed;
+}
+
+tr.table-header-row {
+	background-color: rgba(5, 22, 80, 0.897);
+}
+
+tr.table-inner-row:hover {
+	background-color: rgba(9, 43, 95, 0.753);
+}
+
+td {
+	border: 1px solid rgb(5, 75, 11);
+}
+
+td.table-header-cell {
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+	font-family: ArchitectsDaughter;
+	font-size: 130%;
+	color: rgb(0, 255, 191);
+	text-shadow: -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black, 2px 2px 3px black;
+}
+
+td.name-cell {
+	font-family: Orbitron;
+	font-size: 110%;
+	letter-spacing: 3px;
+	color: rgb(238, 255, 0);
+}
+td.damage-cell {
+	color: rgb(255, 116, 61);
+}
+td.health-cell {
+	color: rgb(137, 255, 91);
+}
+
+h2.selection-name-h2 {
+	font-family: VollkornSC;
+	font-style: italic;
+	font-size: 180%;
+	color: rgb(255, 238, 0);
+}
+
+label {
+	font-family: Staatliches;
+	font-size: 125%;
+	letter-spacing: 1px;
+	color: rgb(233, 229, 171);
+}
+input.submit {
+	margin-left: 15%;
+	margin-top: -4%;
+	font-family: PermanentMarker;
+	font-size: 150%;
+	padding: 0.2%;
+}
+
+button.manager-button {
+	width: 18%;
+}

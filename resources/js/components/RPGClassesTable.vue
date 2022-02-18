@@ -1,6 +1,6 @@
 <template>
 	<div v-if="rpgClasses != 0">
-		<table id="rpg_classes_table" ref="rpg_classes_table">
+		<table id="rpg_classes_table" ref="rpg_classes_table" class="main-table">
 			<thead>
 				<tr class="table-header-row">
 					<td class="table-header-cell">Clase</td>
@@ -11,40 +11,38 @@
 				</tr>
 			</thead>
 			<tbody :key="tableBody">
-				<tr v-for="rpgClass in rpgClasses" :key="rpgClass.name" :id="rpgClass.name" class="tr-body">
-					<td @click="setSelected(rpgClass)">{{ rpgClass.name }}</td>
-					<td @click="setSelected(rpgClass)">{{ rpgClass.base_damage }}</td>
-					<td @click="setSelected(rpgClass)">{{ rpgClass.base_health }}</td>
-					<td @click="setSelected(rpgClass)">{{ rpgClass.users }}</td>
-					<td><button @click="confirmClassDelete(rpgClass.name, rpgClass.users)">&#128465;</button></td>
+				<tr v-for="rpgClass in rpgClasses" :key="rpgClass.name" :id="rpgClass.name" class="table-inner-row">
+					<td class="main-table-cell clickable-cell name-cell" @click="setSelected(rpgClass)">{{ rpgClass.name }}</td>
+					<td class="main-table-cell clickable-cell damage-cell" @click="setSelected(rpgClass)">{{ rpgClass.base_damage }}</td>
+					<td class="main-table-cell clickable-cell health-cell" @click="setSelected(rpgClass)">{{ rpgClass.base_health }}</td>
+					<td class="main-table-cell clickable-cell" @click="setSelected(rpgClass)">{{ rpgClass.users }}</td>
+					<td class="main-table-cell"><button class="deleter-button" title="Eliminar la Clase" @click="confirmClassDelete(rpgClass.name, rpgClass.users)">&#128465;</button></td>
 				</tr>
 			</tbody>
 		</table>
 
-		<p id="loading" ref="loading">(Refrescando tabla...)</p>
-		
-		<p></p>
+		<p id="loading" ref="loading" class="loading-p">(Refrescando tabla...)</p>
 
-		<form v-if="selectedClass != null" ref="form" method="POST" :action="'/manage-classes/edit-class/' + selectedClass.name">
+		<form class="input-form" v-if="selectedClass != null" :key="formBody" ref="form" method="POST" :action="'/manage-classes/edit-class/' + selectedClass.name" @load="resetFields()">
 			<input type="hidden" name="_token" v-bind:value="csrf">
 
-			<p>{{ selectedClass.name }}</p>
+			<h2 class="selection-name-h2">{{ selectedClass.name }}</h2>
 
 			<div v-if="selectedClass.base_damage != null">
 				<label for="base_damage">Daño Base:</label>
-				<input id="base_damage" v-model="selectedClass.base_damage" name="base_damage" type="number">
+				<input class="field default-field" id="base_damage" ref="base_damage" :value="selectedClass.base_damage" name="base_damage" type="number" @keypress="activateFieldShell('base_damage'); resizeFieldShell('base_damage'); enableSubmitShell('rpg-classes-table-edition-submit')" @click="activateFieldShell('base_damage'); resizeFieldShell('base_damage'); enableSubmitShell('rpg-classes-table-edition-submit')">
 			</div>
 
 			<div v-if="selectedClass.base_health != null">
 				<label for="base_health">Salud Base:</label>
-				<input id="base_health" v-model="selectedClass.base_health" name="base_health" type="number">
+				<input class="field default-field" id="base_health" ref="base_health" :value="selectedClass.base_health" name="base_health" type="number" @keypress="activateFieldShell('base_health'); resizeFieldShell('base_health'); enableSubmitShell('rpg-classes-table-edition-submit')" @click="activateFieldShell('base_health'); resizeFieldShell('base_health'); enableSubmitShell('rpg-classes-table-edition-submit')">
 			</div>
 
-			<button @click="submitForm()">Aceptar</button>
+			<input type="submit" id="rpg-classes-table-edition-submit" class="submit disabled-submit" disabled="disabled" value="Aceptar" @click="submitForm()">
 		</form>
 	</div>
 	<div v-else>
-		<p>¡Aún no hay clases en el sistema!</p>
+		<div><p class="no-data-p">¡Aún no hay clases en el sistema!</p></div>
 	</div>
 </template>
 
@@ -56,7 +54,8 @@
 			return {
 				rpgClasses: null,
 				selectedClass: null,
-				tableBody: 0
+				tableBody: 0,
+				formBody: 0
 			}
 		},
 		
@@ -106,7 +105,29 @@
 
 			setSelected(rpgClass) {
 				this.selectedClass = rpgClass;
+				this.formBody++
 			},
+
+			resetFields() {
+				this.resetFieldClassAndWidth(this.$refs['base_damage'])
+				this.resetFieldClassAndWidth(this.$refs['base_health'])
+			},
+			resetFieldClassAndWidth(field) {
+				deactivateField(field)
+				field.style.width = '5ch'
+			},
+
+			activateFieldShell(fieldRef) {
+				activateField(this.$refs[fieldRef])
+			},
+			enableSubmitShell(toEnableID) {
+				enableSubmit(toEnableID)
+			},
+
+			resizeFieldShell(fieldRef) {
+				resizeField(this.$refs[fieldRef])
+			},
+
 			async submitForm() {
 				await this.$refs.form.submit()
 				this.selectedClass = null

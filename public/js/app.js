@@ -2188,15 +2188,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['csrf'],
   data: function data() {
     return {
       rpgClasses: null,
       selectedClass: null,
-      tableBody: 0
+      tableBody: 0,
+      formBody: 0
     };
   },
   mounted: function mounted() {
@@ -2284,6 +2283,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     setSelected: function setSelected(rpgClass) {
       this.selectedClass = rpgClass;
+      this.formBody++;
+    },
+    resetFields: function resetFields() {
+      this.resetFieldClassAndWidth(this.$refs['base_damage']);
+      this.resetFieldClassAndWidth(this.$refs['base_health']);
+    },
+    resetFieldClassAndWidth: function resetFieldClassAndWidth(field) {
+      deactivateField(field);
+      field.style.width = '5ch';
+    },
+    activateFieldShell: function activateFieldShell(fieldRef) {
+      activateField(this.$refs[fieldRef]);
+    },
+    enableSubmitShell: function enableSubmitShell(toEnableID) {
+      enableSubmit(toEnableID);
+    },
+    resizeFieldShell: function resizeFieldShell(fieldRef) {
+      resizeField(this.$refs[fieldRef]);
     },
     submitForm: function submitForm() {
       var _this3 = this;
@@ -39169,7 +39186,7 @@ var render = function() {
                   _c(
                     "h2",
                     {
-                      staticClass: "sale-name-h2",
+                      staticClass: "selection-name-h2",
                       class: _vm.selectedSale.type + "-h2"
                     },
                     [_vm._v(_vm._s(_vm.selectedSale.name))]
@@ -39375,7 +39392,11 @@ var render = function() {
     ? _c("div", [
         _c(
           "table",
-          { ref: "rpg_classes_table", attrs: { id: "rpg_classes_table" } },
+          {
+            ref: "rpg_classes_table",
+            staticClass: "main-table",
+            attrs: { id: "rpg_classes_table" }
+          },
           [
             _vm._m(0),
             _vm._v(" "),
@@ -39387,13 +39408,14 @@ var render = function() {
                   "tr",
                   {
                     key: rpgClass.name,
-                    staticClass: "tr-body",
+                    staticClass: "table-inner-row",
                     attrs: { id: rpgClass.name }
                   },
                   [
                     _c(
                       "td",
                       {
+                        staticClass: "main-table-cell clickable-cell name-cell",
                         on: {
                           click: function($event) {
                             return _vm.setSelected(rpgClass)
@@ -39406,6 +39428,8 @@ var render = function() {
                     _c(
                       "td",
                       {
+                        staticClass:
+                          "main-table-cell clickable-cell damage-cell",
                         on: {
                           click: function($event) {
                             return _vm.setSelected(rpgClass)
@@ -39418,6 +39442,8 @@ var render = function() {
                     _c(
                       "td",
                       {
+                        staticClass:
+                          "main-table-cell clickable-cell health-cell",
                         on: {
                           click: function($event) {
                             return _vm.setSelected(rpgClass)
@@ -39430,6 +39456,7 @@ var render = function() {
                     _c(
                       "td",
                       {
+                        staticClass: "main-table-cell clickable-cell",
                         on: {
                           click: function($event) {
                             return _vm.setSelected(rpgClass)
@@ -39439,10 +39466,12 @@ var render = function() {
                       [_vm._v(_vm._s(rpgClass.users))]
                     ),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "main-table-cell" }, [
                       _c(
                         "button",
                         {
+                          staticClass: "deleter-button",
+                          attrs: { title: "Eliminar la Clase" },
                           on: {
                             click: function($event) {
                               return _vm.confirmClassDelete(
@@ -39463,20 +39492,31 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("p", { ref: "loading", attrs: { id: "loading" } }, [
-          _vm._v("(Refrescando tabla...)")
-        ]),
-        _vm._v(" "),
-        _c("p"),
+        _c(
+          "p",
+          {
+            ref: "loading",
+            staticClass: "loading-p",
+            attrs: { id: "loading" }
+          },
+          [_vm._v("(Refrescando tabla...)")]
+        ),
         _vm._v(" "),
         _vm.selectedClass != null
           ? _c(
               "form",
               {
+                key: _vm.formBody,
                 ref: "form",
+                staticClass: "input-form",
                 attrs: {
                   method: "POST",
                   action: "/manage-classes/edit-class/" + _vm.selectedClass.name
+                },
+                on: {
+                  load: function($event) {
+                    return _vm.resetFields()
+                  }
                 }
               },
               [
@@ -39485,7 +39525,9 @@ var render = function() {
                   domProps: { value: _vm.csrf }
                 }),
                 _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.selectedClass.name))]),
+                _c("h2", { staticClass: "selection-name-h2" }, [
+                  _vm._v(_vm._s(_vm.selectedClass.name))
+                ]),
                 _vm._v(" "),
                 _vm.selectedClass.base_damage != null
                   ? _c("div", [
@@ -39494,14 +39536,8 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedClass.base_damage,
-                            expression: "selectedClass.base_damage"
-                          }
-                        ],
+                        ref: "base_damage",
+                        staticClass: "field default-field",
                         attrs: {
                           id: "base_damage",
                           name: "base_damage",
@@ -39509,14 +39545,18 @@ var render = function() {
                         },
                         domProps: { value: _vm.selectedClass.base_damage },
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.selectedClass,
-                              "base_damage",
-                              $event.target.value
+                          keypress: function($event) {
+                            _vm.activateFieldShell("base_damage")
+                            _vm.resizeFieldShell("base_damage")
+                            _vm.enableSubmitShell(
+                              "rpg-classes-table-edition-submit"
+                            )
+                          },
+                          click: function($event) {
+                            _vm.activateFieldShell("base_damage")
+                            _vm.resizeFieldShell("base_damage")
+                            _vm.enableSubmitShell(
+                              "rpg-classes-table-edition-submit"
                             )
                           }
                         }
@@ -39531,14 +39571,8 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedClass.base_health,
-                            expression: "selectedClass.base_health"
-                          }
-                        ],
+                        ref: "base_health",
+                        staticClass: "field default-field",
                         attrs: {
                           id: "base_health",
                           name: "base_health",
@@ -39546,14 +39580,18 @@ var render = function() {
                         },
                         domProps: { value: _vm.selectedClass.base_health },
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.selectedClass,
-                              "base_health",
-                              $event.target.value
+                          keypress: function($event) {
+                            _vm.activateFieldShell("base_health")
+                            _vm.resizeFieldShell("base_health")
+                            _vm.enableSubmitShell(
+                              "rpg-classes-table-edition-submit"
+                            )
+                          },
+                          click: function($event) {
+                            _vm.activateFieldShell("base_health")
+                            _vm.resizeFieldShell("base_health")
+                            _vm.enableSubmitShell(
+                              "rpg-classes-table-edition-submit"
                             )
                           }
                         }
@@ -39561,22 +39599,25 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.submitForm()
-                      }
-                    }
+                _c("input", {
+                  staticClass: "submit disabled-submit",
+                  attrs: {
+                    type: "submit",
+                    id: "rpg-classes-table-edition-submit",
+                    disabled: "disabled",
+                    value: "Aceptar"
                   },
-                  [_vm._v("Aceptar")]
-                )
+                  on: {
+                    click: function($event) {
+                      return _vm.submitForm()
+                    }
+                  }
+                })
               ]
             )
           : _vm._e()
       ])
-    : _c("div", [_c("p", [_vm._v("¡Aún no hay clases en el sistema!")])])
+    : _c("div", [_vm._m(1)])
 }
 var staticRenderFns = [
   function() {
@@ -39598,6 +39639,16 @@ var staticRenderFns = [
         _c("td", { staticClass: "table-header-cell" }, [
           _vm._v("¿Querés Eliminar esta Clase?")
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "no-data-p" }, [
+        _vm._v("¡Aún no hay clases en el sistema!")
       ])
     ])
   }

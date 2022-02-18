@@ -19,7 +19,7 @@ tr.table-inner-row:hover {
 }
 
 td {
-	border: 1px rgb(6, 14, 133) solid;
+	border: 1px solid rgb(6, 14, 133);
 }
 
 td.table-header-cell {
