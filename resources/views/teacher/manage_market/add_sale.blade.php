@@ -15,8 +15,8 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Checkbox Cursor Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Select Element Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Add Numeric Content Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Market Management General Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Add Sale Style.css')}}">
 	</head>
 
 	<body class="antialiased">
@@ -40,16 +40,14 @@
 		<form class="input-form" method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
+			<label for="name">Nombre:</label>
 			<div>
-				<label for="name">Nombre:</label>
-				<div>
-					<input id="name" type="text" class="field text-field {{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre del Artículo" required autocomplete="name" autofocus onkeypress="activateField(this); enableSubmit('add-sale-submit')" onclick="activateField(this); enableSubmit('add-sale-submit')">
-					@error('name')
-						<label class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</label>
-					@enderror
-				</div>
+				<input id="name" type="text" class="field text-fielddefault-field" name="name" value="{{old('name')}}" placeholder="Nombre del Artículo" required autocomplete="name" autofocus onkeypress="activateField(this); enableSubmit('add-sale-submit')" onclick="activateField(this); enableSubmit('add-sale-submit')">
+				@error('name')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
 			</div>
 
 			<div>

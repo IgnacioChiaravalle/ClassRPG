@@ -8,6 +8,8 @@
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Student Handling/Student Handling General Style.css')}}">
 
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

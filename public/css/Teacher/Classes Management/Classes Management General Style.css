@@ -1,3 +1,8 @@
 body {
-	background-image: url("Classes\ Management\ Background.jpg");
+	background-image: url("Characters\ -\ Classes\ Management\ Background.jpg");
+}
+
+#name-p {
+	font-family: ChakraPetch;
+	color: rgb(255, 202, 56);
 }
