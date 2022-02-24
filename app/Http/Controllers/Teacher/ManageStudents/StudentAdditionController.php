@@ -29,7 +29,7 @@ class StudentAdditionController extends Controller {
 
 	private function validateRequest(Request $request, $uMC) {
 		$uMC->validateNewUserDataRequest($request);
-		$request->validate(['notes_on_student' => ['nullable', 'max:65,535']]);
+		$request->validate(['notes_on_student' => ['nullable']]);
 	}
 	
 	private function createNewStudent(Request $request, $uMC) {

@@ -14,6 +14,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/My Account/My Account Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Table Page General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Mission/Mission Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Student/Student Welcome Style.css')}}">
 	</head>
 	
@@ -115,13 +116,13 @@
 					<p><b>Salud de la Misión:</b> {{$mission->current_health}} / {{$mission->max_health}}</p>
 					<p>
 						<b>@if ($mission->other_rewards != null) Recompensas: @else Recompensa: @endif</b><br>
-						{{$mission->coins_reward}} Monedas de Oro.
+						<span class="rewards-span">{{$mission->coins_reward}} Monedas de Oro.</span>
 						@if ($mission->other_rewards != null)
-							<br>{{$mission->other_rewards}}
+							<br><span class="rewards-span">{{$mission->other_rewards}}</span>
 						@endif
 					</p>
 					@if ($mission->current_health > 0)
-						<button onclick="confirmMissionAttack('{{$student->health}}', '{{$mission->id}}', '{{$mission->name}}')" class="attack-button">¡Atacar!</button>
+						<button class="text-button damage-button attack-button" onclick="confirmMissionAttack('{{$student->health}}', '{{$mission->id}}', '{{$mission->name}}')">¡Atacar!</button>
 					@endif
 				</div>
 			@endforeach

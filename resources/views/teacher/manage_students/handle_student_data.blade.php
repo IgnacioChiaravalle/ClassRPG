@@ -8,33 +8,39 @@
 		<script src = "{{url('/js/Toaster.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/URL_Fixer.js')}}" type = "text/javascript"></script>
 		<script src = "{{url('/js/Confirmer.js')}}" type = "text/javascript"></script>
+		<script src = "{{url('/js/FormFieldHandler.js')}}" type = "text/javascript"></script>
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Student Handling/Student Handling General Style.css')}}">
-
-		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-		<!-- Styles -->
-		<style>
-			/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
-		</style>
-
-		<style>
-			body {
-				font-family: 'Nunito', sans-serif;
-			}
-		</style>
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Form Elements Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Mission/Mission Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Manager Button Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Select Element Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Add Numeric Content Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Student Management/Student Management General Style.css')}}">
+		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Student Management/Handle Student Data Style.css')}}">
 	</head>
 
 	<body class="antialiased">
 		@if (Session::has('success'))
-			<div class="alert-toast" id="handle-student-data-alert-toast">
-				<div>{{ session('success') }}</div>
-				<div class="toast-closer" onclick="closeToast('handle-student-data-alert-toast')">X</div>
+			<div class="alert-toast-wrapper-div" id="handle-student-data-alert-toast">
+				<div class="alert-toast">
+					<p class="toast-text">{{ session('success') }}</p>
+					<div class="toast-closer" onclick="closeToast('handle-student-data-alert-toast')">&#10006;</div>
+				</div>
 			</div>
 		@endif
 		@if (Session::has('message'))
 			<script type="text/javascript">alert("{{ Session::get('message') }}");</script>
+		@endif
+
+		@if (Route::has('login'))
+			<button title="Cerrar Sesión" class="page-button logout-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></button>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST">
+				@csrf
+			</form>
 		@endif
 		
 		<script>
@@ -42,39 +48,40 @@
 			var shareURL = removeSectionsOfURL(2);
 		</script>
 
-		<p>{{$studentUser->name}} ({{$studentUser->real_name}})</p>
-		<form method="POST" action=""+url enctype="multipart/form-data">
+		<button title="Descartar Cambios e Ir al Inicio" class="page-button home-button" onclick="location.href='/'"></button>
+
+		<button title="Asignar una Nueva Misión" class="page-button add-mission-button" onclick="location.href=url + 'add-mission'"></button>
+		<button title="Ver el Archivo de {{$studentUser->name}}" class="page-button view-archive-button" onclick="location.href=url + 'view-mission-archive'"></button>
+		<button title="Compartir a Otro Docente" class="page-button share-button" onclick="location.href=shareURL + 'share-student/{{$studentUser->name}}'"></button>
+		<button title="Eliminar al Alumno" class="page-button deleter-button" onclick="confirmStudentDelete('{{$studentUser->name}}')">&#128465;</button>
+
+		<p id="title-p">{{$studentUser->name}} ({{$studentUser->real_name}})</p>
+		<form class="input-form" method="POST" action=""+url enctype="multipart/form-data">
 		@csrf
 
-			<div class="health-and-coins">
-				<div>
-					<label for="health">Tiene {{$studentCharacter->health}} de {{$maxStudentHealth}} puntos de salud. ¿Qué le agregamos a este valor?</label>
-					<div>
-						<input id="health" type="number" class="active-field" name="health" value="{{old('health') ? old('health') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-						@error('health')
-							<label class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</label>
-						@enderror
-					</div>
-				</div>
+			<div>
+				<label for="health">Tiene {{$studentCharacter->health}} de {{$maxStudentHealth}} puntos de salud. ¿Qué le agregamos a este valor?</label>
+				<input id="health" type="number" class="field number-field active-field" name="health" value="{{old('health') ? old('health') : 0}}" onkeypress="resizeField(this); enableSubmit('handle-student-data-submit')" onclick="resizeField(this); enableSubmit('handle-student-data-submit')">
+				@error('health')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
+			</div>
 
-				<div>
-					<label for="coins">Tiene {{$studentCharacter->coins}} monedas de oro. ¿Qué le agregamos a este valor?</label>
-					<div>
-						<input id="coins" type="number" class="active-field" name="coins" value="{{old('coins') ? old('coins') : 0}}"> <!-- onkeypress="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" onclick="clearFieldIfDefault(this); activateField(this); checkAllActive(2, 'submit-btn-editgame')" -->
-						@error('coins')
-							<label class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</label>
-						@enderror
-					</div>
-				</div>
+			<div>
+				<label for="coins">Tiene {{$studentCharacter->coins}} monedas de oro. ¿Qué le agregamos a este valor?</label>
+				<input id="coins" type="number" class="field number-field active-field" name="coins" value="{{old('coins') ? old('coins') : 0}}" onkeypress="resizeField(this); enableSubmit('handle-student-data-submit')" onclick="resizeField(this); enableSubmit('handle-student-data-submit')">
+				@error('coins')
+					<label class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</label>
+				@enderror
 			</div>
 			
 			<div>
 				<label for="weapon">Arma Equipada:</label>
-				<select id="weapon" name="weapon">
+				<select id="weapon" name="weapon" onchange="enableSubmit('handle-student-data-submit')">
 					<option value=null {{null == $studentCharacter->weapon ? 'selected' : ''}}>[Ninguna]</option>
 					@foreach ($weaponsForStudentClass as $weapon)
 						<option value="{{$weapon->name}}" {{$weapon->name == $studentCharacter->weapon ? 'selected' : ''}}>{{$weapon->name}} (Daño que Añade: {{$weapon->added_damage}}; Costo: {{$weapon->cost}})</option>
@@ -84,7 +91,7 @@
 
 			<div>
 				<label for="item">Ítem Equipado:</label>
-				<select id="item" name="item">
+				<select id="item" name="item" onchange="enableSubmit('handle-student-data-submit')">
 					<option value=null {{null == $studentCharacter->item ? 'selected' : ''}}>[Ninguno]</option>
 					@foreach ($itemsForStudentClass as $item)
 						<option value="{{$item->name}}" {{$item->name == $studentCharacter->item ? 'selected' : ''}}>{{$item->name}} (Daño que Añade: {{$item->added_damage}}; Salud que Añade: {{$item->added_health}}; Costo: {{$item->cost}})</option>
@@ -94,7 +101,7 @@
 
 			<div>
 				<label for="armor">Armadura Equipada:</label>
-				<select id="armor" name="armor" value="{{$studentCharacter->armor}}">
+				<select id="armor" name="armor" onchange="enableSubmit('handle-student-data-submit')">
 					<option value=null {{null == $studentCharacter->armor ? 'selected' : ''}}>[Ninguna]</option>
 					@foreach ($armorsForStudentClass as $armor)
 						<option value="{{$armor->name}}" {{$armor->name == $studentCharacter->armor ? 'selected' : ''}}>{{$armor->name}} (Salud que Añade: {{$armor->added_health}}; Costo: {{$armor->cost}})</option>
@@ -105,7 +112,7 @@
 			<div>
 				<label for="notes_on_student">Mis notas sobre {{$studentUser->name}}:</label>
 				<div>
-					<textarea id="notes_on_student" type="text" class="active-field" name="notes_on_student" value="{{old('notes_on_student')}}">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
+					<textarea id="notes_on_student" type="text" name="notes_on_student" rows="7" onkeypress="enableSubmit('handle-student-data-submit')" onclick="enableSubmit('handle-student-data-submit')">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
 					@error('notes_on_student')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
@@ -113,45 +120,38 @@
 					@enderror
 				</div>
 			</div>
-			<input type="submit" value="Aceptar Cambios">
+			<input type="submit" id="handle-student-data-submit" class="submit disabled-submit" disabled="disabled" value="Aceptar Cambios">
 		</form>
 
-		<button onclick="location.href='/'">Volver</button>
-
 		@foreach ($missions as $mission)
-			<div>
-				<div class="mission-name-and-edit">
-					<h2>{{$mission->name}}</h2>
-					<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/edit-mission'">&#128393;</button>
-				</div>
+			<div class="mission-div {{$mission->current_health > 0 ? 'active-mission' : 'completed-mission'}}">
+				<h2 class="mission-name-h2 {{$mission->current_health > 0 ? 'active-mission-h2' : 'completed-mission-h2'}}">{{$mission->name}}</h2>
+			
+				<button title="Editar la Misión" class="page-button top-button left-button edit-mission-button" onclick="location.href=url + 'handle-mission/{{$mission->id}}/edit-mission'"></button>
+				<button title="Archivar la Misión" class="page-button top-button right-button archive-mission-button" onclick="location.href=url + 'handle-mission/{{$mission->id}}/set-archive/true'"></button>
+				
+				<hr class="{{$mission->current_health > 0 ? 'active-mission-hr' : 'completed-mission-hr'}}">
 				<p>{{$mission->description}}</p>
 				<p>
-					Fecha de Inicio: {{$mission->start_date}}<br>
+					<b>Fecha de Inicio:</b> {{$mission->start_date}}<br>
 					@if ($mission->finish_date != null)
-						Fecha de Finalización: {{$mission->finish_date}}
+						<b>Fecha de Finalización:</b> {{$mission->finish_date}}
 					@else
 						La misión aún no ha sido completada.
 					@endif
 				</p>
-				<p>Causa <button onclick="location.href=url + 'handle-mission/{{$mission->id}}/do-damage'">{{$mission->damage_caused}} @if ($mission->damage_caused == 1) punto @else puntos @endif de daño</button> cada {{$mission->damage_period}}.</p>
-				<p>Salud de la Misión: {{$mission->current_health}} / {{$mission->max_health}}</p>
+				<p>Causa <button class="text-button damage-button" onclick="location.href=url + 'handle-mission/{{$mission->id}}/do-damage'">{{$mission->damage_caused}} @if ($mission->damage_caused == 1) punto @else puntos @endif de daño</button> cada {{$mission->damage_period}}.</p>
+				<p><b>Salud de la Misión:</b> {{$mission->current_health}} / {{$mission->max_health}}</p>
 				<p>
-					Recompensas:<br>
-					<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/give-coins-reward'">{{$mission->coins_reward}} Monedas de Oro.</button>
+					<b>@if ($mission->other_rewards != null) Recompensas: @else Recompensa: @endif</b><br>
+					<button class="text-button coins-reward-button" onclick="location.href=url + 'handle-mission/{{$mission->id}}/give-coins-reward'">{{$mission->coins_reward}} Monedas de Oro.</button>
 					@if ($mission->other_rewards != null)
-						<br>{{$mission->other_rewards}}
+						<br><span class="rewards-span">{{$mission->other_rewards}}</span>
 					@endif
 				</p>
-				<button onclick="location.href=url + 'handle-mission/{{$mission->id}}/set-archive/true'">Archivar la Misión</button>
 			</div>
 		@endforeach
 
-		<button onclick="location.href=url + 'view-mission-archive'">Ver el Archivo de {{$studentUser->name}}</button>
-		<button onclick="location.href=url + 'add-mission'">Asignar una Nueva Misión</button>
-
-		<p></p>
-
-		<button onclick="location.href=shareURL + 'share-student/{{$studentUser->name}}'">Compartir a Otro Docente</button>
-		<button onclick="confirmStudentDelete('{{$studentUser->name}}')">Eliminar al Alumno</button>
+		<hr class="space-below-hr">
 	</body>
 </html>

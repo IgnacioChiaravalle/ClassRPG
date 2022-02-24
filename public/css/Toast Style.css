@@ -1,20 +1,3 @@
-@keyframes animateToast {
-	0% {
-		transform: rotateX(90deg);
-	}
-	65% {
-		transform: rotateX(0deg);
-	}
-	99% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-		display: none;
-		transform: rotateX(90deg);
-	}
-}
-
 div.alert-toast-wrapper-div {
 	position: relative;
 	margin-left: auto;

@@ -58,7 +58,7 @@ class StudentEditionController extends Controller {
 			'weapon' => ['string'],
 			'item' => ['string'],
 			'armor' => ['string'],
-			'notes_on_student' => ['nullable', 'max:65,535']
+			'notes_on_student' => ['nullable']
 		]);
 	}
 

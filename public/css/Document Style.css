@@ -79,10 +79,6 @@
 	src: url(Fonts/VollkornSC_Font.ttf);
 }
 
-@keyframes expandFromCenter {
-	from { transform: scale(0); }
-	to { transform: scale(1); }
-}
 @keyframes expandVertically {
 	from { transform: scaleY(0); }
 	to { transform: scaleY(1); }
@@ -90,6 +86,34 @@
 @keyframes growFromCenter {
 	from { transform: scale(1); }
 	to { transform: scale(1.1); }
+}
+@keyframes growMoreFromCenter {
+	from { transform: scale(1); }
+	to { transform: scale(1.2); }
+}
+@keyframes animateToast {
+	0% {
+		transform: rotateX(90deg);
+	}
+	65% {
+		transform: rotateX(0deg);
+	}
+	99% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		display: none;
+		transform: rotateX(90deg);
+	}
+}
+@keyframes shakeQuest {
+	30% {
+		transform: rotate(20deg);
+	}
+	60% {
+		transform: rotate(-40deg);
+	}
 }
 
 html{
