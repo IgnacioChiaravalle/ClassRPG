@@ -78,7 +78,7 @@
 			<div></div>
 			<label for="notes_on_student">¿Alguna nota o comentario que agregar?</label>
 			<div>
-				<textarea id="notes_on_student" type="text" name="notes_on_student" rows="7" value="{{old('notes_on_student')}}"></textarea>
+				<textarea id="notes_on_student" name="notes_on_student" rows="7" value="{{old('notes_on_student')}}"></textarea>
 				@error('notes_on_student')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>

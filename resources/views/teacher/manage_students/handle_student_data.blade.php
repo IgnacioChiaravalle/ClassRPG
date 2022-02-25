@@ -110,7 +110,7 @@
 			<div>
 				<label for="notes_on_student">Mis notas sobre {{$studentUser->name}}:</label>
 				<div>
-					<textarea id="notes_on_student" type="text" name="notes_on_student" rows="7" onkeypress="enableSubmit('handle-student-data-submit')" onclick="enableSubmit('handle-student-data-submit')">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
+					<textarea id="notes_on_student" name="notes_on_student" rows="7" onkeypress="enableSubmit('handle-student-data-submit')" onclick="enableSubmit('handle-student-data-submit')">@if($studentNotes != null){{$studentNotes}}@endif</textarea>
 					@error('notes_on_student')
 						<label class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
