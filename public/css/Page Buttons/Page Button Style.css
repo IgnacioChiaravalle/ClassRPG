@@ -1,3 +1,7 @@
+@import url("Go\ Back\ Button/Go\ Back\ Button\ Style.css");
+@import url("Home\ Button/Home\ Button\ Style.css");
+@import url("Logout\ Button/Logout\ Button\ Style.css");
+
 button.page-button {
 	position: fixed;
 	background-repeat: no-repeat;

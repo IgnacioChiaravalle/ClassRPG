@@ -9,8 +9,6 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Document Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Toast Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Page Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Home Button/Home Button Style.css')}}">
-		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Page Buttons/Logout Button/Logout Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Manager Button Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Market Management General Style.css')}}">
 		<link rel = "stylesheet" type = "text/css" href = "{{url('/css/Teacher/Market Management/Class Picker Style.css')}}">
