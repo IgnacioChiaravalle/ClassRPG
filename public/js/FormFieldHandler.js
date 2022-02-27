@@ -68,3 +68,11 @@ function enableSubmit(toEnableID) {
 		submitElement.disabled = false;
 	}
 }
+function disableSubmit(toDisableID) {
+	submitElement = document.getElementById(toDisableID);
+	if (!submitElement.disabled) {
+		submitElement.classList.remove("enabled-submit");
+		submitElement.classList.add("disabled-submit");
+		submitElement.disabled = true;
+	}
+}

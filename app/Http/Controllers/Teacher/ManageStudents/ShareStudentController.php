@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Teacher;
 use App\Models\Teacher_Student;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Redirect;
 use Illuminate\Http\Request;
 
 class ShareStudentController extends Controller {
@@ -70,6 +71,6 @@ class ShareStudentController extends Controller {
 			'student_name' => $studentName,
 			'notes_on_student' => null
 		]);
-		return redirect()->route('/')->with('success', "Alumno compartido con éxito.");
+		return Redirect::to("/manage-students/handle-student-data/$studentName")->with('success', "Alumno compartido con éxito.");
 	}
 }

@@ -1,0 +1,39 @@
+form.input-form {
+	margin-top: 4%;
+}
+
+label {
+	font-size: 115%;
+}
+
+input.submit {
+	margin-top: 1.5%;
+	margin-left: 20%;
+	font-family: Staatliches;
+	font-size: 150%;
+	border-radius: 10%/20%;
+	width: fit-content;
+}
+
+div.teacher-list-div {
+	font-size: 115%;
+	font-style: italic;
+}
+	div.higher-teacher-list-div {
+		margin-top: 2%;
+	}
+	div.lower-teacher-list-div {
+		margin-top: 10%;
+	}
+
+p.only-teacher-p {
+	font-size: 120%;
+	font-style: italic;
+	color: aqua;
+}
+	p.higher-only-teacher-p {
+		margin-top: 2%;
+	}
+	p.lower-only-teacher-p {
+		margin-top: 10%;
+	}
