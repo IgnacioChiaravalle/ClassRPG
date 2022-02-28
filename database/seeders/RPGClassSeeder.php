@@ -8,14 +8,19 @@ use Illuminate\Support\Facades\DB;
 class RPGClassSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
-			'Warrior',
+			'Guerrero',
 			'20',
 			'10'
 		]);
 		$this->insertIntoTable([
-			'Rogue',
+			'Pícaro',
 			'15',
 			'15'
+		]);
+		$this->insertIntoTable([
+			'Mago',
+			'30',
+			'5'
 		]);
 	}
 

@@ -25,7 +25,7 @@ class NewUserRegistered extends Notification {
 
 	public function toMail($notifiable) {
 		$mailMessage = (new MailMessage)
-			->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+			->from($address = 'classrpg.bb@gmail.com', $name = 'ClassRPG')
 			->subject('¡Bienvenido a ClassRPG, ' . $this->user->name . '!')
 			->greeting(new HtmlString('Hola, <i>' . $this->user->name . '</i>'))
 			->line(new HtmlString('Este es un correo de confirmación de tu nuevo usuario de <b><i>ClassRPG</i></b>.'))

@@ -9,7 +9,7 @@ class ItemSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
 			'Escudo de Madera',
-			'Warrior',
+			'Guerrero',
 			'2',
 			'6',
 			'3',
@@ -17,7 +17,7 @@ class ItemSeeder extends Seeder {
 		]);
 		$this->insertIntoTable([
 			'Trampa para Osos',
-			'Rogue',
+			'Pícaro',
 			'0',
 			'3',
 			'10',
@@ -25,7 +25,7 @@ class ItemSeeder extends Seeder {
 		]);
 		$this->insertIntoTable([
 			'Collar Mágico',
-			'Rogue',
+			'Pícaro',
 			'9',
 			'4',
 			'15',

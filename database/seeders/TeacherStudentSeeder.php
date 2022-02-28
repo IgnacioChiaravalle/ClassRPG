@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class TeacherStudentSeeder extends Seeder {
 	public function run() {
-		$this->insertIntoTable(['Admin Teacher', 'Student 1', 'Es un pibe muy trabajador.']);
-		$this->insertIntoTable(['Admin Teacher', 'Student 2', 'Le gusta Linkin Park.']);
+		$this->insertIntoTable(['Admin Teacher', 'Student 1', 'Es un muchacho muy trabajador.']);
+		$this->insertIntoTable(['Admin Teacher', 'Student 2', 'Estudia todos los días, pero le cuesta concentrarse.']);
 		$this->insertIntoTable(['Admin Teacher', 'Student 3', null]);
 		$this->insertIntoTable(['Teacher 2', 'Student 3', null]);
 		$this->insertIntoTable(['Teacher 3', 'Student 3', null]);

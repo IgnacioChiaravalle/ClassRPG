@@ -9,7 +9,7 @@ class StudentSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
 			'Student 1',
-			'Warrior',
+			'Guerrero',
 			'Espada de Madera',
 			'Escudo de Madera',
 			'Armadura de Cuero',
@@ -18,7 +18,7 @@ class StudentSeeder extends Seeder {
 		]);
 		$this->insertIntoTable([
 			'Student 2',
-			'Rogue',
+			'Pícaro',
 			null,
 			null,
 			null,
@@ -27,7 +27,7 @@ class StudentSeeder extends Seeder {
 		]);
 		$this->insertIntoTable([
 			'Student 3',
-			'Rogue',
+			'Pícaro',
 			null,
 			null,
 			null,

@@ -23,7 +23,7 @@ class EmailUpdated extends Notification {
 
 	public function toMail($notifiable) {
 		return (new MailMessage)
-			->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+			->from($address = 'classrpg.bb@gmail.com', $name = 'ClassRPG')
 			->subject('ClassRPG - Cambio de dirección de correo electrónico')
 			->greeting(new HtmlString('Hola, <i>' . $this->user->name . '</i>'))
 			->line(new HtmlString('Este es un correo de confirmación del cambio del correo electrónico asociado a tu cuenta de <b><i>ClassRPG</i></b>.'))

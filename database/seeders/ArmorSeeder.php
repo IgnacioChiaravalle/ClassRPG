@@ -10,21 +10,21 @@ class ArmorSeeder extends Seeder
 	public function run() {
 		$this->insertIntoTable([
 			'Armadura de Cuero',
-			'Warrior',
+			'Guerrero',
 			'5',
 			'7',
 			'true'
 		]);
 		$this->insertIntoTable([
 			'Capa Camuflada',
-			'Rogue',
+			'Pícaro',
 			'2',
 			'3',
 			'true'
 		]);
 		$this->insertIntoTable([
 			'Capa Armada',
-			'Rogue',
+			'Pícaro',
 			'5',
 			'6',
 			'true'

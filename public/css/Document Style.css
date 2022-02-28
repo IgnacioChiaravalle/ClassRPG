@@ -63,10 +63,6 @@
 	src: url(Fonts/Quantico_Font.ttf);
 }
 @font-face {
-	font-family: RockSalt;
-	src: url(Fonts/RockSalt_Font.ttf);
-}
-@font-face {
 	font-family: SedgwickAveDisplay;
 	src: url(Fonts/SedgwickAveDisplay_Font.ttf);
 }

@@ -23,7 +23,7 @@ class AccountDeleted extends Notification {
 
 	public function toMail($notifiable) {
 		return (new MailMessage)
-			->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+			->from($address = 'classrpg.bb@gmail.com', $name = 'ClassRPG')
 			->subject('ClassRPG - Cuenta eliminada')
 			->greeting(new HtmlString('Hola, <i>' . $this->user->name . '</i>'))
 			->line(new HtmlString('Este es un correo de confirmación de la eliminación de tu cuenta de <b><i>ClassRPG</i></b>.'))

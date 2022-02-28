@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher\ManageMissions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Student\MissionFunctionsForStudentController;
 use App\Http\Controllers\Teacher\ManageMissions\MissionFunctionsForTeacherController;
 use App\Http\Controllers\Teacher\ManageMissions\MissionAdditionController;
 use Redirect;
@@ -22,7 +23,9 @@ class MissionEditionController extends Controller {
 	protected function editMission(Request $request, $studentName, $missionID) {
 		(new MissionAdditionController)->validateRequest($request);
 		$request->validate(['current_health' => ['required', 'numeric', 'min:0']]);
-		(new MissionFunctionsForTeacherController)->getMission($missionID)->update([
+		$mission = (new MissionFunctionsForTeacherController)->getMission($missionID);
+		$previousHealth = $mission->current_health;
+		$mission->update([
 			'name' => $request->name,
 			'description' => $request->description,
 			'damage_caused' => $request->damage_caused,
@@ -32,6 +35,13 @@ class MissionEditionController extends Controller {
 			'coins_reward' => $request->coins_reward,
 			'other_rewards' => $request->other_rewards
 		]);
+		if ($mission->current_health != $previousHealth) {
+			if ($mission->current_health == 0)
+				(new MissionFunctionsForStudentController)->completeMission($mission);
+			elseif ($previousHealth == 0)
+				$mission->update(['finish_date' => null]);
+		}
+		
 		return Redirect::to("/manage-students/handle-student-data/$studentName")->with('success', "Misión editada con éxito.");
 	}
 }

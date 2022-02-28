@@ -17,7 +17,7 @@ class CreateMissionsTable extends Migration
 			$table->id()->unique();
 			$table->string('name');
 			$table->foreignId('teacher_student_relation_id')->references('id')->on('teacher_students')->onDelete('cascade')->onUpdate('cascade');
-			$table->string('description');
+			$table->text('description');
 			$table->unsignedInteger('damage_caused');
 			$table->string('damage_period');
 			$table->unsignedInteger('max_health');

@@ -30,7 +30,7 @@ class MissionFunctionsForStudentController extends Controller {
 			return $finalHealth;
 	}
 
-	private function completeMission($mission) {
+	public function completeMission($mission) {
 		$mission->update(['finish_date' => Carbon::parse(date("Y-m-d"))]);
 	}
 

@@ -9,28 +9,28 @@ class WeaponSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
 			'Espada de Madera',
-			'Warrior',
+			'Guerrero',
 			'1',
 			'5',
 			'true'
 		]);
 		$this->insertIntoTable([
 			'Dardos Simples',
-			'Rogue',
+			'Pícaro',
 			'1',
 			'2',
 			'true'
 		]);
 		$this->insertIntoTable([
 			'Daga',
-			'Rogue',
+			'Pícaro',
 			'3',
 			'4',
 			'true'
 		]);
 		$this->insertIntoTable([
 			'Galaxy Sword',
-			'Rogue',
+			'Pícaro',
 			'1000000',
 			'0',
 			'false'

@@ -9,43 +9,43 @@ use Carbon\Carbon;
 class MissionSeeder extends Seeder {
 	public function run() {
 		$this->insertIntoTable([
-			'Dragoncete',
+			'Miembro del Palacio Real',
 			'3',
-			'Estudiar 25 horas diarias',
+			'El Palacio Real tiene reglas estrictas para admitir nuevos miembros. Si querés ser parte de él, deberás demostrar tu dedicación absoluta estudiando un mínimo de 4 horas diarias.',
 			'20',
-			'12 minutos',
-			'120000',
-			'120000',
+			'1 día sin estudio',
+			'200',
+			'140',
 			Carbon::parse('21-12-2021')->format('d-m-Y'),
 			Carbon::parse('25-06-2028')->format('d-m-Y'),
-			'69',
-			'Honor',
+			'30',
+			'Una espada nueva',
 			false
 		]);
 
 		$this->insertIntoTable([
-			'Castillete',
+			'Infiltrar el Castillo',
 			'3',
-			'Probablemente sea invencible así que ni te gastes.',
-			'69',
-			'69 segundos',
-			'69',
-			'69',
+			'Tendrás que derrotar a los sabios y poderosos miembros de la Guardia Real, que han sido corrompidos por un hechizo del Señor Oscuro. No te será fácil. Deberás contestar bien por lo menos 8 de las 10 preguntas que te harán.',
+			'10',
+			'1 pregunta mal respondida',
+			'20',
+			'20',
 			Carbon::parse('01-12-2021')->format('d-m-Y'),
 			null,
-			'420',
+			'50',
 			null,
-			false
+			true
 		]);
 
 		$this->insertIntoTable([
-			'Living Life',
+			'Amigo de la Corona',
 			'3',
-			'Sobrevivir toda la vida.',
-			'1',
-			'1 año',
-			'115',
-			'23',
+			'La Reina tiene una misión especial para vos. Quiere que diseñes un pasadizo secreto desde sus aposentos hacia su búnker de seguridad, ¡pero cuidado! Las paredes del viejo Palacio son delgadas y vas a necesitar hacer varios cálculos para asegurarte de que no colapsen. Terminá tu tarea de matemática para demostrarle a la Reina que estás listo para esto.',
+			'15',
+			'1 día sin hacer la tarea',
+			'15',
+			'10',
 			Carbon::parse('29-09-1998')->format('d-m-Y'),
 			null,
 			'5',
@@ -54,16 +54,16 @@ class MissionSeeder extends Seeder {
 		]);
 
 		$this->insertIntoTable([
-			'Just a Test',
+			'Dragón del Valle',
 			'4',
-			'Test me!',
-			'15',
-			'32 horas',
-			'96',
-			'85',
+			'¡El Dragón del Valle ha derrotado a las defensas de la Ciudadela, y depende de vos detenerlo antes de que destruya todo! El Viejo Marcus dice conocer un conjuro que podría detener al dragón, pero requerirá que recolectes rápido algunos ingredientes. Contestá bien las preguntas para encontrar los materiales; contestalas mal y el dragón seguirá avanzando. ¡El destino del Reino está en tus manos!',
+			'10',
+			'1 pregunta mal respondida',
+			'50',
+			'50',
 			Carbon::parse('29-09-2010')->format('d-m-Y'),
 			null,
-			'88',
+			'45',
 			null,
 			false
 		]);

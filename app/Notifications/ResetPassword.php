@@ -22,7 +22,7 @@ class ResetPassword extends Notification {
 
 	public function toMail($notifiable) {
 		return (new MailMessage)
-			->from($address = 'nachochiara@gmail.com', $name = 'ClassRPG')
+			->from($address = 'classrpg.bb@gmail.com', $name = 'ClassRPG')
 			->subject('ClassRPG - Recuperación de contraseña')
 			->greeting('¡Hola!')
 			->line('Estás recibiendo este correo porque recibimos una solicitud de recuperación de contraseña para tu cuenta.')
