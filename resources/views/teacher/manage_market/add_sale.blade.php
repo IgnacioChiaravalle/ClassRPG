@@ -39,7 +39,7 @@
 
 			<label for="name">Nombre:</label>
 			<div>
-				<input id="name" type="text" class="field text-fielddefault-field" name="name" value="{{old('name')}}" placeholder="Nombre del Artículo" required autocomplete="name" autofocus onkeypress="activateField(this); enableSubmit('add-sale-submit')" onclick="activateField(this); enableSubmit('add-sale-submit')">
+				<input id="name" type="text" class="field text-field {{old('name') ? 'active-field' : 'default-field'}}" name="name" value="{{old('name')}}" placeholder="Nombre del Artículo" required autocomplete="name" autofocus onkeypress="activateField(this); enableSubmit('add-sale-submit')" onclick="activateField(this); enableSubmit('add-sale-submit')">
 				@error('name')
 					<label class="invalid-feedback" role="alert">
 						<strong>{{ $message }}</strong>
