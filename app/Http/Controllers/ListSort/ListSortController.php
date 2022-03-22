@@ -12,11 +12,11 @@ class ListSortController extends Controller {
 		$pivot_key = key($list);
 		$pivot = array_shift($list);
 		foreach ($list as $element) {
-			$comparationResult = $this->compare($element, $pivot, $criteria);
-			if($comparationResult <= 0)
+			$comparisonResult = $this->compare($element, $pivot, $criteria);
+			if($comparisonResult <= 0)
 				$loe[] = $element;
 			else
-				$gt[] = $element;	
+				$gt[] = $element;
 		}
 		return array_merge($this->quicksort($loe, $criteria), array($pivot_key=>$pivot), $this->quicksort($gt, $criteria));
 	}
